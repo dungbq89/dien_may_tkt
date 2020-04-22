@@ -1,0 +1,52 @@
+generator:
+  class: tmcTwitterBootstrapDoctrineGenerator
+  param:
+    model_class:           VtpProductsCategory
+    theme:                 tmcTwitterBootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          vtp_products_category
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        name: {label: Tên danh mục}
+        image_path: {label: Ảnh đại diện}
+        link: {label: Đường dẫn chi tiết}
+        priority: {label: Thứ tự hiển thị}
+        is_active: {label: Trạng thái}
+        is_home: {label: Trang chủ}
+#        created_by: {label: Người tạo}
+#        updated_by: {label: Người cập nhật}
+#        created_at: {label: Ngày tạo}
+#        updated_at: {label: Ngày cập nhật}
+#        description: {label: Giới thiệu}
+#        meta: {label: Nội dung thẻ Description}
+#        keywords: {label: Nội dung thẻ Keyword}
+        parent_id: {label: Chuyên mục cha}
+#        show_banner: {label: Hiển thị banner}
+#        parameter_ids: {label: Dịch vụ}
+#        lat: {label: kinh độ}
+#        log: {label: Vĩ độ}
+#        email: {label: Email}
+#        msisdn: {label: Số điện thoại}
+#        address: {label: Địa chỉ}
+      list:
+        title: Danh sách chuyên mục sản phẩm
+        display: [name, parent_id, is_active]
+      filter:
+        display: [name]
+      form:
+        class: VtpProductsCategoryFormAdmin
+        display: [name, parent_id, image_path, link, priority, is_home, is_active]
+#        fields:
+#          name: {label: Tên danh mục *}
+#          image_path: {label: Đường dẫn ảnh *}
+      edit:    
+        title: Sửa chuyên mục sản phẩm
+      new:     
+        title: Thêm mới chuyên mục sản phẩm

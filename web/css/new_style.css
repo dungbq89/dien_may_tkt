@@ -1,0 +1,212 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#main-header {
+    width: 100%;
+    height: 190px;
+    background-color: #006bbb;
+}
+
+.new-header {
+    min-width: 975px;
+    margin: 0 auto;
+}
+
+.top-header {
+    background-color: #0060a8;
+    height: 28px;
+}
+
+.content-top-header {
+    width: 975px;
+    margin: 0 auto;
+    text-align: right;
+
+}
+
+.txt-header {
+    color: #fff;
+    line-height: 28px;
+}
+
+.split-header {
+    width: 75px;
+    height: 28px;
+    background: url("../img/border.jpg") no-repeat;
+    float: right;
+}
+
+.txt-date-day {
+    color: #fff;
+    line-height: 28px;
+    margin-right: 20px;
+}
+
+.txt-language {
+    color: #fff;
+    line-height: 28px;
+    margin-right: 5px;
+}
+
+.a-language-viet {
+    width: 22px;
+    height: 28px;
+    background: url("../img/vietnam.jpg") no-repeat;
+    line-height: 28px;
+    display: inline-block;
+}
+
+.a-language-eng {
+    width: 22px;
+    height: 28px;
+    background: url("../img/english.jpg") no-repeat;
+    line-height: 28px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.p-header {
+    width: 100px;
+}
+
+.logo-halong {
+    width: 975px;
+    margin: 0 auto;
+    clear: both;
+    margin-top: 10px;
+}
+
+#menu {
+    width: 975px;
+    margin: 0 auto;
+}
+
+.nav {
+    background-color: #006bbb;
+}
+
+.nav ul li a {
+    border-right: none;
+}
+
+.box-notic {
+    width: 670px;
+    float: left;
+}
+
+#box-news-top {
+    height: 20px;
+}
+
+#form-search {
+    float: right;
+}
+
+.yahoo {
+    float: left;
+    padding-top: 6px;
+}
+
+.frm-search {
+    width: 200px;
+}
+
+.col-left {
+    clear: both;
+    width: 670px;
+    float: left;
+}
+
+.col-right-new {
+    float: right;
+    width: 300px;
+    padding-left: 10px;
+}
+
+.tinh-nang {
+
+}
+
+.ul-tinh-nang {
+
+}
+
+.ul-tinh-nang li {
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+
+.ul-tinh-nang a {
+    margin-left: 32px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.ul-tinh-nang a:hover {
+    color: #005b9f;
+}
+
+.h3-tinh-nang {
+    color: #005b9f;
+    padding: 10px 0px 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #006bbb;
+    margin-bottom: 8px;
+}
+
+.link-images {
+    margin: 20px 0px;
+}
+
+.img-list {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.more-video h3 {
+    background: none;
+    line-height: 17px;
+}
+
+.more-video a {
+    background: rgba(0, 0, 0, 0) url("../img/img-bulet.png") no-repeat scroll 0 10px;
+}
+.link-website{
+    margin-bottom: 20px;
+}
+#link-right{
+    width: 100%;
+    margin: 0px;
+}
+.box-news-home{
+    width: 308px;
+    float: left;
+    margin-right: 25px;
+}
+.news-title{
+    margin-bottom: 10px;
+}
+.readmore{
+    color: #bf0000;
+}
+.more-news{
+    clear: both;
+    padding-top: 10px;
+}
+.ul-more-news{
+    margin-left: 13px;
+}
+.ul-more-news li{
+    line-height: 20px;
+    list-style: circle;
+}
+.news-txt{
+    height: auto !important;
+}
+.banner-home{
+    clear: both;
+    margin: 10px 0px;
+}

@@ -1,0 +1,792 @@
+
+
+
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Newland Serviced Apartment</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+        <meta http-equiv="Content-Language" content="" />
+        <meta name="description" content="Newland Serviced Apartment" />
+        <meta name="keywords" content="serviced apartment, studio apartment, cheap serviced apartment" />
+        <meta property="og:site_name" content="companyname">
+        <meta property="og:url" name="og:url" content="" data-app>
+        <meta property="og:type" name="og:type" content="website" data-app>
+        <meta property="og:description" name="og:description" content="Newland Serviced Apartment" data-app>
+        <meta property="og:title" name="og:title" content="Newland Serviced Apartment" data-app>
+        <meta property="og:image" name="og:image" content="" data-app>
+        <link href="/favicon.png" rel="shortcut icon" />
+        <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.2.0/css/font-awesome.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="/css/swiper.css">
+        <link rel="stylesheet" type="text/css" href="/css/jquery.mmenu.all.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/a.css">
+        <link rel="stylesheet" type="text/css" href="/css/grid.css">
+
+        <script src="/js/jquery-1.10.1.min.js"></script>
+        <script src="/js/jquery.form.min.js"></script>
+        <script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="/js/jquery.mmenu.min.all.js"></script>
+        <script src="/js/script.js"></script>
+        <script src="/js/swiper.js"></script>
+        <meta http-equiv="REFRESH" content="5400" />
+    </head>
+<div id="page">
+<div class="content" >
+<div class="header">
+	<div class="grid">
+        <div class="header-1-3" style="position:relative; min-height:10px;">
+            <div class="logo">
+                <a href="/"><img src="/uploaded/logo/newlandhouse.png" alt="Newland Serviced Apartment" style="max-width:100%"/></a>
+            </div>
+        </div>
+        <div class="header-2-3">
+        	<div class="top-menu">
+            	<div class="langbar"  align="right">
+                	<a href="/vn/">Tiếng Việt</a> | <a href="/">English</a> | <a href="/kr/">Korean</a>
+                </div>
+                <div class=" hide-on-mobile hide-on-tab hide-on-pad" style="position:relative; ;float:right">
+                	<a href="#" class="fa fa-search " id="btnsearchpc"></a>
+                        <div class="box-search-top" >
+                        	<form action="/search/" method="get" id="searchpcform" >
+                                <a class="fa fa-share" href="#" onClick="$('#searchpcform').submit(); return false"></a>
+                                <input name="qr" type="text" class="txt-keyword-pc" placeholder="Keyword">
+                            </form>
+                            
+                        </div>
+                </div>
+            </div>
+            <div class="hotline-banner hide-on-mobile hide-on-tab hide-on-pad">
+            	<div class="col-1-3">
+                	<div class="hotline-header">
+                    	<a href="tel:0971.000.953">0971.000.953 <i class="fa fa-caret-down"></i></a>
+                        <div class="box"><div> Newland 1: 043.5558818 - 0982.208.267</div><div>Newland 6: 043.7834801 -  0988.438.530</div><div> Newland 7: 043.5558456 -  0936.972.260</div><div> Newland 8: 043.7831999 - 0978.158.154</div><div> Newland 9: 043.7850808 -  0932.602.266</div></div>
+                    </div>
+                </div>
+                <div class="col-1-3">
+                	<div class="email-header">
+                    	<a href="mailto:info@newlandhouse.vn">info@newlandhouse.vn <i class="fa fa-caret-down"></i></a>
+                        <div class="box"><div> Newland 1: nl1@newlandhouse.vn</div><div> Newland 6: nl6@newlandhouse.vn</div><div> Newland 7: nl7@newlandhouse.vn</div><div> Newland 8: nl8@newlandhouse.vn</div><div> Newland 9: nl9@newlandhouse.vn</div></div>
+                    </div>
+                </div>
+                <div class="col-1-3">
+                	<div class="feedback-header"><a href="/feedback/">Feedback</a></div>
+                </div>
+            </div>
+            <div class="menubar" id="menubar">
+                <ul class="nav hide-on-pad hide-on-tab hide-on-mobile" id="navbar">
+                    <li class=" active">
+	<a href="/" >Home</a>
+</li>
+<li class="">
+	<a href="/about-us-1/" >About us</a>
+</li>
+<li class="">
+	<a href="/chain/" > Chain</a>
+</li>
+<li class="">
+	<a href="/services/" >Services</a>
+</li>
+<li class="">
+	<a href="/photos/" >Photos</a>
+    <ul class="mnu-one-col">
+    	<li><a href="/photo-newland-1/"> Newland 1 Photos</a>
+        	<ul>
+	            <li><a href="/photo-newland-1/studio-apartment-1">Studio apartment 1</a>
+	            <li><a href="/photo-newland-1/studio-apartment-2/">Studio apartment 2</a>
+	            <li><a href="/photo-newland-1/2-bedrooms-apartment/">2 bedrooms Apartment </a>
+            </ul>
+        </li>
+    	<li><a href="/newland-6-photos/">Newland 6 Photos</a>
+        	<ul>
+	            <li><a href="/newland-6-photos/studio-apartment-1/">Studio apartment 1</a>
+	            <li><a href="/newland-6-photos/studio-apartment-2/">Studio apartment 2</a>
+	            <li><a href="/newland-6-photos/studio-apartment-3/">Studio apartment 3</a>
+            </ul>
+        </li>
+    	<li><a href="/newland-8-photos/">Newland 7 Photos</a>
+        	<ul>
+	            <li><a href="/newland-8-photos/studio-apartment-1/">Studio apartment 1</a>
+	            <li><a href="/newland-8-photos/studio-apartment-2/">Studio apartment 2</a>
+	            <li><a href="/newland-8-photos/1-bedroom-apartment/"> 1 bedroom Apartment</a>
+            </ul>
+        </li>
+    	<li><a href="/newland-8-photos-1/">Newland 8 Photos</a>
+        	<ul>
+	            <li><a href="/newland-8-photos-1/studio-apartment-1/">Studio apartment 1</a>
+	            <li><a href="/newland-8-photos-1/studio-apartment-2/">Studio apartment 2</a>
+	            <li><a href="/newland-8-photos-1/superior-studio-apartment/">Superior Studio apartment</a>
+            </ul>
+        </li>
+    	<li><a href="/newland-9-photos/">Newland 9 Photos</a>
+        	<ul>
+	            <li><a href="/newland-9-photos/standard-studio-apartment/">Standard Studio apartment</a>
+	            <li><a href="/newland-9-photos/superior-studio-apartment/">Superior Studio apartment</a>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li class="">
+	<a href="/news/" >News</a>
+</li>
+<li class="">
+	<a href="/contact-us/" >Contact us</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+                <ul class="nav hide-on-pc " id="navmobile">
+                    <li><a href="#menu" class="fa fa-bars"></a></li>
+                    <li class="active"><a href="/" class="fa fa-home"></a></li>
+                </ul>
+            </div>
+        </div>
+    	<div style="clear:both"></div>
+    </div>    
+    <div class="menubar menubarmobile" id="menubar-mobile" style="position:relative">
+    	<a href="/" class="fa fa-home"></a>
+        <a href="#menu" class="fa fa-bars"></a>
+        <a href="/" class="fa fa-search" id="btn-search-mobile"></a>
+        <div class="box-search-mobile">
+        	<form action="/search/" id="searchformmobile">
+            	<input name="qr" placeholder="Keyword" type="text">
+                 <a class="fa fa-share" href="#" onClick="$('#searchformmobile').submit(); return false"></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="line-header"></div>
+
+
+<div class="">
+    <link href="/css/flexslider.css" rel="stylesheet" type="text/css">
+    <div class="box-slide" style="min-height:500px">
+ <div style="position:relative;">   	
+        <section class="slider">
+            <div class="flexslider">
+              <ul class="slides">
+                <li style="position:relative">
+                     <a href="" target=""><img src="/uploaded/slideshow/1.jpg" alt="Slide 5 - English" width="100%"/></a>
+                     
+                 </li>
+                <li style="position:relative">
+                     <a href="" target=""><img src="/uploaded/NL/new%20Slide%20Show/Pic%20for%20web%20NEWLAND.jpg" alt="Slide 4 - English" width="100%"/></a>
+                     
+                 </li>
+                <li style="position:relative">
+                     <a href="" target=""><img src="/uploaded/slideshow/3.jpg" alt="Slide 3 - English" width="100%"/></a>
+                     
+                 </li>
+                <li style="position:relative">
+                     <a href="" target=""><img src="/uploaded/NL/new%20Slide%20Show/N1.jpg" alt="Slide 2 - English" width="100%"/></a>
+                     
+                 </li>
+                <li style="position:relative">
+                     <a href="" target=""><img src="/uploaded/NL/new%20Slide%20Show/Br%20N1.jpg" alt="Slide 1 - English" width="100%"/></a>
+                     
+                 </li>
+              </ul>
+            </div>
+          </section>
+          
+          <div style="max-width:1160px; margin:auto;">
+        <div class="box-booking-slide">
+        	<div style="text-transform:uppercase; color:#FFF">Booking</div>
+            <div class="c10"></div>
+            <form action="/index4.php?page=booking&lang=" method="post" id="bookingform" onSubmit="return check_booking();">
+                <input type="hidden" value="save" name="code" />
+                <div class="box-item-booking">
+                    <div class="item"><input name="name" type="text" placeholder="Full name"  data-alert="Enter your name"></div>
+                    <div class="item"><input name="phone" type="text" placeholder="Phone" data-alert="" data-alert="Enter your phone number" class="notNull"></div>
+                    <div class="item"><input name="email" id="email" type="text" placeholder="Email" data-alert="Enter your email address" class="notNull"></div>
+                    <div class="item">
+                        <select name="houses" id="houses">
+                            <option>Houses</option>
+                            <option value="1333" >- Newland 9</option><option value="1332" >- Newland 8</option><option value="1330" >- Newland 6</option><option value="1329" >- Newland 1</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <select name="roomtypes" id="roomtype">
+                            <option>Room type</option>
+                            <option value="Single room" >- Single room</option><option value="Double room" >- Double room</option><option value="Other" >- Other</option>
+                        </select>
+                    </div>
+                    <div class="row-booking">
+                        <div class="item item-1-2"><input name="from" placeholder="From" class="datepk" type="text"></div>
+                        <div class="item item-1-2"><input name="to" placeholder="To" class="datepk" type="text"></div>
+                        <div class="c"></div>
+                        <div class="item-2-3 item">Number of Person</div>
+                        <div class="item-1-3 item">
+                            <select name="numberofperson">
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value=">20">>20</option>
+                            </select>
+                        </div>
+                        <div class="c"></div>
+                        <div class="item-2-3 item">Number of Room</div>
+                        <div class="item-1-3 item">
+                            <select name="numberofroom">
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value=">20">>20</option>
+                            </select>
+                        </div>
+                        <div class="c"></div>
+                    </div>
+                    <div>
+                        <a href="#" onClick="$('#bookingform').submit(); return false" class="btn-book-now">Book now</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+</div>    
+          <script defer src="/js/jquery.flexslider.js"></script>
+          <script type="text/javascript">
+            $(window).load(function(){
+              $('.flexslider').flexslider({
+                animation: "slide",
+                start: function(slider){
+                  
+                }
+              });
+            });
+            
+          </script>
+    </div>	
+</div>
+<script>
+	$(function(){
+		$('#houses').change(function(){
+			$('#roomtype').load("/index4.php?page=ajaxroom&id=" + $(this).val());	
+		});
+		
+		
+	});
+	
+</script>
+
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.notNull').change(function(){
+            check_booking();
+        });
+    });
+    function check_booking(){
+        ok= true;
+        $('#bookingform .error').remove();
+        $('#bookingform .notNull').each(function(){
+            if($(this).val()==''){
+                /*if($(this).attr('id')=='sercurity'){
+                    $("<div class='error'>&nbsp; " + $(this).attr('data-alert') + "</div>").insertAfter($('#imgCaptcha')); 	
+                }else{*/
+                    $("<div class='error'>&nbsp; " + $(this).attr('data-alert') + "</div>").insertAfter($(this)); 	
+                    ok=false;
+               // }
+            }
+        });	
+    
+    
+        if($("#bookingform #email").val()!=''){
+            checkEmail = $('#bookingform #email').val();
+            if ((checkEmail.indexOf('@') < 0) || ((checkEmail.charAt(checkEmail.length-4) != '.') && (checkEmail.charAt(checkEmail.length-3) != '.'))) {
+                $("<span class='error'> *  </span>").insertAfter($("#bookingform #email")); 
+                ok= false;
+            } else{
+                $("#bookingform #email").text("");
+            };
+        }	
+    
+    
+        if (ok==true){
+            $('#bookingform').ajaxForm({
+                beforeSubmit: function(a,f,o) {
+                    $('#contactform').fadeTo('fast',0.3);
+                    $('.waiting').show();
+                    o.dataType = 'html';
+                },
+    
+                success: function(data) {
+                    $('#bookingform').fadeTo('fast',1);
+                    $('.waiting').hide();
+                    var str1 = data;
+                    var str2 = "CAPTCHA";
+                    if(str1.indexOf(str2) == -1){
+                        $('#bookingform')[0].reset();
+                    }				
+                    alert(data);
+                    clearForm: true;
+                }
+            });	
+        }
+        return ok;
+    }
+    
+    </script> <div class="grid">
+	<div class="c20"></div>
+	<div class="col-1-4 mobile-col-1-1 tab-col-1-1">
+    	<h1 class="title-first-home">
+        	<span>Newland House</span>
+        </h1>
+        <div class="c20"></div>
+        <div align="justify">
+        	<strong><span style="color: rgb(0, 128, 0);">NEWLAND &nbsp;</span></strong><span style="color: rgb(0, 128, 0);">Hotel studio apartment</span><strong>&nbsp;</strong>is a perfect choice as you can enjoy the following benefits<strong>:</strong>
+<ul>
+	<li>Close to: Grand plaza, Trung Hoa Nhan Chinh, Keangnam Tower&hellip;</li>
+	<li>Free High speed Wifi in all area of hotel</li>
+	<li>Kitchen with cooking equipments&nbsp;</li>
+	<li><strong>Convenience:</strong>&nbsp;TV Led 32&rdquo;, 2 ways air conditioner, Big refrigerator, High speed Internet cable, KBS channel&hellip;</li>
+	<li>Best service: Housekeeping and Laundry, Receptionist, Security 24/7</li>
+	<li>Enthusiastic and friendly staffs</li>
+	<li>Reasonable price and&nbsp; best price for long term.&nbsp;</li>
+</ul>
+
+        </div>
+    </div>
+    <div class="c30 mobile-break"></div>
+        <div class="c30 tab-break"></div>
+    <div class="col-3-4 mobile-col-1-1 tab-col-1-1 chain-home-list" style="">
+    	<h1 class="title-first-home"><span><a href="/chain/"> Chain</a></span></h1>
+        <div class="c20"></div>
+    	<div style="position:relative">
+        	
+			<div class="swiper-container chain-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                	<div><a href="/chain/newland-1.html"><img src="/temp/-uploaded-NL-N1_P1.-N1_cr_420x315.jpg" alt="Newland 1" width="100%"></a></div>
+                    <div class="pro-home-name"><a href="/chain/newland-1.html">Newland 1</a></div>
+                    <div class="chain-info">
+                        <div><a href="/chain/newland-1.html"><i class="fa fa-map-marker"></i> No.52 Lane 171 Nguyen Ngoc Vu street, Trung Hoa, Cau Giay, Hanoi</a></div>
+                        <div><a href="/chain/newland-1.html"><i class="fa fa-picture-o"></i> Photos</a></div>
+                        <div><a href="/chain/newland-1.html"><i class="fa fa-map"></i> Map</a></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                	<div><a href="/chain/hotel-name-2.html"><img src="/temp/-uploaded_20141015_153637 copy 1_cr_420x315.jpg" alt="Newland 6" width="100%"></a></div>
+                    <div class="pro-home-name"><a href="/chain/hotel-name-2.html">Newland 6</a></div>
+                    <div class="chain-info">
+                        <div><a href="/chain/hotel-name-2.html"><i class="fa fa-map-marker"></i> No.64 Lane 186 Tran Duy Hung street, Trung Hoa, Cau Giay, Hanoi</a></div>
+                        <div><a href="/chain/hotel-name-2.html"><i class="fa fa-picture-o"></i> Photos</a></div>
+                        <div><a href="/chain/hotel-name-2.html"><i class="fa fa-map"></i> Map</a></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                	<div><a href="/chain/hotel-name-4.html"><img src="/temp/-uploaded_n8-letan_cr_420x315.jpg" alt="Newland 8" width="100%"></a></div>
+                    <div class="pro-home-name"><a href="/chain/hotel-name-4.html">Newland 8</a></div>
+                    <div class="chain-info">
+                        <div><a href="/chain/hotel-name-4.html"><i class="fa fa-map-marker"></i> No 47 Lane 148 Tran Duy Hung street, Trung Hoa, Cau Giay, Hanoi</a></div>
+                        <div><a href="/chain/hotel-name-4.html"><i class="fa fa-picture-o"></i> Photos</a></div>
+                        <div><a href="/chain/hotel-name-4.html"><i class="fa fa-map"></i> Map</a></div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                	<div><a href="/chain/hotel-name-5.html"><img src="/temp/-uploaded_Outlook 3_cr_420x315.JPG" alt="Newland 9" width="100%"></a></div>
+                    <div class="pro-home-name"><a href="/chain/hotel-name-5.html">Newland 9</a></div>
+                    <div class="chain-info">
+                        <div><a href="/chain/hotel-name-5.html"><i class="fa fa-map-marker"></i> No.16 Lane 61 Dong Me street, Me Tri Road, Trung Hoa, Cau Giay, Hanoi</a></div>
+                        <div><a href="/chain/hotel-name-5.html"><i class="fa fa-picture-o"></i> Photos</a></div>
+                        <div><a href="/chain/hotel-name-5.html"><i class="fa fa-map"></i> Map</a></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="swiper-chain-next hide-on-tab hide-on-mobile hide-on-pad"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+        	<div class="swiper-chain-prev  hide-on-tab hide-on-mobile hide-on-pad"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+        </div>
+        <script>
+			var xview = 3;
+			if ($(document).width() <= 980) {
+				xview = 2;
+				
+			}
+			if ($(document).width() <= 768) {
+				xview = 2;
+				
+			}
+			
+			if ($(document).width() <= 480) {
+				xview = 1;
+				
+			}
+			if ($(document).width() <= 320) {
+				xview = 1;
+				
+	
+			}  
+			var swiper = new Swiper('.chain-slide', {
+				pagination: '',
+				slidesPerView: xview,
+				paginationClickable: true,
+				spaceBetween: 30,
+				autoplay: 3000,
+				speed:1000,
+				simulateTouch:false,
+				nextButton: '.swiper-chain-next',
+       			prevButton: '.swiper-chain-prev',
+			});
+		</script>
+    </div>
+    <div class="c30"></div>
+</div>
+<div class="bg-gray">
+	<div class="grid grid-pad">
+	<div class="c20"></div>
+    
+    	<h2 class="title-cat-home" style="text-transform:uppercase">Newland hightlight</h2>
+    	<div class="c20 hide-on-mobile"></div>
+    
+    <div class="col-1-4 pad-col-1-3 tab-col-1-2 ">
+    	<div class="">
+            <div class="image-apart">
+            	<div class=""></div>
+                <a href="/all-rooms/superior-studio-apartment-116.html"><img src="/temp/-uploaded-NL-N9_IMG_3602_cr_420x315.jpg" alt="Superior Studio apartment" width="100%"></a>
+            </div>
+            <h2 class="pro-name"><a href="/all-rooms/superior-studio-apartment-116.html">Superior Studio apartment</a></h2>
+            
+            <div class="info-apart">Newland 9 - No.16 Lane 1 Dong Me street, Me Tri Road, Nam Tu Liem<div class="c10"></div></div>
+            <div class="c10"></div>
+            <div class="price-book">
+            	<span class="col-2-3">
+                	<div class="price"><span>500 $</span>/Month</div>
+                    <div class="price"><span>27 USD $</span>/Day</div>
+                </span>
+                <div class="c10 mobile-break"></div>
+                <span  class="col-1-3" style="padding:0px;">
+                	<a href="/booking/?idroom=116"  class="quick-book">Book <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                </span>
+                <div class="c"></div>
+            </div>
+        </div>
+        <div class="c20 mobile-break"></div>
+    </div>
+    <div class="col-1-4 pad-col-1-3 tab-col-1-2 ">
+    	<div class="">
+            <div class="image-apart">
+            	<div class=""></div>
+                <a href="/all-rooms/studio-apartment-1-113.html"><img src="/temp/-uploaded_8-011_cr_420x315.jpg" alt="Studio apartment 1" width="100%"></a>
+            </div>
+            <h2 class="pro-name"><a href="/all-rooms/studio-apartment-1-113.html">Studio apartment 1</a></h2>
+            
+            <div class="info-apart">Newland 8- No.47 Lane 148 Tran Duy Hung street, Hanoi<div class="c10"></div></div>
+            <div class="c10"></div>
+            <div class="price-book">
+            	<span class="col-2-3">
+                	<div class="price"><span>300 USD $</span>/Month</div>
+                    <div class="price"><span>17 USD $</span>/Day</div>
+                </span>
+                <div class="c10 mobile-break"></div>
+                <span  class="col-1-3" style="padding:0px;">
+                	<a href="/booking/?idroom=113"  class="quick-book">Book <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                </span>
+                <div class="c"></div>
+            </div>
+        </div>
+        <div class="c20 mobile-break"></div><div class="c20 tab-break"></div>
+    </div>
+    <div class="col-1-4 pad-col-1-3 tab-col-1-2 ">
+    	<div class="">
+            <div class="image-apart">
+            	<div class=""></div>
+                <a href="/all-rooms/studio-apartment-3-110.html"><img src="/temp/-uploaded_20141015_153637_cr_420x315.jpg" alt="Studio apartment 3" width="100%"></a>
+            </div>
+            <h2 class="pro-name"><a href="/all-rooms/studio-apartment-3-110.html">Studio apartment 3</a></h2>
+            
+            <div class="info-apart">Newland 6 - No.64 Lane 186 Trần Duy Hưng street.&nbsp;<div class="c10"></div></div>
+            <div class="c10"></div>
+            <div class="price-book">
+            	<span class="col-2-3">
+                	<div class="price"><span>380 USD $</span>/Month</div>
+                    <div class="price"><span>21 USD $</span>/Day</div>
+                </span>
+                <div class="c10 mobile-break"></div>
+                <span  class="col-1-3" style="padding:0px;">
+                	<a href="/booking/?idroom=110"  class="quick-book">Book <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                </span>
+                <div class="c"></div>
+            </div>
+        </div>
+        <div class="c20 mobile-break"></div><div class="c20 pad-break"></div>
+    </div>
+	<div  class="c30" ></div>
+</div>
+    <div class="c5"></div>
+<div style="background:#FFF">
+	<div class="grid">
+    <div class="c30"></div>
+    <div class="col-1-1">
+    	<h2 class="title-cat-home" style="text-transform:uppercase"><a href="/feedback/">Feedback</a></h2>
+    	<div class="c20 hide-on-mobile"></div>
+    </div>
+    <div class="c30"></div>
+    
+    <div style="position:relative">
+    <a href="#" class="swiper-chain-prev hide-on-mobile hide-on-tab"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        	<a href="#" class="swiper-chain-next hide-on-mobile hide-on-tab"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+	    <div style="padding:0px 10px">
+        <div class="swiper-container article-slide">
+        	
+        <div class="swiper-wrapper">
+           
+            <div class="swiper-slide">
+                <div class=""><a href="/feedback/test-2.html"><img src="/temp/-uploaded_Mr.Paul Harding_cr_160x160.jpg" alt="Test 2" class="image-article"/></a></div>
+                <h3 class="item-name" style="padding-bottom:5px"><a href="/feedback/test-2.html">Mr.Paul Harding</a></h3>
+                <div style="font-weight:bold ;padding-bottom:5px">United State</div>
+                <div><span style="font-size:12px;"><em><span style="color: rgb(78, 78, 78); font-family: mallory, 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 21px;">I booked my room for three days but was so pleased with the friendly and accommodating staff, especially the manager, that I booked an additional three weeks. The hotel is situated in a narrow alley with an incredible mix of shops, restaurants, and residences. It&#39;s not at all touristy so one feels they are experiencing the real Hanoi with all of it&#39;s energy and humanity. This is where I&#39;ll stay next time and it&#39;s the place I&#39;ll recommend to friends. I feel very safe here.&nbsp;</span></em></span></div>
+            </div>
+            <div class="swiper-slide">
+                <div class=""><a href="/feedback/test.html"><img src="/temp/-uploaded_view_cr_160x160.jpg" alt="Feedback1" class="image-article"/></a></div>
+                <h3 class="item-name" style="padding-bottom:5px"><a href="/feedback/test.html">Kim J.</a></h3>
+                <div style="font-weight:bold ;padding-bottom:5px">South Korea</div>
+                <div><span style="font-size:12px;"><em><span style="color: rgb(78, 78, 78); font-family: mallory, 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 21px;">There was everything(including kitchen wares) for living inside the room. You can cook inside the room. And very cheap and clean.</span></em></span></div>
+            </div>
+        </div>
+    <script>
+	
+			var pview = 2;
+			if ($(document).width() <= 980) {
+				pview = 2;
+				
+			}
+			if ($(document).width() <= 768) {
+				pview = 1;
+				
+			}
+			
+			if ($(document).width() <= 480) {
+				pview = 1;
+				
+			}
+			if ($(document).width() <= 320) {
+				pview = 1;
+				
+	
+			}  
+
+			var swiper = new Swiper('.article-slide', {
+				pagination: '',
+				slidesPerView: pview,
+				paginationClickable: true,
+				spaceBetween: 30,
+				autoplay: 3000,
+				speed:1000,
+				simulateTouch:false,
+				nextButton: '.swiper-chain-next',
+       			prevButton: '.swiper-chain-prev',
+			});
+		</script>
+    <div class="c30"></div>
+    
+    		
+		</div>
+        </div>
+	</div>
+    </div>
+</div>
+<div class="box-newsletter">
+<div class="grid">
+    	<div class="col-1-3 label-newsletter" style="font-size:11px;">Sign up to receive the latest information from NEWLAND</div>
+        <div class="col-2-3">
+        	<div class="box-content-newsletter" style="position:relative">
+        	<form action="/index4.php?page=newslater" id="newsletter" method="post" onSubmit="return check_letter();" >
+            	<input type="text" placeholder="Enter email..." id="mail_letter" name="email"><a class="btn-newsletter" href="#" onClick="$('#newsletter').submit();return false">Submit</a>
+            	</form>
+                <div class="error-box-content">
+	                <div class="error-box"></div>
+                </div>
+            </div>
+        </div>
+        <div class="c"></div>
+</div>
+<script>
+
+
+    function check_letter(){
+        ok= true;
+		$('.error-box').html('');
+		if($("#newsletter #mail_letter").val()!=''){
+            checkEmail = $('#newsletter #mail_letter').val();
+            if ((checkEmail.indexOf('@') < 0) || ((checkEmail.charAt(checkEmail.length-4) != '.') && (checkEmail.charAt(checkEmail.length-3) != '.'))) {
+                $("<span class='error'> Email không hợp lệ  </span>").appendTo(".error-box"); 
+				$('.error-box-content').show();
+                ok= false;
+            } else{
+                $("#newsletter #mail_letter").text("");
+            };
+        }else{
+		
+			ok= false;
+			$("<span class='error'> Enter your email address  </span>").appendTo(".error-box"); 
+			$('.error-box-content').show();
+		}	
+
+		
+		if (ok==true){
+		
+			$('#newsletter').ajaxForm({
+                beforeSubmit: function(a,f,o) {
+                    $('#newsletter').fadeTo('fast',0.3);
+                   
+                    o.dataType = 'html';
+                },
+    
+                success: function(data) {
+                    $('#newsletter').fadeTo('fast',1);
+                   
+                    var str1 = data;
+                    var str2 = "CAPTCHA";
+                    if(str1.indexOf(str2) == -1){
+                        $('#newsletter')[0].reset();
+                    }				
+                    alert(data);
+                    clearForm: true;
+                }
+            });	
+		
+		}
+		
+		return false;
+		
+	}
+
+		
+		
+
+</script>
+</div>
+<div class="footer-page">
+	<div class="grid grid-pad">
+        <div class="c20"></div>
+ 			
+            
+            <div class="col-3-5  tab-col-1-1 mobile-col-1-1 fot-content ">
+                <div><b>Office : <em>Newland Trade &amp; Investment JSC &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</em><br />
+Address: <em>No.47 Lane 148 Tran Duy Hung street,<br />
+Cau Giay Disctrict, Hanoi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</em><br />
+Email: <em>info@newlandhouse.vn</em></b><br />
+<br />
+<br />
+<br />
+&nbsp;</div>
+            </div>
+            
+            <div class="col-1-5 tab-col-1-1 mobile-col-1-1">
+            	<div class="title-Link">Link Social Network</div>
+                <div class="smo-footer1">
+                    <a href="https://www.facebook.com/NewlandHouse"><i class="fa fa-facebook smo-footer"></i></a>
+                    <a href="//google.com"><i class="fa fa-google-plus smo-footer"></i></a>
+                    <a href="//twitter.com"><i class="fa fa-twitter smo-footer"></i></a>
+                    <a href="//linkedin.com"><i class="fa fa-linkedin smo-footer"></i></a>
+                    <a href="//youtube.com"><i class="fa fa-youtube smo-footer"></i></a>
+                    <a href="/sitemap/"><i class="fa fa-sitemap smo-footer"></i></a>
+                </div>
+            </div>
+            <div class="col-1-5 tab-col-1-1 mobile-col-1-1">
+                <div class="title-Link">Support Online</div>
+                <div class="smo-footer1">
+                    <a href="?chat"><i aria-hidden="true" class="fa fa-skype"></i></a>
+                    <a href="?chat"><i aria-hidden="true" class="fa fa-skype"></i></a>
+                    <a href="?chat"><i aria-hidden="true" class="fa fa-skype"></i></a>
+                    <a href="?chat"><i aria-hidden="true" class="fa fa-skype"></i></a>
+                </div>
+            </div>
+        <div class="c20"></div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<nav id="menu">
+    <ul>
+        <li><a href="/">Home</a>
+        </li>
+        <li><a href="/about-us-1/">About us</a>
+        </li>
+        <li><a href="/chain/"> Chain</a>
+        </li>
+        <li><a href="/services/">Services</a>
+        </li>
+        <li><a href="/photos/">Photos</a>
+        <li><a  href="/newland-9-photos/">-- Newland 9 Photos</a>
+            <ul>
+                <li><a href="/newland-9-photos/superior-studio-apartment/">Superior Studio apartment</a>
+                </li>
+                <li><a href="/newland-9-photos/standard-studio-apartment/">Standard Studio apartment</a>
+                </li>
+            </ul>
+        <li><a  href="/newland-8-photos-1/">-- Newland 8 Photos</a>
+            <ul>
+                <li><a href="/newland-8-photos-1/superior-studio-apartment/">Superior Studio apartment</a>
+                </li>
+                <li><a href="/newland-8-photos-1/studio-apartment-2/">Studio apartment 2</a>
+                </li>
+                <li><a href="/newland-8-photos-1/studio-apartment-1/">Studio apartment 1</a>
+                </li>
+            </ul>
+        <li><a  href="/newland-8-photos/">-- Newland 7 Photos</a>
+            <ul>
+                <li><a href="/newland-8-photos/1-bedroom-apartment/"> 1 bedroom Apartment</a>
+                </li>
+                <li><a href="/newland-8-photos/studio-apartment-2/">Studio apartment 2</a>
+                </li>
+                <li><a href="/newland-8-photos/studio-apartment-1/">Studio apartment 1</a>
+                </li>
+            </ul>
+        <li><a  href="/newland-6-photos/">-- Newland 6 Photos</a>
+            <ul>
+                <li><a href="/newland-6-photos/studio-apartment-3/">Studio apartment 3</a>
+                </li>
+                <li><a href="/newland-6-photos/studio-apartment-2/">Studio apartment 2</a>
+                </li>
+                <li><a href="/newland-6-photos/studio-apartment-1/">Studio apartment 1</a>
+                </li>
+            </ul>
+        <li><a  href="/photo-newland-1/">--  Newland 1 Photos</a>
+            <ul>
+                <li><a href="/photo-newland-1/2-bedrooms-apartment/">2 bedrooms Apartment </a>
+                </li>
+                <li><a href="/photo-newland-1/studio-apartment-2/">Studio apartment 2</a>
+                </li>
+                <li><a href="/photo-newland-1/studio-apartment-1">Studio apartment 1</a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="/news/">News</a>
+        </li>
+        <li><a href="/contact-us/">Contact us</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	$(function() {
+		$('#menu').mmenu();
+	});
+</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-522d562834f75590"></script>
+</body>
+</html>

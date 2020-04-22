@@ -1,0 +1,54 @@
+all:
+  sf_captchagd:
+     image_width:                90 # image width in pixels
+     image_height:               30 # image height in pixels
+     chars:                      "2345678abcdefhjkmnprsuxyz" # possible chars in captcha
+     length:                     2 # length of captcha
+     font_size:                  20 # font size
+     force_new_captcha:          true # if true - captcha regenerated EVERY request, even if user input true value before
+     fonts: ["akbar/vavobi.ttf"]
+
+  image_maxsize: 52428800
+  upload_max_size:   104857600
+  image_upload_max_size: 52428800
+  upload_video_max_size: 50485760
+  upload_max_size:   104857600
+  excel_max_row: 1000
+  category_images: category_images
+  article_images: article
+  service_images: service
+  advertise_images: advertise
+  product_images: products
+  import_max_size: 1048576
+  album_images: album
+  video_images: video
+  document: document
+  member_images: member
+  image_default: 'http://hqtimex.com/images/default.jpg'
+  upload_member: "/root/apps/project/hqtimex/web/uploads"
+
+  upload_media_file: "/root/apps/project/glovimex/web/uploads"
+  url_media_file: http://glovimex.com/uploads
+  url_media_default_file: http://glovimex.com/images/default-image.jpg
+  image_default: http://glovimex.com/images/default-image.jpg
+  #upload_media_file: /uploads
+
+  url_media_file: /uploads
+  
+  ckeditor:
+    basePath: /js/ckeditor
+  ckfinder:
+    active: true
+    basePath: /js/ckfinder
+  addcslashes_charlist: "%_-\'"  # Danh sach cac ky tu dac biet can xu ly truoc khi su dung search query
+  seo:
+    title: 'GLOVIMEX'
+    description: 'GLOVIMEX'
+    keywords: 'GLOVIMEX'
+    ogImage: ''
+    url: 'http://glovimex.com'
+  ManageAdChainImage:
+    maxsize: 999999
+    prefix: 'chain'
+    type: 'image/jpeg|image/jpg|image/png|image/gif'
+  domain: 'http://glovimex.com'

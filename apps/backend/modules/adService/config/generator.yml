@@ -1,0 +1,37 @@
+generator:
+  class: tmcTwitterBootstrapDoctrineGenerator
+  param:
+    model_class:           AdProduct
+    theme:                 tmcTwitterBootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          ad_product
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        name: {label: Tên dịch vụ}
+        description: {label: Mô tả}
+        content: {label: Nội dung}
+        category_id: {label: Thứ tự hiển thị}
+        image_path: {label: Ảnh hiển thị}
+        is_active: {label: Trạng thái}
+      list:
+        title: Danh sách dịch vụ
+        display: [name, description, category_id, is_active]
+        object_actions:
+          _edit: {label: Chi tiết}
+          _delete: ~
+      filter:
+        display: [name]
+      form:
+        class: adServiceAdminForm
+        display: [name, image_path, description, content, category_id,is_active]
+      edit:
+        title: Chỉnh sửa dịch vụ
+      new:
+        title: Thêm mới dịch vụ

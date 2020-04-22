@@ -1,0 +1,53 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+#trang gioi thieu
+introduction:
+  url: /gioi-thieu/:slug
+  param: {module: pageIntroduction, action: index}
+#trang tim kiem tin tuc
+page_search:
+  url:  /tim-kiem
+  param: { module: pageSearch, action: index}
+#trang chuyên mục tin tức
+category_news:
+  url: /chuyen-muc/:slug
+  param: {module: pageNews, action: index}
+
+#trang danh ba hoi vien
+document:
+  url: /van-ban-phap-quy
+  param: {module: pageDocument, action: index}
+#trang danh ba hoi vien
+contact:
+  url: /lien-he
+  param: {module: pageContact, action: index}
+personnal:
+  url: /danh-ba-hoi-vien
+  param: {module: pagePersonal, action: index}
+
+#ajax load video
+ajax_load_video:
+  url: /load-video
+  param: {module: ajax, action: ajaxLoadVideo}
+
+# default rules
+homepage:
+  url:   /:slug
+#  param: { module: pageHome, action: index }
+  param: { module: pageHome, action: index, slug: '' }
+  requirements: { sf_method: get }
+
+#trang hiển thị chi tiết tin tức
+article_detail:
+  url: /chi-tiet-tin-tuc/:slug
+  param: {module: pageNewsDetails, action: index}
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

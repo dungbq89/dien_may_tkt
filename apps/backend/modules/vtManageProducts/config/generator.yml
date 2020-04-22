@@ -1,0 +1,61 @@
+generator:
+  class: tmcTwitterBootstrapDoctrineGenerator
+  param:
+    model_class:           VtpProducts
+    theme:                 tmcTwitterBootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          vtp_products
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        image_path: { label: Ảnh minh họa}
+#        product_code: { label: Mã phòng}
+        product_name: { label: Tên sản phẩm}
+        price: { label: Giá}
+        price_promotion: { label: Giá khuyến mãi}
+        priority: { label: Thứ tự hiển thị}
+        link: { label: Đường dẫn}
+        description: { label: Mô tả}
+        content: { label: Nội dung}
+#        warranty_information: { label: Thông tin Bảo hành}
+#        manufacturer: { label: Hãng sản xuất}
+#        accessories: { label: Phụ kiện}
+        is_active: { label: Trạng thái}
+        is_home: { label: Trang chủ}
+        is_hot: { label: Nổi bật}
+        category_id: { label: Danh mục}
+#        comment: {label: Đánh giá phòng}
+        meta: {label: Nội dung thẻ Description}
+        keywords: {label: Nội dung thẻ Keyword}
+        # thong tin them
+        brand: { label: Hãng sản xuất}
+        unit: {label: Mệnh giá}
+        origin: {label: Nguồn gốc}
+        reference_price: {label: Giá tham khảo}
+        payment: {label: Thanh toán}
+        delivery: {label: Vận chuyển}
+        port: {label: Hải quan}
+        supply_ability: {label: Khả năng cung cấp}
+        packing: {label: Đóng kiện}
+        special_req: {label: Yêu cầu}
+      list:
+        title: Danh sách sản phẩm
+        display: [image_path, product_name, price, priority, link]
+      filter:
+       display: [product_name]
+      form:
+        class: vtManageProductsFormAdmin
+        display: [product_name, category_id, image_path, price, price_promotion, link, description, content, meta, keywords, priority, is_hot, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
+#        fields:
+#          product_name: { label: Tên phòng *}
+#          category_id: { label: Căn *}
+      edit:
+        title: Chỉnh sửa thông tin sản phẩm
+      new:
+        title: Thêm mới sản phẩm
