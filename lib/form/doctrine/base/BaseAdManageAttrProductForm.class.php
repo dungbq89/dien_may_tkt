@@ -16,8 +16,8 @@ abstract class BaseAdManageAttrProductForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'product_id' => new sfWidgetFormInputText(),
-      'attr_id'    => new sfWidgetFormInputText(),
+      'product_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AdProduct'), 'add_empty' => false)),
+      'attr_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AdAttr'), 'add_empty' => false)),
       'attr_type'  => new sfWidgetFormInputText(),
       'lang'       => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
@@ -26,8 +26,8 @@ abstract class BaseAdManageAttrProductForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'product_id' => new sfValidatorInteger(),
-      'attr_id'    => new sfValidatorInteger(),
+      'product_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AdProduct'))),
+      'attr_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AdAttr'))),
       'attr_type'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'lang'       => new sfValidatorString(array('max_length' => 10, 'required' => false)),
       'created_at' => new sfValidatorDateTime(),

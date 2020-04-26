@@ -40,6 +40,7 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProducts', 'doctrine');
  * @property string $packing
  * @property string $special_req
  * @property VtpProductsCategory $VtpProducts
+ * @property AdManageAttrProduct $AdAttrProduct
  * @property Doctrine_Collection $ProductImage
  * 
  * @method string              getProductName()          Returns the current record's "product_name" value
@@ -75,6 +76,7 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProducts', 'doctrine');
  * @method string              getPacking()              Returns the current record's "packing" value
  * @method string              getSpecialReq()           Returns the current record's "special_req" value
  * @method VtpProductsCategory getVtpProducts()          Returns the current record's "VtpProducts" value
+ * @method AdManageAttrProduct getAdAttrProduct()        Returns the current record's "AdAttrProduct" value
  * @method Doctrine_Collection getProductImage()         Returns the current record's "ProductImage" collection
  * @method VtpProducts         setProductName()          Sets the current record's "product_name" value
  * @method VtpProducts         setProductCode()          Sets the current record's "product_code" value
@@ -109,6 +111,7 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProducts', 'doctrine');
  * @method VtpProducts         setPacking()              Sets the current record's "packing" value
  * @method VtpProducts         setSpecialReq()           Sets the current record's "special_req" value
  * @method VtpProducts         setVtpProducts()          Sets the current record's "VtpProducts" value
+ * @method VtpProducts         setAdAttrProduct()        Sets the current record's "AdAttrProduct" value
  * @method VtpProducts         setProductImage()         Sets the current record's "ProductImage" collection
  * 
  * @package    symfony
@@ -295,6 +298,10 @@ abstract class BaseVtpProducts extends sfDoctrineRecord
         $this->hasOne('VtpProductsCategory as VtpProducts', array(
              'local' => 'category_id',
              'foreign' => 'id'));
+
+        $this->hasOne('AdManageAttrProduct as AdAttrProduct', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
 
         $this->hasMany('VtpProductImage as ProductImage', array(
              'local' => 'id',

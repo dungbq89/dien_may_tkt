@@ -59,4 +59,22 @@ class AdManageAttrTable extends Doctrine_Table
         }
         return $arrCbx;
     }
+
+    public static function getAttrBySlug($slug)
+    {
+        $query = AdManageAttrTable::getInstance()->createQuery();
+        if (is_array($slug)) {
+            $query->andWhereIn('slug', $slug);
+        } else {
+            $query->andWhere('slug=?', $slug);
+        }
+        $result = $query->execute();
+        $arrAttr = [];
+        if ($result) {
+            foreach ($result as $attr) {
+                $arrAttr[$attr->id] = $attr->name;
+            }
+        }
+        return $arrAttr;
+    }
 }

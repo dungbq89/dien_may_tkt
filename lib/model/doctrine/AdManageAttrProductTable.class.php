@@ -72,6 +72,20 @@ class AdManageAttrProductTable extends Doctrine_Table
             }
         } catch (Exception $e) {
         }
+    }
 
+    public static function getListAttrByCat($slug)
+    {
+        $query = AdManageAttrProductTable::getInstance()->createQuery('a')
+            ->select('a.attr_id, a.product_id,c.name,c.slug')
+            ->leftJoin('a.AdCat b')
+            ->leftJoin('a.AdAttr c')
+            ->andWhere('b.slug=?', $slug)
+            ->andWhere('a.attr_type=?', AdManageAttrProduct::ATTR_TYPE_CAT);
+        $result = $query->execute();
+        if ($result) {
+            return $result;
+        }
+        return false;
     }
 }

@@ -152,9 +152,9 @@ class VtHelper
     }
 
     /**
-     * @author ngoctv
-     * @return  ham kiem tra token
      * @param $token can kiem tra
+     * @return  ham kiem tra token
+     * @author ngoctv
      */
     public static function validateToken($token)
     {
@@ -195,9 +195,9 @@ class VtHelper
 
     /**
      * Tra ve IP cua thiet bi truy cap
+     * @return string
      * @author diepth2
      * @created June Mar 17, 2014
-     * @return string
      */
     public static function getDeviceIp()
     {
@@ -236,10 +236,10 @@ class VtHelper
 
     /**
      * Ham kiem tra Ip co nam trong dai V-internet cua viettel khong
-     * @author NamDT5
-     * @created on 17/01/2013
      * @param $ip
      * @return bool
+     * @author NamDT5
+     * @created on 17/01/2013
      */
     public static function isV_wapIp($ip)
     {
@@ -339,14 +339,14 @@ class VtHelper
     }
 
     /**
-     * @author tuanbm2
-     * Ham loai bo tat ca cac the html mac dinh loai bo array('script', 'iframe', 'noscript')
-     * @static
      * @param       $str - Xau can loai bo tag
      * @param array $tags - Mang cac tag se strip, vi du: array('a', 'b')
      * @param bool $stripContent
-     * @example: echo VtHelper::strip_html_default_tags($article->getBody())
      * @return mixed|string
+     * @example: echo VtHelper::strip_html_default_tags($article->getBody())
+     * @author tuanbm2
+     * Ham loai bo tat ca cac the html mac dinh loai bo array('script', 'iframe', 'noscript')
+     * @static
      */
     public static function strip_html_default_tags($str)
     {
@@ -361,11 +361,11 @@ class VtHelper
     }
 
     /**
+     * @param $str - Ham nay chi duoc dung doi voi  sf_escaping_strategy = 1 va sf_escaping_method=ESC_SPECIALCHARS
+     * @return string
      * @author tuanbm2
      * Ham loai bo tat ca cac the html mac dinh loai bo array('script', 'iframe', 'noscript')
      * @static
-     * @param $str - Ham nay chi duoc dung doi voi  sf_escaping_strategy = 1 va sf_escaping_method=ESC_SPECIALCHARS
-     * @return string
      */
     public static function strip_html_tags_and_decode($str)
     {
@@ -383,14 +383,14 @@ class VtHelper
      * return: link day du ca http://server/media/....
      */
     /**
-     * @author hoangl
-     * Ham loai bo tat ca cac the html
-     * @static
      * @param       $str - Xau can loai bo tag
      * @param array $tags - Mang cac tag se strip, vi du: array('a', 'b')
      * @param bool $stripContent
-     * @example: <?php echo VtHelper::strip_html_tags($article->getBody(), array('script', 'iframe', 'noscript'))?>
      * @return mixed|string
+     * @example: <?php echo VtHelper::strip_html_tags($article->getBody(), array('script', 'iframe', 'noscript'))?>
+     * @author hoangl
+     * Ham loai bo tat ca cac the html
+     * @static
      */
     public static function strip_html_tags($str, $tags = array(), $stripContent = false)
     {
@@ -495,14 +495,14 @@ class VtHelper
     }
 
     /***
-     * @author ngoctv
-     * Ham resize anh dung theo ti le
-     * @static
      * @param $file
      * @param $w
      * @param $h
      * @param bool $crop
      * @return resource
+     * @author ngoctv
+     * Ham resize anh dung theo ti le
+     * @static
      */
     public static function resize_image($dir_root, $dir_module, $filename, $w, $h, $crop = FALSE)
     {
@@ -546,12 +546,12 @@ class VtHelper
     }
 
     /**
-     * @author ngoctv1
-     * Ham encode the iframe trong truong hop insert truc tiep vao db
-     * @static
      * @param       $str - Xau can encode
      * @param array $tags - Mang cac tag se strip, vi du: array('a', 'b')
      * @return mixed|string
+     * @author ngoctv1
+     * Ham encode the iframe trong truong hop insert truc tiep vao db
+     * @static
      */
     public static function strip_html_tags_iframe($string, $tags = array())
     {
@@ -567,13 +567,13 @@ class VtHelper
     }
 
     /**
-     * @author hoangl
-     * Ham loai bo tat ca cac the html
-     * @static
      * @param       $str - Xau can loai bo tag
      * @param array $tags - Mang cac tag se strip, vi du: array('a', 'b')
      * @param bool $stripContent
      * @return mixed|string
+     * @author hoangl
+     * Ham loai bo tat ca cac the html
+     * @static
      */
     public static function encodeOutput($string, $force = FALSE)
     {
@@ -684,14 +684,14 @@ class VtHelper
     }
 
     /**
-     * @author ngoctv
-     * Ham format lai gia theo dang {aa,aaa,aaa}
      * @param int $price
      * @param int $number So ky tu sau dau $char
      * @param char $char Ky tu phan cach
      * @param type $unit Don vi tien te
      * @param type $default Chuoi mac dinh khi gia = 0
      * @return type
+     * @author ngoctv
+     * Ham format lai gia theo dang {aa,aaa,aaa}
      */
     public static function generatePriceToString($price, $number = 3, $char = ',', $unit = 'đ', $default = 'Miễn phí')
     {
@@ -743,13 +743,13 @@ class VtHelper
     }
 
     /**
-     * @author: ngoctv
-     * Ham tao anh thumbnail co text Watermark ghi len anh
      * @param type $dir_root
      * @param type $dir_module
      * @param type $filename
      * @param type $width
      * @param type $height
+     * @author: ngoctv
+     * Ham tao anh thumbnail co text Watermark ghi len anh
      */
     public static function createImage($dir_root, $dir_module, $filename, $width, $height)
     {
@@ -775,10 +775,10 @@ class VtHelper
     }
 
     /**
-     * @author: ngoctv
-     * Ham tao text Watermark
      * @param type $image
      * @return type
+     * @author: ngoctv
+     * Ham tao text Watermark
      */
     static function addWatermark($image)
     {
@@ -803,11 +803,11 @@ class VtHelper
     }
 
     /**
-     * @author ngoctv
-     * Ham kiem tra mot ky tu hay mot chuoi co trong phan dau cua chuoi khac hay khong, neu co thi tra ve true nguoc lai la false
      * @param type $haystack
      * @param type $needle
      * @return type
+     * @author ngoctv
+     * Ham kiem tra mot ky tu hay mot chuoi co trong phan dau cua chuoi khac hay khong, neu co thi tra ve true nguoc lai la false
      */
     public static function startsWith($haystack, $needle)
     {
@@ -815,11 +815,11 @@ class VtHelper
     }
 
     /**
-     * @author ngoctv
-     * Ham kiem tra mot ky tu hay mot chuoi co trong phan duoi cua chuoi khac hay khong, neu co thi tra ve true nguoc lai la false
      * @param type $haystack
      * @param type $needle
      * @return boolean
+     * @author ngoctv
+     * Ham kiem tra mot ky tu hay mot chuoi co trong phan duoi cua chuoi khac hay khong, neu co thi tra ve true nguoc lai la false
      */
     public static function endsWith($haystack, $needle)
     {
@@ -831,11 +831,11 @@ class VtHelper
     }
 
     /**
-     * @author ngoctv
-     * ham tra ve so ngay trong thang
      * @param type $month
      * @param type $year
      * @return type
+     * @author ngoctv
+     * ham tra ve so ngay trong thang
      */
     public static function days_of_month($month, $year)
     {
@@ -845,10 +845,10 @@ class VtHelper
 
     /**
      * @des:sub_string trong popup
-     * @author: loilv4
-     * @created: 22/04/2013
      * @param: $str, $length, $truncateString, $truncateLastspace
      * @return: $str
+     * @author: loilv4
+     * @created: 22/04/2013
      */
     public static function subString($str, $length = 22, $truncateString = '...', $truncateLastspace = true)
     {
@@ -878,10 +878,10 @@ class VtHelper
 
     /**
      * @des:replace trong popup
-     * @author: loilv4
-     * @created: 22/04/2013
      * @param: $strInput, $limit
      * @return: $resultReturn
+     * @author: loilv4
+     * @created: 22/04/2013
      */
     public static function replaceSpecialCharsFromWord($strInput)
     {
@@ -892,10 +892,10 @@ class VtHelper
 
     /**
      * @des:cat dong thoi encode trong popup
-     * @author: loilv4
-     * @created: 22/04/2013
      * @param: $strInput, $limit
      * @return: $resultReturn
+     * @author: loilv4
+     * @created: 22/04/2013
      */
     //truong hop $strInput ko bi encode boi symfony, return tu dong encode anti XSS
     public static function getLimitStringWithoutEncode($strInput, $limit = 10)
@@ -949,10 +949,10 @@ class VtHelper
      * Vi du su dung:<br />
      * <img src="<?php VtHelper::getThumbUrl('/medias/huypv/2011/06/15/abc.jpg', 90, 60); ?>" />
      * @param string $source /medias/huypv/2011/06/15/abc.jpg (nam trong thu muc web!)
-     * @author huypv
      * @param int $width
      * @param int $height
      * @return string /medias/huypv/2011/06/15/thumbs/abc_90_60.jpg
+     * @author huypv
      */
     public static function getThumbUrl($source, $width = null, $height = null, $type = '')
     {
@@ -1023,10 +1023,10 @@ class VtHelper
 
     /**
      * Tra ve dinh dang thoi gian: Thứ 4, 07/05/2014 14:22
-     * @author NamDT5
-     * @created on Jul 12, 2012
      * @param unknown_type $string
      * @param unknown_type $encoding
+     * @author NamDT5
+     * @created on Jul 12, 2012
      */
     public static function getFormatDate($datetime)
     {
@@ -1050,10 +1050,10 @@ class VtHelper
 
     /**
      * preProcess query search backsplash (\) tat ca doan code search like trong PHP ma can tim ky tu dac biet deu phai goi ham nay
+     * @return string
      * @author tuanbm
      * @modifier chuyennv2
      * @date 2012/06/27
-     * @return string
      */
     public static function preProcessForSearchLike($param)
     {
@@ -1093,7 +1093,7 @@ class VtHelper
     }
 
     //check format date
-    public static function  validateDate($date, $format = 'Y-m-d')
+    public static function validateDate($date, $format = 'Y-m-d')
     {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
@@ -1103,20 +1103,20 @@ class VtHelper
     public static function generateUniqueFileName($ext)
     {
         return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            // 32 bits for "time_low"
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff),
-            // 16 bits for "time_mid"
-            mt_rand(0, 0xffff),
-            // 16 bits for "time_hi_and_version",
+                // 32 bits for "time_low"
+                mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+                // 16 bits for "time_mid"
+                mt_rand(0, 0xffff),
+                // 16 bits for "time_hi_and_version",
 // four most significant bits holds version number 4
-            mt_rand(0, 0x0fff) | 0x4000,
-            // 16 bits, 8 bits for "clk_seq_hi_res",
+                mt_rand(0, 0x0fff) | 0x4000,
+                // 16 bits, 8 bits for "clk_seq_hi_res",
 // 8 bits for "clk_seq_low",
 // two most significant bits holds zero and one for variant DCE1.1
-            mt_rand(0, 0x3fff) | 0x8000,
-            // 48 bits for "node"
-            mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-        ) . '.' . $ext;
+                mt_rand(0, 0x3fff) | 0x8000,
+                // 48 bits for "node"
+                mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+            ) . '.' . $ext;
     }
 
     public static function getPathImage($link, $prefix)
@@ -1138,14 +1138,31 @@ class VtHelper
         return '';
 
     }
+
+    public static function genUrlFilter($url, $arrFilter, $slug, $isCheck = false)
+    {
+        $filter = '';
+        $key = array_search($slug, $arrFilter);
+        if ($isCheck) {
+            unset($arrFilter[$key]);
+            if (!empty($arrFilter))
+                $filter = implode(',', $arrFilter);
+        } else {
+            $filter = sprintf('%s,%s', $slug, implode(',', $arrFilter));
+        }
+        if ($filter) {
+            return sprintf('%s?filter=%s', $url, $filter);
+        }
+        return $url;
+    }
 }
 
 /**
  * Chuyen doi ky tu ASCII ve dang chuan UNICODE
- * @author NamDT5
- * @created on Jul 12, 2012
  * @param unknown_type $unicode
  * @param unknown_type $encoding
+ * @author NamDT5
+ * @created on Jul 12, 2012
  */
 function unichr($unicode, $encoding = 'UTF-8')
 {
@@ -1154,10 +1171,10 @@ function unichr($unicode, $encoding = 'UTF-8')
 
 /**
  * Tra ve ma ASCII
- * @author NamDT5
- * @created on Jul 12, 2012
  * @param unknown_type $string
  * @param unknown_type $encoding
+ * @author NamDT5
+ * @created on Jul 12, 2012
  */
 function uniord($string, $encoding = 'UTF-8')
 {

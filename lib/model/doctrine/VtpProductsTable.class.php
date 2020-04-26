@@ -57,6 +57,7 @@ class VtpProductsTable extends Doctrine_Table
             ->limit($limit)
             ->fetchArray();
     }
+
     public static function getHomeProducts($limit)
     {
         return VtpProductsTable::getInstance()->createQuery()
@@ -253,6 +254,16 @@ class VtpProductsTable extends Doctrine_Table
             ->where('brand=?', $brand)
             ->andWhere('is_active=?', VtCommonEnum::NUMBER_ONE)
             ->orderBy('updated_at DESC');
+        return $query;
+    }
+
+    public static function getAllProductByBrandAttr($attrs)
+    {
+        $query = VtpProductsTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdAttrProduct b')
+            ->andWhereIn('b.attr_id', $attrs)
+            ->andWhere('a.is_active=?', VtCommonEnum::NUMBER_ONE)
+            ->orderBy('a.updated_at DESC');
         return $query;
     }
 }
