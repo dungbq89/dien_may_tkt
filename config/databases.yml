@@ -1,8 +1,0 @@
-all:
-  doctrine:
-    class: sfDoctrineDatabase
-    param:
-      dsn: 'mysql:host=163.44.193.86;dbname=dungbq_glovimex'
-      username: dev
-      password: dev@5^^l
-      attributes: { default_table_charset: utf8, default_table_collate: utf8_general_ci }

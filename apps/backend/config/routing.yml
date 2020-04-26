@@ -1,3 +1,21 @@
+ad_manage_attr_product:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AdManageAttrProduct
+    module:               AdManageAttrProduct
+    prefix_path:          /AdManageAttrProduct
+    column:               id
+    with_wildcard_routes: true
+
+ad_manage_attr:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AdManageAttr
+    module:               AdManageAttr
+    prefix_path:          /AdManageAttr
+    column:               id
+    with_wildcard_routes: true
+
 ad_config:
   class: sfDoctrineRouteCollection
   options:

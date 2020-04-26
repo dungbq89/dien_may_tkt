@@ -37,4 +37,9 @@ class VtpProductsCategory extends BaseVtpProductsCategory
     {
         return VtpProductsTable::getProductHomeByCategory($this->getId(), $limit)->fetchArray();
     }
+
+    public function getHasAttr()
+    {
+        return AdManageAttrProductTable::getArrAttrByProduct($this->getId(), AdManageAttrProduct::ATTR_TYPE_CAT);
+    }
 }

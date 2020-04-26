@@ -35,6 +35,7 @@ generator:
 #        email: {label: Email}
 #        msisdn: {label: Số điện thoại}
 #        address: {label: Địa chỉ}
+        cat_attr: {label: Chọn thuộc tính}
       list:
         title: Danh sách chuyên mục sản phẩm
         display: [name, parent_id, is_active]
@@ -48,5 +49,6 @@ generator:
 #          image_path: {label: Đường dẫn ảnh *}
       edit:    
         title: Sửa chuyên mục sản phẩm
+        display: [name, parent_id, image_path, link, priority, is_home, is_active, cat_attr]
       new:     
         title: Thêm mới chuyên mục sản phẩm

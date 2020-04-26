@@ -44,6 +44,7 @@ generator:
         supply_ability: {label: Khả năng cung cấp}
         packing: {label: Đóng kiện}
         special_req: {label: Yêu cầu}
+        product_attr: {label: "Chọn thuộc tính"}
       list:
         title: Danh sách sản phẩm
         display: [image_path, product_name, price, priority, link]
@@ -57,5 +58,8 @@ generator:
 #          category_id: { label: Căn *}
       edit:
         title: Chỉnh sửa thông tin sản phẩm
+        display:
+          "Thông tin sản phẩm": [product_name, category_id, image_path, price, price_promotion, link, description, content, meta, keywords, priority, is_hot, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
+          "Thuộc tính sản phẩm": [product_attr]
       new:
         title: Thêm mới sản phẩm

@@ -52,6 +52,10 @@ all:
               credentials: [[admin,product,hq_brand]]
               route: ad_product
               icon: text.png
+            Danh sách Thuộc Tính:
+              credentials: [[admin,product,ad_attr]]
+              route: ad_manage_attr
+              icon: text.png
         Phân hệ khác:
           credentials: [[admin,subAdmin, ctv]]
           dropdown:

@@ -58,16 +58,34 @@ class VtpProductsCategoryFormAdmin extends BaseVtpProductsCategoryForm
 
         $this->setDefault('priority', null);
 
+        $arrParent = $this->getParentByType($this->getObject()->getId());
         $this->widgetSchema['parent_id'] = new sfWidgetFormChoice(array(
-            'choices' => $this->getParentByType($this->getObject()->get('id')),
+            'choices' => $arrParent,
             'multiple' => false,
             'expanded' => false
         ));
         $this->validatorSchema['parent_id'] = new sfValidatorChoice(array(
             'required' => false,
-            'choices' => array_keys($this->getParentByType($this->getObject()->get('id'))),
+            'choices' => array_keys($arrParent),
         ));
-
+        // lay danh sach thuoc tinh
+        $arrAttr = AdManageAttrTable::getAllAttrByCbx(false, 0);
+        unset($arrAttr[0]);
+        // lay danh sach thuoc tinh dang co
+        $hasCatAttr = $this->getObject()->getHasAttr();
+        $this->widgetSchema['cat_attr'] = new sfWidgetFormChoice(array(
+            'choices' => $arrAttr,
+            'multiple' => true,
+            'expanded' => false
+        ), ['class' => 'cb-js-select2']);
+        $this->validatorSchema['cat_attr'] = new sfValidatorChoice(array(
+            'required' => false,
+            'multiple' => true,
+            'choices' => array_keys($arrAttr),
+        ));
+        if ($hasCatAttr) {
+            $this->setDefault('cat_attr', array_keys($hasCatAttr));
+        }
         $this->widgetSchema->setNameFormat('vtp_products_category[%s]');
 
         $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
@@ -87,7 +105,7 @@ class VtpProductsCategoryFormAdmin extends BaseVtpProductsCategoryForm
         $lstCat = VtpProductsCategoryTable::getCategoryByParentID($category_id);
         if (count($lstCat) > 0) {
             foreach ($lstCat as $item) {
-                $strCat .= ',' . self::getCategoryByParent($item->id);
+                $strCat .= ',' . self::getCategoryByParent($item['id']);
             }
         }
         if (VtHelper::endsWith($strCat, ',')) {
@@ -129,11 +147,12 @@ class VtpProductsCategoryFormAdmin extends BaseVtpProductsCategoryForm
 
     public function save($con = null)
     {
-
         if (!empty($this->values['parameter_ids']) && $this->values['parameter_ids'] != '') {
             $this->values['parameter_ids'] = implode(',', $this->values['parameter_ids']);
         }
         $article = parent::save($con);
+        // xoa du lieu cu va cap nhap du lieu moi
+        AdManageAttrProductTable::updateAttr($article->id, $this->values['cat_attr'], AdManageAttrProduct::ATTR_TYPE_CAT);
         return $article;
     }
 }

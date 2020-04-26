@@ -31,4 +31,14 @@ class VtpProducts extends BaseVtpProducts
         }
         return false;
     }
+
+    public function getAllListAttr()
+    {
+        return AdManageAttrTable::getAllAttrByCbx(1, 0);
+    }
+
+    public function getListAttrByProduct($attrType = 1)
+    {
+        return AdManageAttrProductTable::getListAttrByProduct($this->getId(), $attrType);
+    }
 }
