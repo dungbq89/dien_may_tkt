@@ -1,0 +1,36 @@
+generator:
+  class: tmcTwitterBootstrapDoctrineGenerator
+  param:
+    model_class:           AdManageAttr
+    theme:                 tmcTwitterBootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          ad_manage_attr
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        name: {label: "Tên thuộc tính"}
+        parent: {label: "Thuộc tính cha"}
+        status: {label: "Trạng thái"}
+        priority: {label: "Sắp sếp"}
+      list:
+        display: [name, parent]
+      filter:
+        display: [name, parent]
+      form:
+        display: [name, parent, status, priority]
+        class: AdManageAttrFormAdmin
+      edit:
+        title: "Cập nhập thuộc tính"
+        display:
+          "Thông tin chung": [name, parent, status, priority]
+          "Thuộc tính con": [_childAttr]
+      new:
+        title: "Thêm mới thuộc tính"
+      show:    ~
+      revert:  ~

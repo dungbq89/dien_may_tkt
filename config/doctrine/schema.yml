@@ -570,3 +570,26 @@ AdManageFile:
     duration:       {type: integer(4),  notnull: false}
     position:       {type: integer(4),  notnull: false, comment: 'vi tri anh, video' }
     type_product:       {type: integer(4),  notnull: false, comment: 'anh phan he' }
+
+AdManageAttr:
+  tableName: ad_manage_attr
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [name]
+  columns:
+    name:     {type: string(255),  notnull: true, comment: 'ten thuoc tinh'}
+    slug: { type: string(255), notnull: false}
+    parent: { type: integer(22), notnull: false}
+    status: { type: boolean, notnull: false, default: true, comment: "trang thai"}
+    priority: { type: integer(4), notnull: false, comment: "sap xep"}
+    lang: {  type: string(10), comment: "Đa ngôn ngữ"}
+AdManageAttrProduct:
+  tableName: ad_manage_attr_product
+  actAs:
+    Timestampable: ~
+  columns:
+    product_id:     {type: integer(22),  notnull: true, comment: 'ten thuoc tinh'}
+    attr_id: { type: integer(22), notnull: true}
+    attr_type: { type: string(255), notnull: false, comment: "1: thuoc tinh, 2: thuoc tinh con, 3 category"}
+    lang: {  type: string(10), comment: "Đa ngôn ngữ"}

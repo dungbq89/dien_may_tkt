@@ -113,6 +113,36 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
             'packing' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
             'special_req' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
         ));
+
+        // them thuoc tinh
+        // lay danh sach thuoc tinh theo category
+        $listChildAttr = [];
+        $listCatAttr = AdManageAttrProductTable::getArrAttrByProduct($this->getObject()->getCategoryId(), AdManageAttrProduct::ATTR_TYPE_CAT);
+        if ($listCatAttr) {
+            // lay danh sach thuoc tinh con
+            $listChildAttr = AdManageAttrTable::getAllAttrByCbx(false, array_keys($listCatAttr));
+            unset($listChildAttr[0]);
+
+        }
+        $this->widgetSchema['product_attr'] = new sfWidgetFormChoice(array(
+            'choices' => $listChildAttr,
+            'multiple' => true,
+            'expanded' => false
+        ), ['class' => 'cb-js-select2']);
+        $this->validatorSchema['product_attr'] = new sfValidatorChoice(array(
+            'required' => false,
+            'multiple' => true,
+            'choices' => array_keys($listChildAttr),
+        ));
+        // lay danh sach thuoc tinh dang co
+        $hasProductAttr = AdManageAttrProductTable::getArrAttrByProduct($this->getObject()->getId(), AdManageAttrProduct::ATTR_TYPE_CHILD);
+
+        if ($hasProductAttr) {
+            $this->setDefault('product_attr', array_keys($hasProductAttr));
+        }
+        // them thuoc tinh
+
+
         $this->widgetSchema['portal_id'] = new sfWidgetFormInputText(array(), array('disabled' => 'false'));
         $this->validatorSchema['portal_id'] = new sfValidatorString(array('max_length' => 25, 'required' => false, 'trim' => true));
 
@@ -154,6 +184,13 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
             $arrBrand[$brand->id] = $brand->name;
         }
         return $arrBrand;
+    }
 
+    public function save($con = null)
+    {
+        $product = parent::save($con);
+        // xoa du lieu cu va cap nhap du lieu moi
+        AdManageAttrProductTable::updateAttr($product->id, $this->values['product_attr'], AdManageAttrProduct::ATTR_TYPE_CHILD);
+        return $product;
     }
 }
