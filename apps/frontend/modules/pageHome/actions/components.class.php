@@ -24,6 +24,18 @@ class pageHomeComponents extends sfComponents
                 $data[] = $depart;
             }
         }
+        // lay danh sach attr theo slug
+        $slug = $request->getParameter('slug');
+        $listAttr = AdManageAttrProductTable::getListAttrByCat($slug);
+        $arrFilter = [];
+        $filter = trim($request->getParameter('filter'));
+        if ($filter) {
+            $arrFilter = explode(',', $filter);
+        }
+
+        $this->slug = $slug;
+        $this->listAttr = $listAttr;
+        $this->arrFilter = $arrFilter;
         $this->data = $data;
     }
 
@@ -74,6 +86,6 @@ class pageHomeComponents extends sfComponents
 
     public function executeBrand($request)
     {
-        
+
     }
 }

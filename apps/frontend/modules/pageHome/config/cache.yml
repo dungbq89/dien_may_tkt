@@ -10,3 +10,6 @@ roomListHome:
 slide:
   enabled: true
   lifetime: 300
+#_department:
+#  enabled: true
+#  lifetime: 300

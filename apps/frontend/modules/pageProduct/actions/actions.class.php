@@ -52,9 +52,16 @@ class pageProductActions extends sfActions
         $limit = 9;
         if ($slug && $page) {
             $category = HqBrandTable::getBrandBySlug($slug);
+
             if ($category) {
                 $pager = new sfDoctrinePager('VtpProducts', $limit);
-                $pager->setQuery(VtpProductsTable::getAllProductByBrand($category->id));
+                $filter = trim($request->getParameter('filter'));
+                if ($filter) {
+                    $listAttr = AdManageAttrTable::getAttrBySlug(explode(',', $filter));
+                    $pager->setQuery(VtpProductsTable::getAllProductByBrandAttr(array_keys($listAttr)));
+                } else {
+                    $pager->setQuery(VtpProductsTable::getAllProductByBrand($category->id));
+                }
                 $pager->setPage($page);
                 $pager->init();
             }
@@ -211,11 +218,11 @@ class pageProductActions extends sfActions
                     //Content
                     $mail->isHTML(true);                                  // Set email format to HTML
                     $mail->Subject = 'Order: ' . $product->product_name;
-                    $content = '<b>Customer Name: </b>'.$values['full_name'].'<br>';
-                    $content .= '<b>Email: </b>'.$values['email'].'<br>';
-                    $content .= '<b>Phone: </b>'.$values['phone'].'<br>';
-                    $content .= '<b>Country: </b>'.$values['country'].'<br>';
-                    $content .= '<b>Requirement: </b>'.$values['requirement'].'<br>';
+                    $content = '<b>Customer Name: </b>' . $values['full_name'] . '<br>';
+                    $content .= '<b>Email: </b>' . $values['email'] . '<br>';
+                    $content .= '<b>Phone: </b>' . $values['phone'] . '<br>';
+                    $content .= '<b>Country: </b>' . $values['country'] . '<br>';
+                    $content .= '<b>Requirement: </b>' . $values['requirement'] . '<br>';
                     $mail->Body = $content;
 //                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                     $mail->send();

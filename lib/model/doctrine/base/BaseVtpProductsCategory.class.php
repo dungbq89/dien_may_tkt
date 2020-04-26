@@ -29,6 +29,7 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProductsCategory', 'doctrine'
  * @property string $email
  * @property string $msisdn
  * @property Doctrine_Collection $ProductCategory
+ * @property Doctrine_Collection $AdCat
  * 
  * @method string              getName()            Returns the current record's "name" value
  * @method string              getAddress()         Returns the current record's "address" value
@@ -52,6 +53,7 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProductsCategory', 'doctrine'
  * @method string              getEmail()           Returns the current record's "email" value
  * @method string              getMsisdn()          Returns the current record's "msisdn" value
  * @method Doctrine_Collection getProductCategory() Returns the current record's "ProductCategory" collection
+ * @method Doctrine_Collection getAdCat()           Returns the current record's "AdCat" collection
  * @method VtpProductsCategory setName()            Sets the current record's "name" value
  * @method VtpProductsCategory setAddress()         Sets the current record's "address" value
  * @method VtpProductsCategory setImagePath()       Sets the current record's "image_path" value
@@ -74,6 +76,7 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProductsCategory', 'doctrine'
  * @method VtpProductsCategory setEmail()           Sets the current record's "email" value
  * @method VtpProductsCategory setMsisdn()          Sets the current record's "msisdn" value
  * @method VtpProductsCategory setProductCategory() Sets the current record's "ProductCategory" collection
+ * @method VtpProductsCategory setAdCat()           Sets the current record's "AdCat" collection
  * 
  * @package    symfony
  * @subpackage model
@@ -201,6 +204,10 @@ abstract class BaseVtpProductsCategory extends sfDoctrineRecord
         $this->hasMany('VtpProducts as ProductCategory', array(
              'local' => 'id',
              'foreign' => 'category_id'));
+
+        $this->hasMany('AdManageAttrProduct as AdCat', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
 
         $vtblameable0 = new Doctrine_Template_VtBlameable();
         $timestampable0 = new Doctrine_Template_Timestampable();

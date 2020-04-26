@@ -13,19 +13,22 @@ Doctrine_Manager::getInstance()->bindComponent('AdManageAttr', 'doctrine');
  * @property boolean $status
  * @property integer $priority
  * @property string $lang
+ * @property Doctrine_Collection $AdAttr
  * 
- * @method string       getName()     Returns the current record's "name" value
- * @method string       getSlug()     Returns the current record's "slug" value
- * @method integer      getParent()   Returns the current record's "parent" value
- * @method boolean      getStatus()   Returns the current record's "status" value
- * @method integer      getPriority() Returns the current record's "priority" value
- * @method string       getLang()     Returns the current record's "lang" value
- * @method AdManageAttr setName()     Sets the current record's "name" value
- * @method AdManageAttr setSlug()     Sets the current record's "slug" value
- * @method AdManageAttr setParent()   Sets the current record's "parent" value
- * @method AdManageAttr setStatus()   Sets the current record's "status" value
- * @method AdManageAttr setPriority() Sets the current record's "priority" value
- * @method AdManageAttr setLang()     Sets the current record's "lang" value
+ * @method string              getName()     Returns the current record's "name" value
+ * @method string              getSlug()     Returns the current record's "slug" value
+ * @method integer             getParent()   Returns the current record's "parent" value
+ * @method boolean             getStatus()   Returns the current record's "status" value
+ * @method integer             getPriority() Returns the current record's "priority" value
+ * @method string              getLang()     Returns the current record's "lang" value
+ * @method Doctrine_Collection getAdAttr()   Returns the current record's "AdAttr" collection
+ * @method AdManageAttr        setName()     Sets the current record's "name" value
+ * @method AdManageAttr        setSlug()     Sets the current record's "slug" value
+ * @method AdManageAttr        setParent()   Sets the current record's "parent" value
+ * @method AdManageAttr        setStatus()   Sets the current record's "status" value
+ * @method AdManageAttr        setPriority() Sets the current record's "priority" value
+ * @method AdManageAttr        setLang()     Sets the current record's "lang" value
+ * @method AdManageAttr        setAdAttr()   Sets the current record's "AdAttr" collection
  * 
  * @package    symfony
  * @subpackage model
@@ -75,6 +78,10 @@ abstract class BaseAdManageAttr extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('AdManageAttrProduct as AdAttr', array(
+             'local' => 'id',
+             'foreign' => 'attr_id'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
              'fields' => 

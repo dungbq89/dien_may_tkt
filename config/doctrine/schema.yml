@@ -393,6 +393,7 @@ VtpProducts:
     special_req: { type: string(255), comment: "Yêu cầu"}
   relations:
     VtpProducts: { class: VtpProductsCategory, local: category_id, type: one, foreignAlias: ProductCategory }
+    AdAttrProduct: { class: AdManageAttrProduct,local: id, foreign: product_id, foreignAlias: AdAttrProduct }
 VtpProductImage:
   #connection: doctrine
   tableName: vtp_products_image
@@ -593,3 +594,7 @@ AdManageAttrProduct:
     attr_id: { type: integer(22), notnull: true}
     attr_type: { type: string(255), notnull: false, comment: "1: thuoc tinh, 2: thuoc tinh con, 3 category"}
     lang: {  type: string(10), comment: "Đa ngôn ngữ"}
+  relations:
+    AdAttr: { class: AdManageAttr, local: attr_id, foreign: id, foreignAlias: AdAttr }
+    AdProduct: { class: VtpProducts, local: product_id, foreign: id, foreignAlias: AdProduct }
+    AdCat: { class: VtpProductsCategory, local: product_id, foreign: id, foreignAlias: AdCat }
