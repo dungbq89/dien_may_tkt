@@ -17,22 +17,6 @@
                             </ul>
                         </div>
                     </div>
-<!--                    <div class="col-lg-6 col-md-6">-->
-<!--                        <div class="top_right text-right">-->
-<!--                            <ul>-->
-<!--                                <li class="language"><a href="javascript:void(0);"><img src="./assets/img/logo/language.png" alt="">en --->
-<!--                                        vi<i class="ion-ios-arrow-down"></i></a>-->
-<!--                                    <ul class="dropdown_language">-->
-<!--                                        <li><a href="--><?php //echo url_for('homepage', array('lang' => 'en')); ?><!--"><img src="./assets/img/logo/language.png"-->
-<!--                                                             alt=""> --><?php //echo __('English'); ?><!--</a></li>-->
-<!--                                        <li><a href="--><?php //echo url_for('homepage', array('lang' => 'vi')); ?><!--"><img src="./assets/img/logo/language2.png"-->
-<!--                                                             alt=""> --><?php //echo __('Vietnamese'); ?><!--</a></li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!---->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -52,7 +36,7 @@
                         <div class="search-container">
                             <form action="<?php echo url_for1('@page_search') ?>" method="get">
                                 <div class="search_box">
-                                    <input placeholder="<?php echo __('Search entire store here'); ?> ..." type="search" name="keyword" id="keyword">
+                                    <input placeholder="<?php echo __('Tìm kiếm'); ?> ..." type="search" name="keyword" id="keyword">
                                     <button type="submit"><i class="ion-ios-search-strong"></i></button>
                                 </div>
                             </form>
@@ -73,8 +57,8 @@
                         <nav>
                             <ul>
 
-                                <li><a href="<?php echo url_for('homepage'); ?>"><?php echo __('Home'); ?></a></li>
-                                <li><a href="#"><?php echo __('Products'); ?><i class="fa fa-angle-down"></i></a>
+                                <li><a href="<?php echo url_for('homepage'); ?>"><?php echo __('Trang chủ'); ?></a></li>
+                                <li><a href="#"><?php echo __('Sản phẩm'); ?><i class="fa fa-angle-down"></i></a>
                                     <ul class="sub_menu pages">
                                         <?php
                                         if (isset($data) && count($data)) {
@@ -88,8 +72,7 @@
                                     </ul>
                                 </li>
 
-                                <li><a target="_blank" href="https://vn1188428656ldxm.trustpass.alibaba.com/?spm=a2700.7756200.0.0.52731afaQONw5B"><?php echo __('Alibaba Store'); ?></a></li>
-                                <li><a href="#"><?php echo __('Services'); ?><i class="fa fa-angle-down"></i></a>
+                                <li><a href="#"><?php echo __('Dịch vụ'); ?><i class="fa fa-angle-down"></i></a>
                                     <ul class="sub_menu pages">
                                         <?php
                                         if (isset($services) && count($services)) {
@@ -102,10 +85,10 @@
                                         ?>
                                     </ul>
                                 </li>
-                                <li><a href="<?php echo url_for('policy'); ?>"><?php echo __('Policy'); ?></a></li>
-                                <li><a href="<?php echo url_for1('@hq_news') ?>"><?php echo __('News'); ?></a></li>
-                                <li><a href="<?php echo url_for('about_us'); ?>"><?php echo __('About Us'); ?></a></li>
-                                <li><a href="<?php echo url_for('contact_us'); ?>"><?php echo __('Contact Us'); ?></a></li>
+                                <li><a href="<?php echo url_for('policy'); ?>"><?php echo __('Chính sách'); ?></a></li>
+                                <li><a href="<?php echo url_for1('@hq_news') ?>"><?php echo __('Tin tức'); ?></a></li>
+                                <li><a href="<?php echo url_for('about_us'); ?>"><?php echo __('Giới thiệu'); ?></a></li>
+                                <li><a href="<?php echo url_for('contact_us'); ?>"><?php echo __('Liên hệ'); ?></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -133,20 +116,6 @@
                     <div class="canvas_close">
                         <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
                     </div>
-<!--                    <div class="top_right text-right">-->
-<!--                        <ul>-->
-<!--                            <li class="language"><a href="javascript:void(0);"><img src="./assets/img/logo/language.png" alt="">en - vi<i-->
-<!--                                            class="ion-ios-arrow-down"></i></a>-->
-<!--                                <ul class="dropdown_language">-->
-<!--                                    <li><a href="--><?php //echo url_for('homepage', array('lang' => 'en')); ?><!--"><img-->
-<!--                                                    src="./assets/img/logo/language.png"-->
-<!--                                                    alt="">--><?php //echo __('English'); ?><!--</a></li>-->
-<!--                                    <li><a href="--><?php //echo url_for('homepage', array('lang' => 'vi')); ?><!--"><img src="./assets/img/logo/language2.png"-->
-<!--                                                         alt="">--><?php //echo __('Vietnamese'); ?><!--</a></li>-->
-<!--                                </ul>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
                     <div class="Offcanvas_follow">
                         <label>Follow Us:</label>
                         <ul class="follow_link">
@@ -168,8 +137,8 @@
                     <div id="menu" class="text-left ">
                         <ul>
 
-                            <li><a href="<?php echo url_for('homepage'); ?>"><?php echo __('Home'); ?></a></li>
-                            <li><a href="#"><?php echo __('Products'); ?></a>
+                            <li><a href="<?php echo url_for('homepage'); ?>"><?php echo __('Trang chủ'); ?></a></li>
+                            <li><a href="#"><?php echo __('Sản phẩm'); ?></a>
                                 <ul>
                                     <?php
                                     if (isset($data) && count($data)) {
@@ -183,8 +152,7 @@
                                 </ul>
                             </li>
 
-                            <li><a target="_blank" href="https://vn1188428656ldxm.trustpass.alibaba.com/?spm=a2700.7756200.0.0.52731afaQONw5B"><?php echo __('Alibaba Store'); ?></a></li>
-                            <li><a href="#"><?php echo __('Services'); ?></a>
+                            <li><a href="#"><?php echo __('Dịch vụ'); ?></a>
                                 <ul>
                                     <?php
                                     if (isset($services) && count($services)) {
@@ -197,10 +165,10 @@
                                     ?>
                                 </ul>
                             </li>
-                            <li><a href="<?php echo url_for('policy'); ?>"><?php echo __('Policy'); ?></a></li>
-                            <li><a href="<?php echo url_for1('@hq_news') ?>"><?php echo __('News'); ?></a></li>
-                            <li><a href="<?php echo url_for('about_us'); ?>"><?php echo __('About Us'); ?></a></li>
-                            <li><a href="<?php echo url_for('contact_us'); ?>"><?php echo __('Contact Us'); ?></a></li>
+                            <li><a href="<?php echo url_for('policy'); ?>"><?php echo __('Chính sách'); ?></a></li>
+                            <li><a href="<?php echo url_for1('@hq_news') ?>"><?php echo __('Tin tức'); ?></a></li>
+                            <li><a href="<?php echo url_for('about_us'); ?>"><?php echo __('Giới thiệu'); ?></a></li>
+                            <li><a href="<?php echo url_for('contact_us'); ?>"><?php echo __('Liên hệ'); ?></a></li>
                         </ul>
                     </div>
                 </div>
