@@ -266,4 +266,17 @@ class VtpProductsTable extends Doctrine_Table
             ->orderBy('a.updated_at DESC');
         return $query;
     }
+
+    public static function getAllProductByCategoryAttr($catId, $attrs)
+    {
+        $listChildCat = VtpProductsCategoryTable::getStrCategoryByParent($catId);
+        $query = VtpProductsTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdAttrProduct b')
+            ->andWhereIn('b.attr_id', $attrs)
+            ->whereIn('a.category_id', explode(',', $listChildCat))
+            ->andWhere('a.is_active=?', VtCommonEnum::NUMBER_ONE)
+//            ->andWhere('a.is_home=?', VtCommonEnum::NUMBER_ONE)
+            ->orderBy('a.updated_at DESC');
+        return $query;
+    }
 }

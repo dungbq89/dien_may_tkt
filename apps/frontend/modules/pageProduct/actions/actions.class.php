@@ -27,7 +27,14 @@ class pageProductActions extends sfActions
                     $this->returnHtmlSeoPage($seoCat);
                 }
                 $pager = new sfDoctrinePager('VtpProducts', $limit);
-                $pager->setQuery(VtpProductsTable::getAllProductByCategory($category->id));
+                $filter = trim($request->getParameter('filter'));
+                if ($filter) {
+                    $listAttr = AdManageAttrTable::getAttrBySlug(explode(',', $filter));
+                    $pager->setQuery(VtpProductsTable::getAllProductByCategoryAttr($category->id, array_keys($listAttr)));
+                } else {
+                    $pager->setQuery(VtpProductsTable::getAllProductByCategory($category->id));
+                }
+
                 $pager->setPage($page);
                 $pager->init();
             }
