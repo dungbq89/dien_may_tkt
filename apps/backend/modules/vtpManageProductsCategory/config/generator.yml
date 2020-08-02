@@ -49,6 +49,7 @@ generator:
 #          image_path: {label: Đường dẫn ảnh *}
       edit:    
         title: Sửa chuyên mục sản phẩm
-        display: [name, parent_id, image_path, link, priority, is_home, is_active, cat_attr]
-      new:     
+        display: [name, parent_id, image_path, link, priority, is_home, is_active]
+#        display: [name, parent_id, image_path, link, priority, is_home, is_active, cat_attr]
+      new:
         title: Thêm mới chuyên mục sản phẩm

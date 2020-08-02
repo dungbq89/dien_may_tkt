@@ -502,4 +502,14 @@ class VtpCategoryTable extends Doctrine_Table
         }
         return false;
     }
+
+    public static function getCatHome($limit = 3)
+    {
+        $q = VtpCategoryTable::getInstance()->createQuery()
+            ->andWhere('is_active=1')
+            ->andWhere('is_detail=1')
+            ->limit($limit)->orderBy('priority asc')->execute();
+        if ($q) return $q;
+        return false;
+    }
 }

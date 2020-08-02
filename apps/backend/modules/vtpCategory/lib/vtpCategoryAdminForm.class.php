@@ -15,7 +15,7 @@ class vtpCategoryAdminForm extends BaseVtpCategoryForm
     {
         $i18n = sfContext::getInstance()->getI18N();
 
-        unset($this['created_at'], $this['updated_at'], $this['slug'], $this['priority']);//
+        unset($this['created_at'], $this['updated_at'], $this['slug']);//
 
         $arr = array(
           '' => $i18n->__('Loại chuyên mục'),

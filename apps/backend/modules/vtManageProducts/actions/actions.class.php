@@ -68,6 +68,7 @@ class vtManageProductsActions extends autoVtManageProductsActions
     protected function processForm(sfWebRequest $request, sfForm $form)
     {
         ini_set('memory_limit', '-1');
+        $values = $request->getParameter($form->getName());
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $notice = $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.';
@@ -82,7 +83,45 @@ class vtManageProductsActions extends autoVtManageProductsActions
                     $objCat = count(VtpProductsTable::checkSlug($slug, $vtp_products->id));
                 }
                 $vtp_products->slug = $slug;
+
+                $catIds = $values['cat_ids'];
+                $vtp_products->cat_ids = implode(',', $catIds);
+
                 $vtp_products->save();
+                // luu cat lien quan
+                $ad_article = $vtp_products;
+                // xoa bai trong chuyen muc
+                /** @var $ad_article VtpProducts */
+                /** @var $vtp_products VtpProducts */
+                $data = [
+                    'product_name' => $ad_article->product_name,
+                    'product_price' => $ad_article->price,
+                    'product_image' => $ad_article->image_path,
+                    'product_slug' => $ad_article->slug,
+                ];
+                $arrCatSlug = [];
+                foreach ($catIds as $catId) {
+                    AdMetaTable::deleteArticleMeta($ad_article->id, $catId);
+                    $objCat = VtpProductsCategoryTable::getInstance()->findOneById($catId);
+                    $data['cat_slug'] = $objCat->slug;
+                    $data['cat_name'] = $objCat->name;
+                    $arrCatSlug[] = ['slug' => $objCat->slug, 'title' => $objCat->name];
+                    // them thong tin
+                    /** @var $objMeta  AdMeta * */
+                    $objMeta = new AdMeta();
+                    $objMeta->setProductId($ad_article->id);
+                    $objMeta->setCatId($catId);
+                    $objMeta->setMetaType(2);
+                    $objMeta->setCatSlug($objCat->slug);
+                    $objMeta->setProductStatus($ad_article->is_active);
+                    $objMeta->setMetaData(json_encode($data));
+                    $objMeta->setProductPrice($ad_article->price);
+                    $objMeta->save();
+                }
+                $ad_article->cat_slug = json_encode($arrCatSlug);
+                $ad_article->save();
+                // xu ly luu
+
             } catch (Doctrine_Validator_Exception $e) {
 
                 $errorStack = $form->getObject()->getErrorStack();

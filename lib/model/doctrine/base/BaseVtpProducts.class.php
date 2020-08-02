@@ -39,9 +39,14 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProducts', 'doctrine');
  * @property string $supply_ability
  * @property string $packing
  * @property string $special_req
+ * @property string $cat_ids
+ * @property string $cat_slug
+ * @property integer $attr
  * @property VtpProductsCategory $VtpProducts
  * @property AdManageAttrProduct $AdAttrProduct
+ * @property AdMeta $AdMeta
  * @property Doctrine_Collection $ProductImage
+ * @property Doctrine_Collection $AdMetaProduct
  * 
  * @method string              getProductName()          Returns the current record's "product_name" value
  * @method string              getProductCode()          Returns the current record's "product_code" value
@@ -75,9 +80,14 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProducts', 'doctrine');
  * @method string              getSupplyAbility()        Returns the current record's "supply_ability" value
  * @method string              getPacking()              Returns the current record's "packing" value
  * @method string              getSpecialReq()           Returns the current record's "special_req" value
+ * @method string              getCatIds()               Returns the current record's "cat_ids" value
+ * @method string              getCatSlug()              Returns the current record's "cat_slug" value
+ * @method integer             getAttr()                 Returns the current record's "attr" value
  * @method VtpProductsCategory getVtpProducts()          Returns the current record's "VtpProducts" value
  * @method AdManageAttrProduct getAdAttrProduct()        Returns the current record's "AdAttrProduct" value
+ * @method AdMeta              getAdMeta()               Returns the current record's "AdMeta" value
  * @method Doctrine_Collection getProductImage()         Returns the current record's "ProductImage" collection
+ * @method Doctrine_Collection getAdMetaProduct()        Returns the current record's "AdMetaProduct" collection
  * @method VtpProducts         setProductName()          Sets the current record's "product_name" value
  * @method VtpProducts         setProductCode()          Sets the current record's "product_code" value
  * @method VtpProducts         setCategoryId()           Sets the current record's "category_id" value
@@ -110,9 +120,14 @@ Doctrine_Manager::getInstance()->bindComponent('VtpProducts', 'doctrine');
  * @method VtpProducts         setSupplyAbility()        Sets the current record's "supply_ability" value
  * @method VtpProducts         setPacking()              Sets the current record's "packing" value
  * @method VtpProducts         setSpecialReq()           Sets the current record's "special_req" value
+ * @method VtpProducts         setCatIds()               Sets the current record's "cat_ids" value
+ * @method VtpProducts         setCatSlug()              Sets the current record's "cat_slug" value
+ * @method VtpProducts         setAttr()                 Sets the current record's "attr" value
  * @method VtpProducts         setVtpProducts()          Sets the current record's "VtpProducts" value
  * @method VtpProducts         setAdAttrProduct()        Sets the current record's "AdAttrProduct" value
+ * @method VtpProducts         setAdMeta()               Sets the current record's "AdMeta" value
  * @method VtpProducts         setProductImage()         Sets the current record's "ProductImage" collection
+ * @method VtpProducts         setAdMetaProduct()        Sets the current record's "AdMetaProduct" collection
  * 
  * @package    symfony
  * @subpackage model
@@ -290,6 +305,24 @@ abstract class BaseVtpProducts extends sfDoctrineRecord
              'comment' => 'Yêu cầu',
              'length' => 255,
              ));
+        $this->hasColumn('cat_ids', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'comment' => 'id chuyen muc',
+             'length' => 255,
+             ));
+        $this->hasColumn('cat_slug', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'comment' => 'slug cat',
+             'length' => 1000,
+             ));
+        $this->hasColumn('attr', 'integer', 22, array(
+             'type' => 'integer',
+             'notnull' => false,
+             'comment' => 'thuoc tinh',
+             'length' => 22,
+             ));
     }
 
     public function setUp()
@@ -303,9 +336,17 @@ abstract class BaseVtpProducts extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'product_id'));
 
+        $this->hasOne('AdMeta', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
+
         $this->hasMany('VtpProductImage as ProductImage', array(
              'local' => 'id',
              'foreign' => 'product_id'));
+
+        $this->hasMany('AdMeta as AdMetaProduct', array(
+             'local' => 'product_id',
+             'foreign' => 'id'));
 
         $vtblameable0 = new Doctrine_Template_VtBlameable();
         $timestampable0 = new Doctrine_Template_Timestampable();

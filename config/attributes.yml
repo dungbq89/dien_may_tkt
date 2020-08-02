@@ -3,14 +3,17 @@ advertise_template:
   special: {value: special, alias: "Quảng  cáo sản phẩm hot"}
 view_page:
   homepage: {value: homepage, alias: "Trang chủ"}
-  contact: {value: contact, alias: "Trang liên hệ"}
   category_news: {value: category_news, alias: "Trang chuyên mục tin tức"}
+  cat_product: {value: cat_product, alias: "Trang chuyên mục sản phẩm"}
   article_detail: {value: article_detail, alias: "Trang chi tiết tin tức"}
   products: {value: products, alias: "Trang chuyên mục sản phẩm"}
   product_detail: {value: product_detail, alias: "Trang chi tiết sản phẩm"}
-  page_search: {value: page_search, alias: "Trang tìm kiếm"}
-  product_all: {value: product_all, alias: "Trang sản phẩm"}
-  about_us: {value: about_us, alias: "Về chúng tôi"}
-  services: {value: services, alias: "Dịch vụ"}
+  #  page_search: {value: page_search, alias: "Trang tìm kiếm"}
+  #  product_all: {value: product_all, alias: "Trang sản phẩm"}
+  introduce: {value: introduce, alias: "Trang giới thiệu"}
+  promotion: {value: promotion, alias: "Trang khuyến mãi"}
+  policy: {value: policy, alias: "Trang chính sách"}
+  contact: {value: contact, alias: "Trang liên hệ"}
+#  services: {value: services, alias: "Dịch vụ"}
 promotion_attributes:
   new: {value: 1, alias: "Tin mới"}

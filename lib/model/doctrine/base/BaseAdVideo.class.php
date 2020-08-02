@@ -18,6 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('AdVideo', 'doctrine');
  * @property boolean $is_default
  * @property string $lang
  * @property string $slug
+ * @property string $video_path
  * 
  * @method string    getName()        Returns the current record's "name" value
  * @method string    getDescription() Returns the current record's "description" value
@@ -30,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('AdVideo', 'doctrine');
  * @method boolean   getIsDefault()   Returns the current record's "is_default" value
  * @method string    getLang()        Returns the current record's "lang" value
  * @method string    getSlug()        Returns the current record's "slug" value
+ * @method string    getVideoPath()   Returns the current record's "video_path" value
  * @method AdVideo   setName()        Sets the current record's "name" value
  * @method AdVideo   setDescription() Sets the current record's "description" value
  * @method AdVideo   setEventDate()   Sets the current record's "event_date" value
@@ -41,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('AdVideo', 'doctrine');
  * @method AdVideo   setIsDefault()   Sets the current record's "is_default" value
  * @method AdVideo   setLang()        Sets the current record's "lang" value
  * @method AdVideo   setSlug()        Sets the current record's "slug" value
+ * @method AdVideo   setVideoPath()   Sets the current record's "video_path" value
  * 
  * @package    symfony
  * @subpackage model
@@ -79,7 +82,8 @@ abstract class BaseAdVideo extends sfDoctrineRecord
              ));
         $this->hasColumn('image_path', 'string', 255, array(
              'type' => 'string',
-             'comment' => 'File ảnh đại diện video',
+             'notnull' => true,
+             'comment' => 'Ảnh đại diện',
              'length' => 255,
              ));
         $this->hasColumn('extension', 'string', 200, array(
@@ -116,6 +120,11 @@ abstract class BaseAdVideo extends sfDoctrineRecord
              'unique' => true,
              'notnull' => true,
              'comment' => 'chuyển đổi url',
+             'length' => 255,
+             ));
+        $this->hasColumn('video_path', 'string', 255, array(
+             'type' => 'string',
+             'comment' => 'File ảnh đại diện video',
              'length' => 255,
              ));
     }

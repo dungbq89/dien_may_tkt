@@ -26,9 +26,13 @@ Doctrine_Manager::getInstance()->bindComponent('AdArticle', 'doctrine');
  * @property string $lang
  * @property string $slug
  * @property integer $category_id
+ * @property string $cat_ids
+ * @property string $cat_slug
  * @property AdCategory $AdArticleCategory
  * @property Doctrine_Collection $ArticlesRelated
+ * @property AdMeta $AdMeta
  * @property Doctrine_Collection $RelatedArticles
+ * @property Doctrine_Collection $AdMetaArticle
  * 
  * @method string              getTitle()             Returns the current record's "title" value
  * @method string              getAlttitle()          Returns the current record's "alttitle" value
@@ -49,9 +53,13 @@ Doctrine_Manager::getInstance()->bindComponent('AdArticle', 'doctrine');
  * @method string              getLang()              Returns the current record's "lang" value
  * @method string              getSlug()              Returns the current record's "slug" value
  * @method integer             getCategoryId()        Returns the current record's "category_id" value
+ * @method string              getCatIds()            Returns the current record's "cat_ids" value
+ * @method string              getCatSlug()           Returns the current record's "cat_slug" value
  * @method AdCategory          getAdArticleCategory() Returns the current record's "AdArticleCategory" value
  * @method Doctrine_Collection getArticlesRelated()   Returns the current record's "ArticlesRelated" collection
+ * @method AdMeta              getAdMeta()            Returns the current record's "AdMeta" value
  * @method Doctrine_Collection getRelatedArticles()   Returns the current record's "RelatedArticles" collection
+ * @method Doctrine_Collection getAdMetaArticle()     Returns the current record's "AdMetaArticle" collection
  * @method AdArticle           setTitle()             Sets the current record's "title" value
  * @method AdArticle           setAlttitle()          Sets the current record's "alttitle" value
  * @method AdArticle           setHeader()            Sets the current record's "header" value
@@ -71,9 +79,13 @@ Doctrine_Manager::getInstance()->bindComponent('AdArticle', 'doctrine');
  * @method AdArticle           setLang()              Sets the current record's "lang" value
  * @method AdArticle           setSlug()              Sets the current record's "slug" value
  * @method AdArticle           setCategoryId()        Sets the current record's "category_id" value
+ * @method AdArticle           setCatIds()            Sets the current record's "cat_ids" value
+ * @method AdArticle           setCatSlug()           Sets the current record's "cat_slug" value
  * @method AdArticle           setAdArticleCategory() Sets the current record's "AdArticleCategory" value
  * @method AdArticle           setArticlesRelated()   Sets the current record's "ArticlesRelated" collection
+ * @method AdArticle           setAdMeta()            Sets the current record's "AdMeta" value
  * @method AdArticle           setRelatedArticles()   Sets the current record's "RelatedArticles" collection
+ * @method AdArticle           setAdMetaArticle()     Sets the current record's "AdMetaArticle" collection
  * 
  * @package    symfony
  * @subpackage model
@@ -185,6 +197,18 @@ abstract class BaseAdArticle extends sfDoctrineRecord
              'comment' => 'Id của danh mục tin tức',
              'length' => 8,
              ));
+        $this->hasColumn('cat_ids', 'string', 255, array(
+             'type' => 'string',
+             'notnull' => false,
+             'comment' => 'id chuyen muc',
+             'length' => 255,
+             ));
+        $this->hasColumn('cat_slug', 'string', 1000, array(
+             'type' => 'string',
+             'notnull' => false,
+             'comment' => 'slug chuyen muc',
+             'length' => 1000,
+             ));
     }
 
     public function setUp()
@@ -199,9 +223,17 @@ abstract class BaseAdArticle extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'article_id'));
 
+        $this->hasOne('AdMeta', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
+
         $this->hasMany('AdArticle as RelatedArticles', array(
              'refClass' => 'AdArticlesRelated',
              'local' => 'article_id',
+             'foreign' => 'id'));
+
+        $this->hasMany('AdMeta as AdMetaArticle', array(
+             'local' => 'product_id',
              'foreign' => 'id'));
 
         $vtblameable0 = new Doctrine_Template_VtBlameable();

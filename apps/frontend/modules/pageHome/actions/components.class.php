@@ -8,6 +8,81 @@
  */
 class pageHomeComponents extends sfComponents
 {
+    /**
+     * danh sach san pham nav trang chu
+     * @param sfWebRequest $request
+     */
+    public function executeNavSlideTop(sfWebRequest $request)
+    {
+
+    }
+
+    public function executeMainProduct(sfWebRequest $request)
+    {
+        $catHome = VtpProductsCategoryTable::getCatHome(0);
+        $arrData = [];
+        if ($catHome) {
+            // lay danh sach bai viet theo cat
+            foreach ($catHome as $cat) {
+                // lay sub cat
+                $subCat = VtpProductsCategoryTable::getCatHome($cat->id, 4);
+                $arrDataSub = [];
+                if ($subCat) {
+                    foreach ($catHome as $subCat) {
+                        $arrDataSub[] = [
+                            'id' => md5($subCat->id),
+                            'title' => $subCat->name,
+                            'slug' => $subCat->slug,
+//                            'data' => AdArticleTable::getProductByCat($cat->id),
+                        ];
+                    }
+                }
+                $arrData[] = [
+                    'id' => md5($cat->id),
+                    'title' => $cat->name,
+                    'slug' => $cat->slug,
+                    'data' => VtpProductsTable::getProductByCat($cat->id, 5),
+                    'subCat' => $arrDataSub,
+                ];
+            }
+        }
+        $this->arrData = $arrData;
+    }
+
+    public function executeNavNewHome(sfWebRequest $request)
+    {
+        // lay danh sach nav trang chu
+        $catHome = VtpCategoryTable::getCatHome();
+        $arrData = [];
+        if ($catHome) {
+            // lay danh sach bai viet theo cat
+            foreach ($catHome as $cat) {
+                $arrData[] = [
+                    'id' => md5($cat->id),
+                    'title' => $cat->name,
+                    'slug' => $cat->slug,
+                    'data' => AdArticleTable::getArticleByCat($cat->id),
+                ];
+            }
+        }
+        $this->arrData = $arrData;
+    }
+
+
+    public function executeNavProductPromotion(sfWebRequest $request)
+    {
+        $attrs = VtHelper::getProductAttr();
+        $arrProducts = [];
+        foreach ($attrs as $attr => $title) {
+            $arrProducts[$attr] = [
+                'title' => $title,
+                'id' => md5($attr),
+                'data' => VtpProductsTable::getProductByAttr($attr)
+            ];
+        }
+        $this->arrProducts = $arrProducts;
+    }
+
     public function executeSlide(sfWebRequest $request)
     {
         $this->slide = AdAdvertiseTable::getAdvertiseV2('homepage');

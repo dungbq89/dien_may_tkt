@@ -26,17 +26,16 @@ class AdArticleTable extends Doctrine_Table
         return $query;
     }
 
-    public static function getSearchArticle($keyword,$articleId='')
+    public static function getSearchArticle($keyword, $articleId = '')
     {
         $keyword = addcslashes($keyword, sfConfig::get('app_addcslashes_charlist', "'%_-\\"));
-        $q= AdArticleTable::getInstance()->createQuery('a')
+        $q = AdArticleTable::getInstance()->createQuery('a')
             ->select('a.id, a.title as name')
             ->where('LOWER(a.title) like LOWER(?) COLLATE utf8_bin', '%' . trim($keyword) . '%')
-
             ->andWhere('a.is_active=?', VtCommonEnum::NUMBER_TWO)
 //            ->andWhere('a.lang=?', sfContext::getInstance()->getUser()->getCulture())
             ->orderBy('updated_at desc');
-        if ($articleId!=''){
+        if ($articleId != '') {
             $q->andWhere('a.id<>?', $articleId);
         }
         return $q;
@@ -117,7 +116,7 @@ class AdArticleTable extends Doctrine_Table
 
 
     //danh sách cái tin tưc cùng chuyên mục
-    public static function getArticleRelatedByCatId( $catId, $article_id, $limit)
+    public static function getArticleRelatedByCatId($catId, $article_id, $limit)
     {
         return self::getActiveArticleQuery()
             ->select('a.title, a.header, a.image_path, a.slug, a.published_time')
@@ -129,7 +128,7 @@ class AdArticleTable extends Doctrine_Table
     }
 
     //Bài viết liên quan
-    public static function getListArticleRelated( $article_id, $limit = null)
+    public static function getListArticleRelated($article_id, $limit = null)
     {
         $querry = self::getActiveArticleQuery()
             ->select('a.id,a.title,a.slug')
@@ -148,7 +147,7 @@ class AdArticleTable extends Doctrine_Table
      */
     public static function getListArticle($catId)
     {
-        $query =  self::getActiveArticleQuery()
+        $query = self::getActiveArticleQuery()
             ->select('a.title, a.alttitle, a.header, a.image_path, a.slug, a.published_time')
             ->andWhere('a.category_id=?', $catId)
             ->andWhere('a.lang=?', sfContext::getInstance()->getUser()->getCulture())
@@ -162,7 +161,7 @@ class AdArticleTable extends Doctrine_Table
      * @param null $parentId
      * @return mixed
      */
-    public static function getArticlePublish( $parentId = null)
+    public static function getArticlePublish($parentId = null)
     {
         $query = self::getActiveArticleQuery()
             ->innerJoin("a.AdArticleCategory c ON c.id = a.category_id")
@@ -172,7 +171,7 @@ class AdArticleTable extends Doctrine_Table
 
     //Hàm lấy tất cả các bài viết theo category slug
 
-    public static function getArticleByCategorySlug( $catSlug, $limit)
+    public static function getArticleByCategorySlug($catSlug, $limit)
     {
         $query = self::getActiveArticleQuery()
             ->select('a.title, a.header, a.image_path, a.slug, a.published_time')
@@ -223,13 +222,15 @@ class AdArticleTable extends Doctrine_Table
         return $query;
     }
 
-    public static function updateHitCounter($id){
-        $query=AdArticleTable::getInstance()->createQuery()
+    public static function updateHitCounter($id)
+    {
+        $query = AdArticleTable::getInstance()->createQuery()
             ->update()
             ->set('hit_count', '1+hit_count')
-            ->where('id=?',$id);
+            ->where('id=?', $id);
         return $query->execute();
     }
+
     /**
      * Bai viet xem nhieu
      */
@@ -238,5 +239,18 @@ class AdArticleTable extends Doctrine_Table
         return self::getActiveArticleQuery()
             ->limit($limit)
             ->orderBy('a.hit_count, a.published_time DESC');
+    }
+
+    public static function getArticleByCat($catId, $limit = 3)
+    {
+        $q = AdArticleTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=2')
+            ->andWhere('b.meta_type=1')
+            ->andWhere('b.cat_id=?', $catId)
+            ->limit($limit)
+            ->execute();
+        if ($q) return $q;
+        return [];
     }
 }

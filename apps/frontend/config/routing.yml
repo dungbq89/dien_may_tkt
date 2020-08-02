@@ -1,55 +1,72 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
-service:
-  url: /service/:slug
-  param: {module: pageIntroduction, action: service}
-page_search:
-  url:  /search
-  param: { module: pageProduct, action: search}
-policy:
-  url: /policy
-  param: {module: pageIntroduction, action: policy}
-contact_us:
-  url: /contact-us
-  param: {module: pageIntroduction, action: contact}
-#về chúng tôi
-about_us:
-  url: /about-us
-  param: {module: pageIntroduction, action: index}
-hq_product:
-  url: /product/:slug/:page
-  param: {module: pageProduct, action: index, page: 1, slug: ""}
-hq_brand:
-  url: /brand/:slug/:page
-  param: {module: pageProduct, action: brand, page: 1, slug: ""}
-hq_product_detail:
-  url: /product-detail/:slug
-  param: {module: pageProduct, action: detail, slug: ""}
-ajax_inquiry_now:
-  url: /inquiry-now
-  param: {module: pageProduct, action: inquiryNow}
-ajax_popup_inquiry_now:
-  url: /popup-inquiry-now
-  param: {module: pageProduct, action: popupInquiryNow}
-pageInquiryNow:
-  url: /inquiry-now/:slug
-  param: {module: pageProduct, action: pageInquiryNow}
-hq_news:
-  url: /news/:page
+# laptop duc minh
+news:
+  url: /tin-tuc/:slug/:page
   param: {module: pageNews, action: index, page: 1, slug: ""}
-hq_news_search:
-  url: /search-new
-  param: {module: pageNews, action: searchNew}
-hq_new_category:
-  url: /category/:slug/:page
-  param: {module: pageNews, action: listNews, page: 1, slug: ""}
-hq_new_detail:
-  url: /new-detail/:slug
-  param: {module: pageNews, action: detail, slug: ""}
+newDetail:
+  url: /chi-tiet-tin/:cat_slug/:slug
+  param: {module: pageNews, action: newDetail}
+cat_product:
+  url: /san-pham/:slug/:page
+  param: {module: pageProduct, action: index, page: 1, slug: ""}
+productDetail:
+  url: /chi-tiet/:cat_slug/:slug
+  param: {module: pageProduct, action: detail}
+pageHtml:
+  url: /:slug
+  param: {module: pageHome, action: pageHtml}
+# laptop duc minh
+#service:
+#  url: /service/:slug
+#  param: {module: pageIntroduction, action: service}
+#page_search:
+#  url:  /search
+#  param: { module: pageProduct, action: search}
+#policy:
+#  url: /policy
+#  param: {module: pageIntroduction, action: policy}
+#contact_us:
+#  url: /contact-us
+#  param: {module: pageIntroduction, action: contact}
+##về chúng tôi
+#about_us:
+#  url: /about-us
+#  param: {module: pageIntroduction, action: index}
+#hq_product:
+#  url: /product/:slug/:page
+#  param: {module: pageProduct, action: index, page: 1, slug: ""}
+#hq_brand:
+#  url: /brand/:slug/:page
+#  param: {module: pageProduct, action: brand, page: 1, slug: ""}
+#hq_product_detail:
+#  url: /product-detail/:slug
+#  param: {module: pageProduct, action: detail, slug: ""}
+#ajax_inquiry_now:
+#  url: /inquiry-now
+#  param: {module: pageProduct, action: inquiryNow}
+#ajax_popup_inquiry_now:
+#  url: /popup-inquiry-now
+#  param: {module: pageProduct, action: popupInquiryNow}
+#pageInquiryNow:
+#  url: /inquiry-now/:slug
+#  param: {module: pageProduct, action: pageInquiryNow}
+#hq_news:
+#  url: /news/:page
+#  param: {module: pageNews, action: index, page: 1, slug: ""}
+#hq_news_search:
+#  url: /search-new
+#  param: {module: pageNews, action: searchNew}
+#hq_new_category:
+#  url: /category/:slug/:page
+#  param: {module: pageNews, action: listNews, page: 1, slug: ""}
+#hq_new_detail:
+#  url: /new-detail/:slug
+#  param: {module: pageNews, action: detail, slug: ""}
 
 # default rules
 homepage:
-  url:   /:lang
+  url:   /
 #  param: { module: pageHome, action: index }
   param: { module: pageHome, action: index, lang: '' }
   requirements: { sf_method: get }

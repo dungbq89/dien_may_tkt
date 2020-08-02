@@ -244,4 +244,17 @@ class VtpProductsCategoryTable extends Doctrine_Table
         }
         return $query->fetchArray();
     }
+
+    public static function getCatHome($parent = false, $limit = 4)
+    {
+        $q = VtpProductsCategoryTable::getInstance()->createQuery()
+            ->andWhere('is_active=1')
+            ->andWhere('is_home=1');
+        if ($parent) {
+            $q = $q->andWhere('parent_id=?', $parent);
+        }
+        $q = $q->limit($limit)->orderBy('priority asc')->execute();
+        if ($q) return $q;
+        return false;
+    }
 }

@@ -13,8 +13,8 @@ abstract class BaseAdManageAttrProductFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'product_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'attr_id'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'product_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AdProduct'), 'add_empty' => true)),
+      'attr_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AdAttr'), 'add_empty' => true)),
       'attr_type'  => new sfWidgetFormFilterInput(),
       'lang'       => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -22,8 +22,8 @@ abstract class BaseAdManageAttrProductFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'product_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'attr_id'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'product_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AdProduct'), 'column' => 'id')),
+      'attr_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AdAttr'), 'column' => 'id')),
       'attr_type'  => new sfValidatorPass(array('required' => false)),
       'lang'       => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -48,8 +48,8 @@ abstract class BaseAdManageAttrProductFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'         => 'Number',
-      'product_id' => 'Number',
-      'attr_id'    => 'Number',
+      'product_id' => 'ForeignKey',
+      'attr_id'    => 'ForeignKey',
       'attr_type'  => 'Text',
       'lang'       => 'Text',
       'created_at' => 'Date',

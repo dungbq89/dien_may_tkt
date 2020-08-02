@@ -490,11 +490,11 @@ class vtManageMenuActions extends autoVtManageMenuActions
                     $id_cat = $request->getParameter('category_type');
                     $slug_category = '';
                     if(!empty($id_cat) && $id_cat !=null){
-                        $vtp_menu->link='@'.$vals['page'].'?slug='.$id_cat;
+                        $vtp_menu->link= '@'.$vals['page'].'?slug='.$id_cat;
                     }
 //                    elseif($id_cat==0 && $id_cat !=null){
                     else{
-                        $vtp_menu->link='@'.$vals['page'];
+                        $vtp_menu->link= '@'.$vals['page'];
                     }
 //                    else{
 //                        $vtp_menu->link='@'.$vals['page'].'?slug='.$slug;

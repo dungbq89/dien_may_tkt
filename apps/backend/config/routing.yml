@@ -1,3 +1,12 @@
+ad_article_AdArticle:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                AdArticle
+    module:               AdArticle
+    prefix_path:          /AdArticle
+    column:               id
+    with_wildcard_routes: true
+
 ad_manage_attr_product:
   class: sfDoctrineRouteCollection
   options:
@@ -369,6 +378,9 @@ ajax_load_article_detail:
 ajax_load_service_detail:
   url:   /ajax/AjaxLoadServiceDetail
   param: { module: ajax, action: ajaxLoadServiceDetail }
+ajaxLoadCategoryProduct:
+  url:   /ajax/ajaxLoadCategoryProduct
+  param: { module: ajax, action: ajaxLoadCategoryProduct }
 # default rules
 homepage:
   url:   /

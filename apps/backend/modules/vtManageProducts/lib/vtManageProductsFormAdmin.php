@@ -14,11 +14,12 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
         $i18n = sfContext::getInstance()->getI18N();
         unset($this['created_at'], $this['created_by'], $this['updated_at'], $this['updated_by']);
         $arrBrand = $this->getAllBrand();
+        $arrCategory = $this->getCategory();
         $this->setWidgets(array(
 //            'id' => new sfWidgetFormInputHidden(),
             'product_name' => new sfWidgetFormInputText(),
             'category_id' => new sfWidgetFormChoice(array(
-                'choices' => $this->getCategory(),
+                'choices' => $arrCategory,
                 'multiple' => false,
                 'expanded' => false
             )),
@@ -42,7 +43,7 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
             'priority' => new sfWidgetFormInputText(array(), array('size' => 5, 'maxlength' => 5)),
             'is_active' => new sfWidgetFormInputCheckbox(),
             'is_home' => new sfWidgetFormInputCheckbox(),
-            'is_hot' => new sfWidgetFormInputCheckbox(),
+//            'is_hot' => new sfWidgetFormInputCheckbox(),
             'lang' => new sfWidgetFormInputText(),
             'meta' => new sfWidgetFormTextarea(array(), array('style' => 'width:690px')),
             'keywords' => new sfWidgetFormTextarea(array(), array('style' => 'width:690px')),
@@ -69,8 +70,8 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
             'product_name' => new sfValidatorString(array('max_length' => 255, 'trim' => true)),
 
             'category_id' => new sfValidatorChoice(array(
-                'required' => true,
-                'choices' => array_keys($this->getCategory()),)),
+                'required' => false,
+                'choices' => array_keys($arrCategory),)),
             'price' => new sfValidatorInteger(array('required' => false, 'trim' => true, "min" => 0, "max" => 9999999999), array('min' => $i18n->__('Giá trị phải là kiểu số nguyên dương'), 'invalid' => $i18n->__('Giá trị phải là kiểu số nguyên dương'))),
             'price_promotion' => new sfValidatorInteger(array('required' => false, 'trim' => true, "min" => 0, "max" => 9999999999), array('min' => $i18n->__('Giá trị phải là kiểu số nguyên dương'), 'invalid' => $i18n->__('Giá trị phải là kiểu số nguyên dương'))),
             'image_path' => new sfValidatorFileViettel(
@@ -95,7 +96,7 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
                 "max" => 99999), array('min' => $i18n->__('Giá trị phải là kiểu số nguyên dương'), 'max' => $i18n->__('Không được nhập quá 5 ký tự'))),
             'is_active' => new sfValidatorBoolean(array('required' => false)),
             'is_home' => new sfValidatorBoolean(array('required' => false)),
-            'is_hot' => new sfValidatorBoolean(array('required' => false)),
+//            'is_hot' => new sfValidatorBoolean(array('required' => false)),
             'lang' => new sfValidatorString(array('max_length' => 10)),
             'meta' => new sfValidatorString(array('max_length' => 255, 'required' => false, 'trim' => true)),
             'keywords' => new sfValidatorString(array('max_length' => 255, 'required' => false, 'trim' => true)),
@@ -117,13 +118,14 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
         // them thuoc tinh
         // lay danh sach thuoc tinh theo category
         $listChildAttr = [];
-        $listCatAttr = AdManageAttrProductTable::getArrAttrByProduct($this->getObject()->getCategoryId(), AdManageAttrProduct::ATTR_TYPE_CAT);
-        if ($listCatAttr) {
-            // lay danh sach thuoc tinh con
-            $listChildAttr = AdManageAttrTable::getAllAttrByCbx(false, array_keys($listCatAttr));
-            unset($listChildAttr[0]);
+//        $listCatAttr = AdManageAttrProductTable::getArrAttrByProduct($this->getObject()->getCategoryId(), AdManageAttrProduct::ATTR_TYPE_CAT);
+//        if ($listCatAttr) {
+        // lay danh sach thuoc tinh con
+        $listChildAttr = AdManageAttrTable::getAllAttrByCbx(false, 0);
+//            $listChildAttr = AdManageAttrTable::getAllAttrByCbx(false, array_keys($listCatAttr));
+        unset($listChildAttr[0]);
 
-        }
+//        }
         $this->widgetSchema['product_attr'] = new sfWidgetFormChoice(array(
             'choices' => $listChildAttr,
             'multiple' => true,
@@ -141,6 +143,40 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
             $this->setDefault('product_attr', array_keys($hasProductAttr));
         }
         // them thuoc tinh
+
+        $this->widgetSchema['cat_ids'] = new sfWidgetFormChoice(array(
+            'choices' => $arrCategory,
+            'multiple' => true,
+            'expanded' => false
+        ), [
+            //    'class' => 'cb-js-select2'
+            'style' => 'width:350px; height: 350px'
+        ]);
+        $this->validatorSchema['cat_ids'] = new sfValidatorChoice(array(
+            'required' => false,
+            'multiple' => true,
+            'choices' => array_keys($arrCategory),
+        ));
+        $arrAttr = self::getAttrs();
+        $this->widgetSchema['attr'] = new sfWidgetFormChoice(array(
+            'choices' => $arrAttr,
+            'multiple' => true,
+            'expanded' => true
+        ), [
+            //    'class' => 'cb-js-select2'
+//            'style' => 'width:350px; height: 350px'
+        ]);
+        $this->validatorSchema['attr'] = new sfValidatorPass();
+//        $this->validatorSchema['attr'] = new sfValidatorChoice(array(
+//            'required' => false,
+//            'multiple' => true,
+//            'choices' => array_keys($arrAttr),
+//        ));
+
+        if (!$this->isNew) {
+            $arrCatIds = explode(',', $this->getObject()->getCatIds());
+            $this->getObject()->setCatIds($arrCatIds);
+        }
 
 
         $this->widgetSchema['portal_id'] = new sfWidgetFormInputText(array(), array('disabled' => 'false'));
@@ -171,6 +207,7 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
 
     protected function doBind(array $values)
     {
+        $this->doBindAttributes($values);
         $this->doBindType($values);
         parent::doBind($values);
     }
@@ -193,4 +230,48 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
         AdManageAttrProductTable::updateAttr($product->id, $this->values['product_attr'], AdManageAttrProduct::ATTR_TYPE_CHILD);
         return $product;
     }
+
+    public function getAttrs()
+    {
+        return VtHelper::getProductAttr();
+    }
+
+    private function doBindAttributes(&$values)
+    {
+
+        if (empty($values['attr']))
+            return;
+        $attrs = $values['attr'];
+        $total = 0;
+        if (is_array($attrs)) {
+            foreach ($attrs as $val) {
+                $total += intval($val);
+            }
+        }
+        $values['attr'] = $total;
+        return $total;
+    }
+
+    public function getCurrentAttributes()
+    {
+        $attributes = $this->object->getAttr();
+        $choices = $this->getAttrs();
+
+        $result = array();
+        if (!empty($choices)) {
+            foreach ($choices as $key => $choice) {
+                if (($attributes & $key))
+                    $result[] = $key;
+            }
+        }
+        return $result;
+    }
+
+    public function updateDefaultsFromObject()
+    {
+        parent::updateDefaultsFromObject();
+        $this->setDefault('attr', $this->getCurrentAttributes());
+    }
+
+
 }

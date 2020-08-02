@@ -25,6 +25,7 @@ generator:
         is_active: { label: Trạng thái}
         link: { label: Đường dẫn}
         type: { label: Loại}
+        is_detail: { label: "Hiển thị trang chủ"}
 #        meta: {label: Nội dung thẻ Description}
 #        keywords: {label: Nội dung thẻ Keyword}
       list:
@@ -54,7 +55,7 @@ generator:
           priority: {label: Vị trí*}
           image_path: {label: Ảnh đại diện}
           permission: { label: Phân quyền *}
-        display: [name, parent_id, description, image_path, link,type, priority, is_active, permission, slug]
+        display: [name, parent_id, description, image_path, link,type, priority, is_active,is_detail, permission, slug]
 #        display: [name, parent_id, description, meta, keywords, image_path, link, priority, is_active, permission, slug]
       edit:
         title: Chỉnh sửa chuyên mục

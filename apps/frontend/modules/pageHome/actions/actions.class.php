@@ -14,13 +14,36 @@ class pageHomeActions extends sfActions
     public function executeIndex(sfWebRequest $request)
     {
         $seoHomePage = VtSEO::getSeoHomepage();
-        if($seoHomePage){
+        if ($seoHomePage) {
             $this->returnHtmlSeoPage($seoHomePage);
         }
         //Lấy danh sách sản phẩm theo chuyên mục
-        $productCategory = VtpProductsCategoryTable::getProductCategoryHome('',4)->execute();
+        $productCategory = VtpProductsCategoryTable::getProductCategoryHome('', 4)->execute();
         $this->productCategory = $productCategory;
         $this->form = new FormBooking();
+    }
+
+    public function executePageHtml(sfWebRequest $request)
+    {
+        $arrRoute = [
+            'gioi-thieu' => 'introduce',
+            'khuyen-mai' => 'promotion',
+            'lien-he' => 'contact',
+            'chinh-sach' => 'policy',
+        ];
+        $slug = $request->getParameter('slug');
+//        var_dump([$slug, $arrRoute, in_array($slug, array_keys($arrRoute))]);
+//        ;die;
+        if ($slug && in_array($slug, array_keys($arrRoute))) {
+            $html = AdHtmlTable::getHtmlByRouting($arrRoute[$slug]);
+            if ($html) {
+                $this->html = $html;
+            } else {
+                return $this->redirect404();
+            }
+        } else {
+            return $this->redirect404();
+        }
     }
 
     //render meta tag
@@ -39,22 +62,24 @@ class pageHomeActions extends sfActions
         $this->getResponse()->addMeta('news_keywords', $seo_homepage['news_keywords']);
     }
 
-    public function executeGetProductByCatId(sfWebRequest $request){
+    public function executeGetProductByCatId(sfWebRequest $request)
+    {
         $id = $request->getParameter('catid');
         $strProduct = "<option selected='selected' value=''>Chọn loại phòng</option>";
-        if($id){
+        if ($id) {
             $products = VtpProductsTable::getProductByCatId($id, 50)->fetchArray();
-            if(count($products)>0){
+            if (count($products) > 0) {
                 $strProduct = "";
-                foreach($products as $value){
-                    $strProduct .= "<option value=".$value['id'].">".$value['product_name']."</option>";
+                foreach ($products as $value) {
+                    $strProduct .= "<option value=" . $value['id'] . ">" . $value['product_name'] . "</option>";
                 }
             }
         }
         return $this->renderText(json_encode($strProduct));
     }
 
-    public function executeBookingRoom(sfWebRequest $request) {
+    public function executeBookingRoom(sfWebRequest $request)
+    {
         $form = new FormBooking();
         $form->bind($request->getParameter($form->getName()));
         $data['error'] = false;

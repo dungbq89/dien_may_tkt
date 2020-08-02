@@ -1155,6 +1155,27 @@ class VtHelper
         }
         return $url;
     }
+
+    public static function getLinkMM($link)
+    {
+        if (VtHelper::startsWith($link, '@')) {
+            $link = url_for1($link);
+        }
+        return $link;
+    }
+
+    public static function getProductAttr()
+    {
+        return [1 => 'Sản phẩm bán chạy', 2 => 'Sản phẩm mới', 4 => 'Sản phẩm khuyến mãi', 8 => 'Sản phẩm sắp ra mắt'];
+    }
+
+    public static function getProductPrice($price = '')
+    {
+        if ($price) {
+            return number_format($price, 0, ",", '.');
+        }
+        return 'Liên hệ';
+    }
 }
 
 /**

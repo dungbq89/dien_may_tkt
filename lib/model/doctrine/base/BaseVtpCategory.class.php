@@ -127,7 +127,7 @@ abstract class BaseVtpCategory extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => true,
              'default' => false,
-             'comment' => 'có xem bài chi tiết hay không',
+             'comment' => 'Trạng thái hiển thị trang chủ (0: ko hiển thị, 1: hiển thị)',
              ));
         $this->hasColumn('portal_id', 'integer', null, array(
              'type' => 'integer',

@@ -12,40 +12,40 @@ class pageProductActions extends sfActions
 {
     public function executeIndex(sfWebRequest $request)
     {
-        $i18n = sfContext::getInstance()->getI18N();
-        // lay danh sach san pham theo cat
-        $slug = $request->getParameter('slug');
-        $page = $request->getParameter('page', 1);
-        $category = false;
-        $pager = false;
-        $limit = 9;
-        if ($slug && $page) {
-            $category = VtpProductsCategoryTable::getCategoryProductBySlugV3($slug);
-            if ($category) {
-                $seoCat = VtSEO::getSeoCategory($category);
-                if ($seoCat) {
-                    $this->returnHtmlSeoPage($seoCat);
-                }
-                $pager = new sfDoctrinePager('VtpProducts', $limit);
-                $filter = trim($request->getParameter('filter'));
-                if ($filter) {
-                    $listAttr = AdManageAttrTable::getAttrBySlug(explode(',', $filter));
-                    $pager->setQuery(VtpProductsTable::getAllProductByCategoryAttr($category->id, array_keys($listAttr)));
-                } else {
-                    $pager->setQuery(VtpProductsTable::getAllProductByCategory($category->id));
-                }
-
-                $pager->setPage($page);
-                $pager->init();
-            }
-        }
-        if ($category) {
-            $this->pager = $pager;
-            $this->category = $category;
-            $this->page = $page;
-        } else {
-            $this->forward404($i18n->__('Page not found!'));
-        }
+//        $i18n = sfContext::getInstance()->getI18N();
+//        // lay danh sach san pham theo cat
+//        $slug = $request->getParameter('slug');
+//        $page = $request->getParameter('page', 1);
+//        $category = false;
+//        $pager = false;
+//        $limit = 9;
+//        if ($slug && $page) {
+//            $category = VtpProductsCategoryTable::getCategoryProductBySlugV3($slug);
+//            if ($category) {
+//                $seoCat = VtSEO::getSeoCategory($category);
+//                if ($seoCat) {
+//                    $this->returnHtmlSeoPage($seoCat);
+//                }
+//                $pager = new sfDoctrinePager('VtpProducts', $limit);
+//                $filter = trim($request->getParameter('filter'));
+//                if ($filter) {
+//                    $listAttr = AdManageAttrTable::getAttrBySlug(explode(',', $filter));
+//                    $pager->setQuery(VtpProductsTable::getAllProductByCategoryAttr($category->id, array_keys($listAttr)));
+//                } else {
+//                    $pager->setQuery(VtpProductsTable::getAllProductByCategory($category->id));
+//                }
+//
+//                $pager->setPage($page);
+//                $pager->init();
+//            }
+//        }
+//        if ($category) {
+//            $this->pager = $pager;
+//            $this->category = $category;
+//            $this->page = $page;
+//        } else {
+//            $this->forward404($i18n->__('Page not found!'));
+//        }
     }
 
     public function executeBrand(sfWebRequest $request)
@@ -84,24 +84,24 @@ class pageProductActions extends sfActions
 
     public function executeDetail(sfWebRequest $request)
     {
-        $i18n = sfContext::getInstance()->getI18N();
-        $slug = $request->getParameter('slug');
-        $this->inquiryNowForm = new InquiryNowFront();
-        $product = false;
-        if ($slug) {
-            // lay chi tiet san pham
-            $product = VtpProductsTable::getProductbySlug($slug, 0);
-            if ($product) {
-                $seoCat = VtSEO::getSeoProductDetail($product);
-                if ($seoCat) {
-                    $this->returnHtmlSeoPage($seoCat);
-                }
-                $this->product = $product;
-            }
-        }
-        if (!$product) {
-            $this->forward404($i18n->__('Page not found!'));
-        }
+//        $i18n = sfContext::getInstance()->getI18N();
+//        $slug = $request->getParameter('slug');
+//        $this->inquiryNowForm = new InquiryNowFront();
+//        $product = false;
+//        if ($slug) {
+//            // lay chi tiet san pham
+//            $product = VtpProductsTable::getProductbySlug($slug, 0);
+//            if ($product) {
+//                $seoCat = VtSEO::getSeoProductDetail($product);
+//                if ($seoCat) {
+//                    $this->returnHtmlSeoPage($seoCat);
+//                }
+//                $this->product = $product;
+//            }
+//        }
+//        if (!$product) {
+//            $this->forward404($i18n->__('Page not found!'));
+//        }
     }
 
     public function executeSearch(sfWebRequest $request)

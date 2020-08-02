@@ -1,5 +1,13 @@
 ## YAML Template.
 ---
-#indexSuccess:
+indexSuccess:
+  javascripts:
+    - /ltducminh/jqueryui/core.min.js
+    - /ltducminh/jqueryui/widget.min.js
+    - /ltducminh/jqueryui/mouse.min.js
+    - /ltducminh/jqueryui/slider.min.js
+    - /ltducminh/jqueryui/jquery-ui-touch-punch.min.js
+    - /ltducminh/jqueryui/accounting.min.js
+    - /ltducminh/jqueryui/price-slider.min.js
 #  metas:
 #    title: Vinh Thanh SAT

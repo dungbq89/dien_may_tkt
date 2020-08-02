@@ -35,6 +35,7 @@
     var url_category_service = '<?php echo url_for1('ajax_load_category_service'); ?>';
     var url_article_detail = '<?php echo url_for1('ajax_load_article_detail'); ?>';
     var url_service_detail = '<?php echo url_for1('ajax_load_service_detail'); ?>';
+    var urlAjaxLoadCategoryProduct = '<?php echo url_for1('ajaxLoadCategoryProduct'); ?>';
     $(function(){
 
         $('#vtp_menu_page').change(function(e){
@@ -47,6 +48,24 @@
                     cache: true,
                     success: function(data) {
                         obj = $.parseJSON(data);
+                        objHtml = '';
+                        for (var val in obj) {
+                            objHtml += '<option value="'+val+'">'+obj[val]+'</option>';
+                        }
+                        $('#category_type').html(objHtml);
+                        $('#div-category-type').css("display","block").show();
+                    },
+                    error: function() {
+                    }
+                });
+
+            }else if(value=='cat_product'){
+                $.ajax({
+                    type: "GET",
+                    url: urlAjaxLoadCategoryProduct,
+                    cache: true,
+                    success: function(data) {
+                        obj = (data);
                         objHtml = '';
                         for (var val in obj) {
                             objHtml += '<option value="'+val+'">'+obj[val]+'</option>';
@@ -109,8 +128,7 @@
         }
         if ($select == 2) {
             document.getElementById('vtp_menu_page').disabled= false;
-            document.getElementById('vtp_menu_link_text').disabled= false ;
-
+            document.getElementById('vtp_menu_link_text').disabled= false;
         }
     }
 </script>

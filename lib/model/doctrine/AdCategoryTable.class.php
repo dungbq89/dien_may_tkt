@@ -45,7 +45,7 @@ class AdCategoryTable extends Doctrine_Table
 
                     ->andWhereIn('id', explode(',', $strCat))
 
-                    ->andWhere('lang=?', sfContext::getInstance()->getUser()->getCulture())
+//                    ->andWhere('lang=?', sfContext::getInstance()->getUser()->getCulture())
                     ->orderby('priority asc');
                 $arrCat = $query->execute();
                 $arrResult = array();
@@ -78,7 +78,7 @@ class AdCategoryTable extends Doctrine_Table
         $query = AdCategoryTable::getInstance()->createQuery()
             ->select('name, parent_id, level, priority')
 
-            ->andWhere('lang=?', sfContext::getInstance()->getUser()->getCulture())
+//            ->andWhere('lang=?', sfContext::getInstance()->getUser()->getCulture())
             ->orderby('priority asc');
         if ($listChild != '') {
             $query->andWhereNotIn('id', explode(',', $listChild));

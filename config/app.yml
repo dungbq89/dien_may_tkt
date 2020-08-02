@@ -9,7 +9,7 @@ all:
      fonts: ["akbar/vavobi.ttf"]
 
   image_maxsize: 52428800
-  upload_max_size:   104857600
+#  upload_max_size:   104857600
   image_upload_max_size: 52428800
   upload_video_max_size: 50485760
   upload_max_size:   104857600
@@ -24,16 +24,17 @@ all:
   video_images: video
   document: document
   member_images: member
-  image_default: 'http://hqtimex.com/images/default.jpg'
-  upload_member: "/root/apps/project/hqtimex/web/uploads"
+  img_lazy: "/ltducminh/flatsome/lazy.png"
+#  image_default: 'http://hqtimex.com/images/default.jpg'
+  upload_member: "E:\apps\project\dungbq3\dien_may_tkt\web\uploads"
 
-  upload_media_file: "/root/apps/project/glovimex/web/uploads"
-  url_media_file: http://glovimex.com/uploads
-  url_media_default_file: http://glovimex.com/images/default-image.jpg
-  image_default: http://glovimex.com/images/default-image.jpg
+  upload_media_file: "E:\apps\project\dungbq3\dien_may_tkt\web\uploads"
+  url_media_file: http://localhost:7004/uploads
+  url_media_default_file: http://localhost:7004/images/default-image.jpg
+  image_default: http://localhost:7004/images/default-image.jpg
   #upload_media_file: /uploads
 
-  url_media_file: /uploads
+#  url_media_file: /uploads
   
   ckeditor:
     basePath: /js/ckeditor

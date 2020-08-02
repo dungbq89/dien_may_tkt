@@ -11,6 +11,7 @@ VtpCategory:
     description: { type: clob, comment: "Mô tả chuyên mục" }
     image_path: { type: string(255),  comment: "File ảnh đại diện chuyên mục" }
     is_active: { type: boolean, notnull: true, default: false, comment: "Trạng thái hiển thị (0: ko hiển thị, 1: hiển thị)" }
+#    is_hot: { type: boolean, notnull: true, default: false, comment: "Trạng thái hiển thị trang chủ (0: ko hiển thị, 1: hiển thị)" }
     lang: {  type: string(10), comment: "Đa ngôn ngữ"}
     parent_id: { type: integer(5), comment: "Danh mục cha"}
     slug: { type: string(255), unique: true, notnull: true, comment: "chuyển đổi url"}
@@ -18,7 +19,8 @@ VtpCategory:
     level: { type: integer, default: 0, comment: "phân cấp chuyên mục"}
     priority: { type: integer(5), notnull: true, comment: "Độ ưu tiên hiển thị" }
     type: { type: string(20), comment: "N=Tin tức, S=Dịch vụ"}
-    is_detail: { type: boolean, notnull: true, default: false, comment: "có xem bài chi tiết hay không"}
+    is_detail: { type: boolean, notnull: true, default: false, comment: "Trạng thái hiển thị trang chủ (0: ko hiển thị, 1: hiển thị)"}
+#    is_detail: { type: boolean, notnull: true, default: false, comment: "có xem bài chi tiết hay không"}
     portal_id: { type: integer, comment: "Portal cần hiển thị nội dung, được quy ước trong file cấu hình (Khách hàng cá nhân / Khách hàng doanh nghiệp)"}
   relations:
     VtpParentCategory: { class: VtpCategory, local: parent_id, type: one, foreignAlias: ParentCategory }
@@ -85,6 +87,8 @@ AdArticle:
     lang: {  type: string(10), notnull: true, comment: "Đa ngôn ngữ" }
     slug: { type: string(255), unique: true, notnull: true, comment: "chuyển đổi url"}
     category_id: { type: integer(8), comment: "Id của danh mục tin tức" }
+    cat_ids: { type: string(255), notnull: false, comment: "id chuyen muc"}
+    cat_slug: { type: string(1000), notnull: false, comment: "slug chuyen muc"}
   relations:
     AdArticleCategory: { class: AdCategory, local: category_id, type: one, foreignAlias: ArticleCategory }
     ArticlesRelated:
@@ -93,6 +97,7 @@ AdArticle:
       refClass: AdArticlesRelated
       local: id
       foreign: article_id
+    AdMeta: { class: AdMeta,local: id, foreign: product_id, foreignAlias: AdMetaArticle }
 #Bảng  tin tức liên quan
 AdArticlesRelated:
   #connection: doctrine
@@ -224,7 +229,7 @@ AdVideo:
     is_default: { type: boolean, notnull: true, default: false, comment: "Trạng thái mặc định để hiển thị, 1: hiển thị, 0: không hiển thị. 1 là duy nhất" }
     lang: { type: string(10), notnull: true, comment: "Đa ngôn ngữ" }
     slug: { type: string(255), unique: true, notnull: true, comment: "chuyển đổi url"}
-    image_path: { type: string(255),  comment: "File ảnh đại diện video" }
+    video_path: { type: string(255),  comment: "File ảnh đại diện video" }
 #luu thong tin gop y nguoi dung
 AdComment:
   tableName: ad_comment
@@ -391,9 +396,13 @@ VtpProducts:
     supply_ability: { type: string(255), comment: "Khả năng cung cấp"}
     packing: { type: string(255), comment: "Đóng kiện"}
     special_req: { type: string(255), comment: "Yêu cầu"}
+    cat_ids: { type: string(255), notnull: false, comment: "id chuyen muc"}
+    cat_slug: { type: string(1000), notnull: false, comment: "slug cat"}
+    attr: { type: integer(22), notnull: false, comment: "thuoc tinh"}
   relations:
     VtpProducts: { class: VtpProductsCategory, local: category_id, type: one, foreignAlias: ProductCategory }
     AdAttrProduct: { class: AdManageAttrProduct,local: id, foreign: product_id, foreignAlias: AdAttrProduct }
+    AdMeta: { class: AdMeta,local: id, foreign: product_id, foreignAlias: AdMetaProduct }
 VtpProductImage:
   #connection: doctrine
   tableName: vtp_products_image
@@ -598,3 +607,21 @@ AdManageAttrProduct:
     AdAttr: { class: AdManageAttr, local: attr_id, foreign: id, foreignAlias: AdAttr }
     AdProduct: { class: VtpProducts, local: product_id, foreign: id, foreignAlias: AdProduct }
     AdCat: { class: VtpProductsCategory, local: product_id, foreign: id, foreignAlias: AdCat }
+# bang luu thong tin lien ket
+AdMeta:
+  #connection: doctrine
+  tableName: ad_meta
+  actAs:
+    Timestampable: ~
+  columns:
+    product_id:     {type: integer(22),  notnull: true, comment: 'ten thuoc tinh'}
+    cat_id:     {type: integer(22),  notnull: true, comment: 'ten thuoc tinh'}
+    meta_type: { type: string(512), notnull: false, comment: "Tiêu đề bài viết" }
+    cat_slug: { type: string(512), notnull: false, comment: "Tiêu đề bài viết" }
+    product_status: { type: string(512), notnull: false, comment: "Tiêu đề bài viết" }
+    product_rate: { type: string(512), notnull: false, comment: "Tiêu đề bài viết" }
+    product_price: { type: integer(22), notnull: false, comment: "Tiêu đề bài viết" }
+    meta_data: { type: clob, comment: "Nội dung bài viết trên web" }
+  relations:
+    AdMetaProduct: { class: VtpProducts,local: id, foreign: product_id, foreignAlias: AdMetaProduct }
+    AdMetaArticle: { class: AdArticle,local: id, foreign: product_id, foreignAlias: AdMetaArticle }

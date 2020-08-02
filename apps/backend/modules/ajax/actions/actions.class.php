@@ -10,22 +10,25 @@
  *
  * @author ngoctv1
  */
-class ajaxActions extends sfActions{
+class ajaxActions extends sfActions
+{
     //put your code here
 
-    public function executeLoadArticle(sfWebRequest $request){
-        $type=$request->getParameter('type');
-        if ($type==null){$type=1;}
+    public function executeLoadArticle(sfWebRequest $request)
+    {
+        $type = $request->getParameter('type');
+        if ($type == null) {
+            $type = 1;
+        }
         $keyword = $request->getParameter('keyword');
         $pageIndex = $request->getParameter('pageIndex');
-        $pageSize =  10;
+        $pageSize = 10;
         $myPager = new sfDoctrinePager('VtpArticle', $pageSize);
         $keyword = trim($keyword);
         $articleId = sfContext::getInstance()->getUser()->getAttribute('article_id');
-        if($articleId){
-            $myPager->setQuery(AdArticleTable::getSearchArticle($keyword,$articleId));
-        }
-        else{
+        if ($articleId) {
+            $myPager->setQuery(AdArticleTable::getSearchArticle($keyword, $articleId));
+        } else {
             $myPager->setQuery(AdArticleTable::getSearchArticle($keyword));
         }
         $myPager->setPage($this->getRequestParameter('page', $pageIndex));
@@ -43,10 +46,10 @@ class ajaxActions extends sfActions{
         } catch (Exception $e) {
             return $this->renderText('csrf');
         }
-        $type=$request->getGetParameters('type');
-        if($type=='up'){
+        $type = $request->getGetParameters('type');
+        if ($type == 'up') {
 
-        }elseif($type=='down'){
+        } elseif ($type == 'down') {
 
         }
 
@@ -66,7 +69,8 @@ class ajaxActions extends sfActions{
     }
 
     // upload nhieu file trong photo album
-    public function executeAjaxUploadImageFiles(sfWebRequest $request) {
+    public function executeAjaxUploadImageFiles(sfWebRequest $request)
+    {
         $i18n = $this->getContext()->getI18N();
         //-- disable debug
         sfConfig::set('sf_web_debug', false);
@@ -113,7 +117,8 @@ class ajaxActions extends sfActions{
         }
     }
 
-    public function executeAjaxRemoveImageFiles(sfWebRequest $request) {
+    public function executeAjaxRemoveImageFiles(sfWebRequest $request)
+    {
         $i18n = $this->getContext()->getI18N();
         //-- disable debug
         sfConfig::set('sf_web_debug', false);
@@ -126,53 +131,71 @@ class ajaxActions extends sfActions{
                     try {
                         $objImg->delete();
                         return $this->renderText(json_encode(array(
-                                    'errorCode' => 0,
-                                    'message' => $i18n->_('Xóa file thành công')
+                            'errorCode' => 0,
+                            'message' => $i18n->_('Xóa file thành công')
                         )));
                     } catch (Exception $exc) {
                         //ghi log
                         // echo $exc->getTraceAsString();
                         return $this->renderText(json_encode(array(
-                                    'errorCode' => 1,
-                                    'message' => $exc->getTraceAsString(),
+                            'errorCode' => 1,
+                            'message' => $exc->getTraceAsString(),
                         )));
                     }
                 }
             }
         }
         return $this->renderText(json_encode(array(
-                    'errorCode' => 1,
-                    'message' => $i18n->_('Xóa file thất bại')
+            'errorCode' => 1,
+            'message' => $i18n->_('Xóa file thất bại')
         )));
     }
 
-    public function executeAjaxLoadCategoryNews(sfWebRequest $request) {
-        $listCategoryNews = VtpCategoryTable::getCategoryByTypeClone(VtCommonEnum::NewCategory, sfContext::getInstance()->getUser()->getAttribute('portal',0),'');
+    public function executeAjaxLoadCategoryNews(sfWebRequest $request)
+    {
+        $listCategoryNews = VtpCategoryTable::getCategoryByTypeClone(VtCommonEnum::NewCategory, sfContext::getInstance()->getUser()->getAttribute('portal', 0), '');
         return $this->renderText(json_encode($listCategoryNews));
     }
-    public function executeAjaxLoadCategoryService(sfWebRequest $request) {
-        $listCategoryService = VtpCategoryTable::getCategoryByTypeClone(VtCommonEnum::ServiceCategory, sfContext::getInstance()->getUser()->getAttribute('portal',0),'');
+
+    public function executeAjaxLoadCategoryService(sfWebRequest $request)
+    {
+        $listCategoryService = VtpCategoryTable::getCategoryByTypeClone(VtCommonEnum::ServiceCategory, sfContext::getInstance()->getUser()->getAttribute('portal', 0), '');
         return $this->renderText(json_encode($listCategoryService));
     }
-    public function executeAjaxLoadArticleDetail(sfWebRequest $request){
+
+    public function executeAjaxLoadArticleDetail(sfWebRequest $request)
+    {
         $listArticle = AdArticleTable::getActiveArticleQuery()->execute();
         $arrResult = array();
-        if(count($listArticle)>0){
-            foreach($listArticle as $value){
+        if (count($listArticle) > 0) {
+            foreach ($listArticle as $value) {
                 $arrResult[$value['slug']] = htmlspecialchars($value['title']);
             }
         }
         return $this->renderText(json_encode($arrResult));
     }
-    public function executeAjaxLoadServiceDetail(sfWebRequest $request){
-        $listService = VtpServicesTable::getServiceActiveQuery(sfContext::getInstance()->getUser()->getAttribute('portal',0))->execute();
+
+    public function executeAjaxLoadServiceDetail(sfWebRequest $request)
+    {
+        $listService = VtpServicesTable::getServiceActiveQuery(sfContext::getInstance()->getUser()->getAttribute('portal', 0))->execute();
         $arrResult = array();
-        if(count($listService)>0){
-            foreach($listService as $value){
+        if (count($listService) > 0) {
+            foreach ($listService as $value) {
                 $arrResult[$value['slug']] = htmlspecialchars($value['title']);
             }
         }
         return $this->renderText(json_encode($arrResult));
+    }
+
+    public function executeAjaxLoadCategoryProduct(sfWebRequest $request)
+    {
+        $this->getResponse()->setHttpHeader('Content-type', 'application/json');
+        $arrCatProduct = [];
+        $listCatProduct = VtpProductsCategoryTable::getInstance()->findAll();
+        foreach ($listCatProduct as $item) {
+            $arrCatProduct[$item->slug] = $item->name;
+        }
+        return $this->renderText(json_encode($arrCatProduct));
     }
 }
 
