@@ -1,0 +1,15 @@
+description:
+  enabled: true
+  lifetime: 300
+roomHot:
+  enabled: true
+  lifetime: 300
+roomListHome:
+  enabled: true
+  lifetime: 300
+slide:
+  enabled: true
+  lifetime: 300
+#_department:
+#  enabled: true
+#  lifetime: 300
