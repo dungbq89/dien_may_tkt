@@ -84,24 +84,32 @@ class pageProductActions extends sfActions
 
     public function executeDetail(sfWebRequest $request)
     {
-//        $i18n = sfContext::getInstance()->getI18N();
-//        $slug = $request->getParameter('slug');
-//        $this->inquiryNowForm = new InquiryNowFront();
-//        $product = false;
-//        if ($slug) {
-//            // lay chi tiet san pham
-//            $product = VtpProductsTable::getProductbySlug($slug, 0);
-//            if ($product) {
-//                $seoCat = VtSEO::getSeoProductDetail($product);
-//                if ($seoCat) {
-//                    $this->returnHtmlSeoPage($seoCat);
-//                }
-//                $this->product = $product;
-//            }
-//        }
-//        if (!$product) {
-//            $this->forward404($i18n->__('Page not found!'));
-//        }
+        $i18n = sfContext::getInstance()->getI18N();
+        $slug = $request->getParameter('slug');
+        $catSlug = $request->getParameter('cat_slug');
+        $product = false;
+        $cat = false;
+        $productRelated = false;
+        if ($slug && $catSlug) {
+            // lay chi tiet san pham
+            $product = VtpProductsTable::getProductbySlug($slug, 0);
+            $cat = VtpProductsCategoryTable::getInstance()->findOneBySlug($catSlug);
+            if ($cat) {
+                $productRelated = VtpProductsTable::getProductByCat($cat->id);
+            }
+            if ($product) {
+                $seoCat = VtSEO::getSeoProductDetail($product);
+                if ($seoCat) {
+                    $this->returnHtmlSeoPage($seoCat);
+                }
+            }
+        }
+        if (!$product) {
+            $this->forward404($i18n->__('Page not found!'));
+        }
+        $this->product = $product;
+        $this->cat = $cat;
+        $this->productRelated = $productRelated;
     }
 
     public function executeSearch(sfWebRequest $request)

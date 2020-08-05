@@ -8,15 +8,15 @@
  */
 class pageProductComponents extends sfComponents
 {
+    public function executeNavProductRg(sfWebRequest $request)
+    {
+        // lay danh sach san pham lien quan
+    }
+
     public function executeProductRelated(sfWebRequest $request)
     {
         // lay danh sach san pham lien quan
-        $products = VtpProductsTable::getProductByCatIdV2($this->getVar('catId'), 10);
-        $this->products = $products;
-    }
-
-    public function executeInquiryNowForm(sfWebRequest $request){
-        $form = new InquiryNowFront();
-        $this->form = $form;
+//        $products = VtpProductsTable::getProductByCatIdV2($this->getVar('catId'), 10);
+//        $this->products = $products;
     }
 }

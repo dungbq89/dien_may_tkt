@@ -15,7 +15,7 @@ abstract class BaseAdManageAttrFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'name'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'slug'       => new sfWidgetFormFilterInput(),
-      'parent'     => new sfWidgetFormFilterInput(),
+      'parent'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AdAttrParent'), 'add_empty' => true)),
       'status'     => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'priority'   => new sfWidgetFormFilterInput(),
       'lang'       => new sfWidgetFormFilterInput(),
@@ -26,7 +26,7 @@ abstract class BaseAdManageAttrFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'name'       => new sfValidatorPass(array('required' => false)),
       'slug'       => new sfValidatorPass(array('required' => false)),
-      'parent'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'parent'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AdAttrParent'), 'column' => 'id')),
       'status'     => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'priority'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'lang'       => new sfValidatorPass(array('required' => false)),
@@ -54,7 +54,7 @@ abstract class BaseAdManageAttrFormFilter extends BaseFormFilterDoctrine
       'id'         => 'Number',
       'name'       => 'Text',
       'slug'       => 'Text',
-      'parent'     => 'Number',
+      'parent'     => 'ForeignKey',
       'status'     => 'Boolean',
       'priority'   => 'Number',
       'lang'       => 'Text',

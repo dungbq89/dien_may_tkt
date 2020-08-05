@@ -58,8 +58,8 @@ class vtpManageProductsCategoryActions extends autoVtpManageProductsCategoryActi
     {
         $query = $this->buildQuery();
         $query->orderBy('priority ASC');
-        $query->andWhere('portal_id=?',sfContext::getInstance()->getUser()->getAttribute('portal',0));
-        $query->andWhere('lang=?',sfContext::getInstance()->getUser()->getCulture());
+//        $query->andWhere('portal_id=?',sfContext::getInstance()->getUser()->getAttribute('portal',0));
+//        $query->andWhere('lang=?',sfContext::getInstance()->getUser()->getCulture());
 //        $query->andWhere('is_active=1');
         $pages = ceil($query->count() / $this->getMaxPerPage());
         $pager = $this->configuration->getPager('VtpProductsCategory');

@@ -594,6 +594,9 @@ AdManageAttr:
     status: { type: boolean, notnull: false, default: true, comment: "trang thai"}
     priority: { type: integer(4), notnull: false, comment: "sap xep"}
     lang: {  type: string(10), comment: "Đa ngôn ngữ"}
+  relations:
+    AdAttrParent: { class: AdManageAttrProduct, local: parent, foreign: attr_id, foreignAlias: AdAttrParent }
+
 AdManageAttrProduct:
   tableName: ad_manage_attr_product
   actAs:
@@ -605,6 +608,7 @@ AdManageAttrProduct:
     lang: {  type: string(10), comment: "Đa ngôn ngữ"}
   relations:
     AdAttr: { class: AdManageAttr, local: attr_id, foreign: id, foreignAlias: AdAttr }
+    AdAttrParent: { class: AdManageAttr, local: attr_id, foreign: parent, foreignAlias: AdAttr }
     AdProduct: { class: VtpProducts, local: product_id, foreign: id, foreignAlias: AdProduct }
     AdCat: { class: VtpProductsCategory, local: product_id, foreign: id, foreignAlias: AdCat }
 # bang luu thong tin lien ket

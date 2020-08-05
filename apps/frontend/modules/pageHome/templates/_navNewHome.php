@@ -25,6 +25,7 @@
                                 $link = url_for1(sprintf('@newDetail?cat_slug=%s&slug=%s', $cat['slug'], $new->slug));
                                 $pathImg = '/uploads/' . sfConfig::get('app_article_images') . $new->image_path;
                                 $img = VtHelper::getThumbUrl($pathImg, 92, 60);
+                                $img385 = VtHelper::getThumbUrl($pathImg, 385, 250);
 
                                 ?>
                                 <div class="col post-item">
@@ -36,10 +37,10 @@
                                                     <div class="image-cover" style="padding-top:65%;">
                                                         <img width="800" height="300"
                                                              src="<?php echo sfConfig::get('app_img_lazy') ?>"
-                                                             data-src="<?php echo $img ?>"
+                                                             data-src="<?php echo $img385 ?>"
                                                              class="lazy-load attachment-original size-original wp-post-image"
                                                              alt="" srcset=""
-                                                             data-srcset="<?php echo $img ?> 300w"
+                                                             data-srcset="<?php echo $img385 ?> 300w"
                                                              sizes="(max-width: 800px) 100vw, 800px"/>
                                                     </div>
                                                 </div><!-- .box-image -->

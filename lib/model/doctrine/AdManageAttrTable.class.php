@@ -77,4 +77,14 @@ class AdManageAttrTable extends Doctrine_Table
         }
         return $arrAttr;
     }
+
+    public static function getAttrByProductId($productId)
+    {
+        $q = AdManageAttrTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdAttrParent b')
+            ->andWhere('b.product_id=?', $productId)
+            ->execute();
+        if ($q) return $q;
+        return false;
+    }
 }

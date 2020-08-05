@@ -33,7 +33,13 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
                 'template' => '<div>%file%<br />%input%</div>',
             )),
             'link' => new sfWidgetFormInputText(array(), array('style' => 'width: 690px')),
-            'description' => new sfWidgetFormTextarea(array(), array('style' => 'width: 690px')),
+//            'description' => new sfWidgetFormTextarea(array(), array('style' => 'width: 690px')),
+            'description' => new sfWidgetFormCKEditor(
+                array(
+                    'jsoptions' => array('toolbar' => 'Basic',
+                        'width' => '700',
+                        'height' => '200'),
+                )),
             'content' => new sfWidgetFormCKEditor(
                 array(
                     'jsoptions' => array('toolbar' => 'Basic',

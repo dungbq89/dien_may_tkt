@@ -1176,6 +1176,17 @@ class VtHelper
         }
         return 'Liên hệ';
     }
+
+    public static function strip_html_tags_and_decode_puri($str)
+    {
+        $str = htmlspecialchars_decode($str); //co the dung ham $object->getSomething(ESC_RAW);//htmlspecialchars_decode($str, ENT_QUOTES);
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.MaxImgLength', null);
+        $config->set('CSS.MaxImgLength', null);
+        $purifier = new HTMLPurifier($config);
+        $clean_html = $purifier->purify($str);
+        return $clean_html;
+    }
 }
 
 /**

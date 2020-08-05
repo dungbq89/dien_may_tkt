@@ -41,4 +41,9 @@ class VtpProducts extends BaseVtpProducts
     {
         return AdManageAttrProductTable::getListAttrByProduct($this->getId(), $attrType);
     }
+
+    public function getAttrByProductId()
+    {
+        return AdManageAttrTable::getAttrByProductId($this->id);
+    }
 }

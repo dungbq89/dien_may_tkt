@@ -12,23 +12,26 @@ Doctrine_Manager::getInstance()->bindComponent('AdManageAttrProduct', 'doctrine'
  * @property string $attr_type
  * @property string $lang
  * @property AdManageAttr $AdAttr
+ * @property AdManageAttr $AdAttrParent
  * @property VtpProducts $AdProduct
  * @property VtpProductsCategory $AdCat
  * 
- * @method integer             getProductId()  Returns the current record's "product_id" value
- * @method integer             getAttrId()     Returns the current record's "attr_id" value
- * @method string              getAttrType()   Returns the current record's "attr_type" value
- * @method string              getLang()       Returns the current record's "lang" value
- * @method AdManageAttr        getAdAttr()     Returns the current record's "AdAttr" value
- * @method VtpProducts         getAdProduct()  Returns the current record's "AdProduct" value
- * @method VtpProductsCategory getAdCat()      Returns the current record's "AdCat" value
- * @method AdManageAttrProduct setProductId()  Sets the current record's "product_id" value
- * @method AdManageAttrProduct setAttrId()     Sets the current record's "attr_id" value
- * @method AdManageAttrProduct setAttrType()   Sets the current record's "attr_type" value
- * @method AdManageAttrProduct setLang()       Sets the current record's "lang" value
- * @method AdManageAttrProduct setAdAttr()     Sets the current record's "AdAttr" value
- * @method AdManageAttrProduct setAdProduct()  Sets the current record's "AdProduct" value
- * @method AdManageAttrProduct setAdCat()      Sets the current record's "AdCat" value
+ * @method integer             getProductId()    Returns the current record's "product_id" value
+ * @method integer             getAttrId()       Returns the current record's "attr_id" value
+ * @method string              getAttrType()     Returns the current record's "attr_type" value
+ * @method string              getLang()         Returns the current record's "lang" value
+ * @method AdManageAttr        getAdAttr()       Returns the current record's "AdAttr" value
+ * @method AdManageAttr        getAdAttrParent() Returns the current record's "AdAttrParent" value
+ * @method VtpProducts         getAdProduct()    Returns the current record's "AdProduct" value
+ * @method VtpProductsCategory getAdCat()        Returns the current record's "AdCat" value
+ * @method AdManageAttrProduct setProductId()    Sets the current record's "product_id" value
+ * @method AdManageAttrProduct setAttrId()       Sets the current record's "attr_id" value
+ * @method AdManageAttrProduct setAttrType()     Sets the current record's "attr_type" value
+ * @method AdManageAttrProduct setLang()         Sets the current record's "lang" value
+ * @method AdManageAttrProduct setAdAttr()       Sets the current record's "AdAttr" value
+ * @method AdManageAttrProduct setAdAttrParent() Sets the current record's "AdAttrParent" value
+ * @method AdManageAttrProduct setAdProduct()    Sets the current record's "AdProduct" value
+ * @method AdManageAttrProduct setAdCat()        Sets the current record's "AdCat" value
  * 
  * @package    symfony
  * @subpackage model
@@ -70,6 +73,10 @@ abstract class BaseAdManageAttrProduct extends sfDoctrineRecord
         $this->hasOne('AdManageAttr as AdAttr', array(
              'local' => 'attr_id',
              'foreign' => 'id'));
+
+        $this->hasOne('AdManageAttr as AdAttrParent', array(
+             'local' => 'attr_id',
+             'foreign' => 'parent'));
 
         $this->hasOne('VtpProducts as AdProduct', array(
              'local' => 'product_id',
