@@ -304,4 +304,81 @@ class VtpProductsTable extends Doctrine_Table
         if ($q) return $q;
         return [];
     }
+
+    public static function getProductBySlugCatQuery($slug, $limit = 10)
+    {
+        $q = VtpProductsTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=1')
+            ->andWhere('b.meta_type=2')
+            ->andWhere('b.cat_slug=?', $slug)
+            ->limit($limit);
+        return $q;
+    }
+
+    public static function getProductBySlugCat($slug, $limit = 10)
+    {
+        $q = VtpProductsTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=1')
+            ->andWhere('b.meta_type=2')
+            ->andWhere('b.cat_slug=?', $slug)
+            ->limit($limit)
+            ->execute();
+        if ($q) return $q;
+        return [];
+    }
+
+    /**
+     * danh sach san pham theo cat & attr
+     * @param $slug
+     * @param int $limit
+     * @return array
+     */
+    public static function getProductByCatSlugAndAttr($slug = false, $attr = false, $limit = 10)
+    {
+        $q = VtpProductsTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=1')
+            ->andWhere('b.meta_type=2');
+        if ($slug) {
+            $q = $q->andWhere('b.cat_slug=?', $slug);
+        }
+        if ($attr) {
+            $q = $q->andWhere('a.attr & ?=?', [$attr, $attr]);
+        }
+        $q = $q->limit($limit)
+            ->execute();
+        if ($q) return $q;
+        return [];
+    }
+
+    public static function getProductQuery($catSlug = false, $filter = [], $limit = false)
+    {
+        $q = VtpProductsTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=1')
+            ->andWhere('b.meta_type=2');
+        if ($catSlug)
+            $q = $q->andWhere('b.cat_slug=?', $catSlug);
+        if (!empty($filter)) {
+            foreach ($filter as $k => $ft) {
+                if ($k == 'price_desc') {
+                    $q = $q->orderBy('a.price desc');
+                }
+                if ($k == 'price_asc') {
+                    $q = $q->orderBy('a.price asc');
+                }
+                if ($k == 'rate_price') {
+                    $q = $q->andWhere(sprintf('b.product_price BETWEEN ? AND ?'), [$ft[0], $ft[1]]);
+                }
+            }
+        } else {
+            $q = $q->orderBy('a.updated_at desc');
+        }
+        if ($limit) {
+            $q = $q->limit($limit);
+        }
+        return $q;
+    }
 }

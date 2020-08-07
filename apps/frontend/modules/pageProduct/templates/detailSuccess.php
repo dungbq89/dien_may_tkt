@@ -30,7 +30,7 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
              class="post-1618 product type-product status-publish has-post-thumbnail product_cat-laptop-dell-cu product_cat-laptop-sinh-vien-van-phong first instock sale shipping-taxable purchasable product-type-simple">
             <div class="product-main">
                 <div class="row content-row row-divided row-large">
-
+<!--danh sach san pham ban chay-->
                     <?php include_component('pageProduct', 'navProductRg'); ?>
 
                     <div class="col large-9">

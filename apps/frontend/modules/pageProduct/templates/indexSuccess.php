@@ -28,9 +28,9 @@
             <form class="woocommerce-ordering" method="get">
                 <select name="orderby" class="orderby">
                     <option value="menu_order" selected='selected'>Thứ tự mặc định</option>
-                    <option value="popularity">Thứ tự theo mức độ phổ biến</option>
-                    <option value="rating">Thứ tự theo điểm đánh giá</option>
-                    <option value="date">Thứ tự theo sản phẩm mới</option>
+<!--                    <option value="popularity">Thứ tự theo mức độ phổ biến</option>-->
+<!--                    <option value="rating">Thứ tự theo điểm đánh giá</option>-->
+<!--                    <option value="date">Thứ tự theo sản phẩm mới</option>-->
                     <option value="price">Thứ tự theo giá: thấp đến cao</option>
                     <option value="price-desc">Thứ tự theo giá: cao xuống thấp</option>
                 </select>

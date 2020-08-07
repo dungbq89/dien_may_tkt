@@ -253,4 +253,16 @@ class AdArticleTable extends Doctrine_Table
         if ($q) return $q;
         return [];
     }
+    public static function getArticleNew($limit = 3)
+    {
+        $q = AdArticleTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=2')
+            ->andWhere('b.meta_type=1')
+            ->orderBy('b.updated_at desc')
+            ->limit($limit)
+            ->execute();
+        if ($q) return $q;
+        return [];
+    }
 }

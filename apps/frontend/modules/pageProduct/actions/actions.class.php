@@ -12,40 +12,51 @@ class pageProductActions extends sfActions
 {
     public function executeIndex(sfWebRequest $request)
     {
-//        $i18n = sfContext::getInstance()->getI18N();
-//        // lay danh sach san pham theo cat
-//        $slug = $request->getParameter('slug');
-//        $page = $request->getParameter('page', 1);
-//        $category = false;
-//        $pager = false;
-//        $limit = 9;
-//        if ($slug && $page) {
-//            $category = VtpProductsCategoryTable::getCategoryProductBySlugV3($slug);
-//            if ($category) {
-//                $seoCat = VtSEO::getSeoCategory($category);
-//                if ($seoCat) {
-//                    $this->returnHtmlSeoPage($seoCat);
-//                }
-//                $pager = new sfDoctrinePager('VtpProducts', $limit);
-//                $filter = trim($request->getParameter('filter'));
-//                if ($filter) {
-//                    $listAttr = AdManageAttrTable::getAttrBySlug(explode(',', $filter));
-//                    $pager->setQuery(VtpProductsTable::getAllProductByCategoryAttr($category->id, array_keys($listAttr)));
-//                } else {
-//                    $pager->setQuery(VtpProductsTable::getAllProductByCategory($category->id));
-//                }
-//
-//                $pager->setPage($page);
-//                $pager->init();
-//            }
-//        }
-//        if ($category) {
-//            $this->pager = $pager;
-//            $this->category = $category;
-//            $this->page = $page;
-//        } else {
-//            $this->forward404($i18n->__('Page not found!'));
-//        }
+        $i18n = sfContext::getInstance()->getI18N();
+        // lay danh sach san pham theo cat
+        $slug = $request->getParameter('slug');
+        $price_asc = $request->getParameter('price_asc');
+        $price_desc = $request->getParameter('price_desc');
+        $pricefrom = $request->getParameter('pricefrom');
+        $priceto = $request->getParameter('priceto');
+        $rate_price = false;
+        if($pricefrom && $priceto){
+            $rate_price = [$pricefrom, $priceto];
+        }
+        $page = $request->getParameter('page', 1);
+        $category = false;
+        $pager = false;
+        $limit = 9;
+        if ($slug && $page) {
+            $category = VtpProductsCategoryTable::getCategoryProductBySlugV3($slug);
+            if ($category) {
+                $seoCat = VtSEO::getSeoCategory($category);
+                if ($seoCat) {
+                    $this->returnHtmlSeoPage($seoCat);
+                }
+                $pager = new sfDoctrinePager('VtpProducts', $limit);
+                $filter = [];
+                if ($price_asc) {
+                    $filter['price_asc'] = $price_asc;
+                }
+                if ($price_desc) {
+                    $filter['price_desc'] = $price_desc;
+                }
+                if ($rate_price) {
+                    $filter['rate_price'] = $rate_price;
+                }
+                $pager->setQuery(VtpProductsTable::getProductQuery($slug, $filter));
+                $pager->setPage($page);
+                $pager->init();
+            }
+        }
+        if ($category) {
+            $this->pager = $pager;
+            $this->category = $category;
+            $this->page = $page;
+        } else {
+            $this->forward404($i18n->__('Page not found!'));
+        }
     }
 
     public function executeBrand(sfWebRequest $request)

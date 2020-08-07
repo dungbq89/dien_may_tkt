@@ -15,7 +15,8 @@ class tempComponents extends sfComponents
     }
 
     public function executeMobSideBar($request) {
-
+        $mainMenu=VtpMenuTable::getMenu(0);
+        $this->mainMenu = $mainMenu;
     }
     public function executeHeader($request) {
         $mainMenu=VtpMenuTable::getMenu(0);

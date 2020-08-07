@@ -11,6 +11,14 @@ class pageProductComponents extends sfComponents
     public function executeNavProductRg(sfWebRequest $request)
     {
         // lay danh sach san pham lien quan
+        $catSlug = $request->getParameter('cat_slug');
+        $products = false;
+        if ($catSlug) {
+            $products = VtpProductsTable::getProductByCatSlugAndAttr($catSlug, 1);
+        }
+        $this->articles = AdArticleTable::getArticleNew(5);
+        $this->products = $products;
+        $this->catSlug = $catSlug;
     }
 
     public function executeProductRelated(sfWebRequest $request)
