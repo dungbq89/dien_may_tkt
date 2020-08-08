@@ -36,11 +36,11 @@ class pageHomeActions extends sfActions
 //        ;die;
         if ($slug && in_array($slug, array_keys($arrRoute))) {
             $html = AdHtmlTable::getHtmlByRouting($arrRoute[$slug]);
-            if ($html) {
-                $this->html = $html;
-            } else {
-                return $this->redirect404();
-            }
+        } else {
+            $html = AdHtmlTable::getHtmlByHtml($slug);
+        }
+        if ($html) {
+            $this->html = $html;
         } else {
             return $this->redirect404();
         }

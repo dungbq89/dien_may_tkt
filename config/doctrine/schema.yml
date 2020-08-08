@@ -167,6 +167,7 @@ AdAdvertiseImage:
     link: { type: string(255), comment: "Đường dẫn chi tiết (nếu có)"}
   relations:
     AdAdvertiseImage: { class: AdAdvertise, local: advertise_id, type: one, foreignAlias: AdvertiseImage }
+    AdAdvertiseLocation: { class: AdAdvertiseLocation, local: advertise_id, foreign: advertise_id, foreignAlias: AdAdvertiseLocationImage }
 
 AdAdvertiseLocation:
   #connection: doctrine
@@ -179,6 +180,7 @@ AdAdvertiseLocation:
     priority: { type: integer(5), notnull: true, comment: "Thứ tự hiển thị" }
   relations:
     AdAdvertiseLocation: { class: AdAdvertise, local: advertise_id, type: many, foreignAlias: AdvertiseLocation }
+
 #Module quản lý Album
 AdAlbum:
   tableName: ad_album
@@ -322,6 +324,7 @@ AdLink:
     Timestampable: ~
   columns:
     name: { type: string(255), notnull: true,  comment: "Tên link"}
+    lang: { type: string(255), notnull: true,  comment: "Tên link"}
     link: { type: string(255), comment: "Đường dẫn" }
     priority: {type: integer(5), default: null}
     type: {type: integer(5), default: 1, comment: "1: kiểu link cột bên phải, 2 là link footer"}
@@ -487,6 +490,9 @@ Booking:
     shipping_term: {type: string(1000), notnull: false}
     subject: {type: string(255), notnull: false}
     requirement: {type: string(1000), notnull: false}
+    total: {type: integer(25), notnull: false}
+    total_price: {type: string(25), notnull: false}
+    book_type: {type: integer(22), notnull: false}
 ParameterCategory:
   #connection: doctrine
   tableName: parameter_category

@@ -8,21 +8,9 @@
  */
 class pageNewsComponents extends sfComponents
 {
-    public function executeHotNew(sfWebRequest $request)
+    public function executeNavNew(sfWebRequest $request)
     {
-        $this->hotnew = false;
-        $id = $this->getVar('id');
-        $listArticleRelated = AdArticleTable::getListArticleRelated($id, 5);
-        if($listArticleRelated && count($listArticleRelated)){
-            $this->hotnew = $listArticleRelated;
-        }else{
-            $hotnew = AdArticleTable::getHotArticle();
-            if ($hotnew) {
-                $this->hotnew = $hotnew;
-            }else{
-                return sfView::NONE;
-            }
-        }
-
+        $this->products = VtpProductsTable::getProductByCatSlugAndAttr(false, 2);
+        $this->articles = AdArticleTable::getArticleNew(5);
     }
 }

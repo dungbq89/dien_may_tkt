@@ -248,11 +248,13 @@ class AdArticleTable extends Doctrine_Table
             ->andWhere('a.is_active=2')
             ->andWhere('b.meta_type=1')
             ->andWhere('b.cat_id=?', $catId)
+            ->orderBy('a.priority asc')
             ->limit($limit)
             ->execute();
         if ($q) return $q;
         return [];
     }
+
     public static function getArticleNew($limit = 3)
     {
         $q = AdArticleTable::getInstance()->createQuery('a')
@@ -264,5 +266,28 @@ class AdArticleTable extends Doctrine_Table
             ->execute();
         if ($q) return $q;
         return [];
+    }
+
+    public static function getArticleQuery($catSlug, $filter, $limit = false)
+    {
+        $q = AdArticleTable::getInstance()->createQuery('a')
+            ->leftJoin('a.AdMeta b')
+            ->andWhere('a.is_active=2')
+            ->andWhere('b.meta_type=1');
+        if ($catSlug) {
+            $q = $q->andWhere('b.cat_slug=?', $catSlug);
+        } else {
+            $q = $q->groupBy('a.id');
+        }
+        if (!empty($filter)) {
+            foreach ($filter as $k => $ft) {
+                if ($k == 'attr') {
+
+                }
+            }
+        }
+        $q = $q->orderBy('a.updated_at desc');
+        if ($limit) $q = $q->limit($limit);
+        if ($q) return $q;
     }
 }

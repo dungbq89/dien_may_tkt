@@ -5,8 +5,11 @@ $attrs = $product->getAttrByProductId();
 $listImage = $product->getListImage();
 $arrCatSlug = json_decode($product->cat_slug, true);
 $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->image_path;
-
+$pathImgProductSocial = sfConfig::get('app_host_url') . '/uploads/' . sfConfig::get('app_product_images') . $product->image_path;
+$linkSocial = sfConfig::get('app_host_url') . url_for1(sprintf('@productDetail?cat_slug=%s&slug=%s', $catSlug, $product->slug));
 ?>
+<?php $conf = json_decode(sfConfig::get('app_config_web'), true); ?>
+
 <?php slot('slot_body') ?>
 <body class="product-template-default single single-product postid-1618 woocommerce woocommerce-page lightbox lazy-icons">
 <?php end_slot(); ?>
@@ -30,7 +33,7 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
              class="post-1618 product type-product status-publish has-post-thumbnail product_cat-laptop-dell-cu product_cat-laptop-sinh-vien-van-phong first instock sale shipping-taxable purchasable product-type-simple">
             <div class="product-main">
                 <div class="row content-row row-divided row-large">
-<!--danh sach san pham ban chay-->
+                    <!--danh sach san pham ban chay-->
                     <?php include_component('pageProduct', 'navProductRg'); ?>
 
                     <div class="col large-9">
@@ -85,7 +88,7 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
                                                                 sizes="(max-width: 960px) 100vw, 960px"/></a></div>
                                             <?php endforeach; ?>
                                         <?php else: ?>
-<?php
+                                            <?php
                                             $pathImg = '/uploads/' . sfConfig::get('app_product_images') . $product->image_path;
                                             $img300 = VtHelper::getThumbUrl($pathImg, 300, 300);
                                             ?>
@@ -235,7 +238,8 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
                                 </div>
                                 <div class='clearfix'></div>
                                 <a data-popup-open='muahangnhanh' href='#'>
-                                    <div class='detailcall-1'><h3>ĐẶT HÀNG NHANH</h3><span>Giao hàng tận nơi miễn phí nội thành!</span>
+                                    <div class='detailcall-1'><h3>ĐẶT HÀNG NHANH</h3>
+                                        <!--                                        <span>Giao hàng tận nơi miễn phí nội thành!</span>-->
                                     </div>
                                 </a>
                                 <div class='popup' data-popup='muahangnhanh'>
@@ -243,8 +247,7 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
                                         <div id='contact_form_pop'>
                                             <div class='form-title'>
                                                 <h3>Đặt hàng nhanh</h3>
-                                                <p>Hoặc gọi trực tiếp 0972.939.830 (MR.Thiện) để được tư vấn chính
-                                                    xác nhất!</p>
+                                                <p><?php echo $conf['lienhetuvan'] ?></p>
                                                 <hr>
                                             </div>
                                             <div class='form-content'>
@@ -295,18 +298,25 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
                                                         HÀNG
                                                     </button>
                                                     <div class='web79loading' style='display:inline-block'></div>
-
+                                                    <input type="hidden" name="product_id"
+                                                           value="<?php echo $product->id ?>">
+                                                    <?php
+                                                    $form = new BaseForm();
+                                                    echo $form->renderHiddenFields();
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <a class='popup-close' data-popup-close='muahangnhanh' href='#'>x</a>
                                     </div>
+
                                 </div>
 
-                                <script>var price = '<?php VtHelper::getProductPrice($product->price) ?>';
+                                <script>var price = '<?php echo $product->price ?>';
                                     var from = 'laptopductminh';
                                     var blog_url = '<?php echo url_for1("@homepage") ?>';
                                     var to = 'doivodesign@gmail.com'; </script>
+
                                 <?php if (!empty($arrCatSlug)): ?>
                                     <div class="product_meta">
                                         <span class="posted_in">Danh mục:
@@ -324,35 +334,35 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
                                     </div>
                                 <?php endif; ?>
                                 <div class="social-icons share-icons share-row relative icon-style-outline "><a
-                                            href="whatsapp://send?text=Dell%203568%20i5%207200%20ram%208gb%20ssssd%20128gb%20%2Bhdd%201tb%20v%E1%BB%ABa%20r%E1%BB%9Di%202gb%20m%E1%BA%A5y%20nh%C6%B0%20%C4%91%E1%BA%ADp%20h%E1%BB%99p.%C2%A0 - https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/"
+                                            href="whatsapp://send?text=<?php echo urlencode($product->product_name) ?> - <?php echo $linkSocial ?>"
                                             data-action="share/whatsapp/share"
                                             class="icon button circle is-outline tooltip whatsapp show-for-medium"
                                             title="Share on WhatsApp"><i class="icon-phone"></i></a><a
-                                            href="//www.facebook.com/sharer.php?u=https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/"
+                                            href="//www.facebook.com/sharer.php?u=<?php echo $linkSocial ?>"
                                             data-label="Facebook"
                                             onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"
                                             rel="noopener noreferrer nofollow" target="_blank"
                                             class="icon button circle is-outline tooltip facebook"
                                             title="Share on Facebook"><i class="icon-facebook"></i></a><a
-                                            href="//twitter.com/share?url=https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/"
+                                            href="//twitter.com/share?url=<?php echo $linkSocial ?>"
                                             onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"
                                             rel="noopener noreferrer nofollow" target="_blank"
                                             class="icon button circle is-outline tooltip twitter"
                                             title="Share on Twitter"><i class="icon-twitter"></i></a><a
-                                            href="mailto:enteryour@addresshere.com?subject=Dell%203568%20i5%207200%20ram%208gb%20ssssd%20128gb%20%2Bhdd%201tb%20v%E1%BB%ABa%20r%E1%BB%9Di%202gb%20m%E1%BA%A5y%20nh%C6%B0%20%C4%91%E1%BA%ADp%20h%E1%BB%99p.%C2%A0&amp;body=Check%20this%20out:%20https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/"
+                                            href="mailto:enteryour@addresshere.com?subject=<?php echo urlencode($product->product_name) ?>&amp;body=Check%20this%20out:%20<?php echo $linkSocial ?>"
                                             rel="nofollow" class="icon button circle is-outline tooltip email"
                                             title="Email to a Friend"><i class="icon-envelop"></i></a><a
-                                            href="//pinterest.com/pin/create/button/?url=https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/&amp;media=https://laptop91.com/wp-content/uploads/2020/07/z1985308445880_91120cbdb752ff6d04d860b03595d311-768x1024.jpg&amp;description=Dell%203568%20i5%207200%20ram%208gb%20ssssd%20128gb%20%2Bhdd%201tb%20v%E1%BB%ABa%20r%E1%BB%9Di%202gb%20m%E1%BA%A5y%20nh%C6%B0%20%C4%91%E1%BA%ADp%20h%E1%BB%99p.%C2%A0"
+                                            href="//pinterest.com/pin/create/button/?url=<?php echo $linkSocial ?>&amp;media=<?php echo $pathImgProductSocial ?>&amp;description=<?php echo urlencode($product->product_name) ?>"
                                             onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"
                                             rel="noopener noreferrer nofollow" target="_blank"
                                             class="icon button circle is-outline tooltip pinterest"
                                             title="Pin on Pinterest"><i class="icon-pinterest"></i></a><a
-                                            href="//plus.google.com/share?url=https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/"
+                                            href="//plus.google.com/share?url=<?php echo $linkSocial ?>"
                                             target="_blank" class="icon button circle is-outline tooltip google-plus"
                                             onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"
                                             rel="noopener noreferrer nofollow" title="Share on Google+"><i
                                                 class="icon-google-plus"></i></a><a
-                                            href="//www.linkedin.com/shareArticle?mini=true&url=https://laptop91.com/sản phẩm/dell-3568-i5-7200-ram-8gb-ssssd-128gb-hdd-1tb-vua-roi-2gb-may-nhu-dap-hop/&title=Dell%203568%20i5%207200%20ram%208gb%20ssssd%20128gb%20%2Bhdd%201tb%20v%E1%BB%ABa%20r%E1%BB%9Di%202gb%20m%E1%BA%A5y%20nh%C6%B0%20%C4%91%E1%BA%ADp%20h%E1%BB%99p.%C2%A0"
+                                            href="//www.linkedin.com/shareArticle?mini=true&url=<?php echo $linkSocial ?>&title=<?php echo urlencode($product->product_name) ?>"
                                             onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;"
                                             rel="noopener noreferrer nofollow" target="_blank"
                                             class="icon button circle is-outline tooltip linkedin"
@@ -377,9 +387,6 @@ $pathImgProduct = '/uploads/' . sfConfig::get('app_product_images') . $product->
                                     <div class="panel entry-content active" id="tab-description">
                                         <?php echo VtHelper::strip_html_tags_and_decode_puri($product->content) ?>
                                     </div>
-
-
-
 
 
                                     <div class="panel entry-content " id="tab-ux_global_tab">

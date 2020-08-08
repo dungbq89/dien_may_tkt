@@ -18,7 +18,8 @@ generator:
 #        product_code: { label: Mã phòng}
         product_name: { label: Tên sản phẩm}
         price: { label: Giá}
-        price_promotion: { label: Giá khuyến mãi}
+        price_promotion: { label: "Phần trăm giảm"}
+#        price_promotion: { label: Giá khuyến mãi}
         priority: { label: Thứ tự hiển thị}
         link: { label: Đường dẫn}
         description: { label: Mô tả}
@@ -53,7 +54,8 @@ generator:
        display: [product_name]
       form:
         class: vtManageProductsFormAdmin
-        display: [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, attr, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
+        display: [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, attr, is_home, is_active]
+#        display: [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, attr, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
 #        display: [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, is_hot, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
 #        fields:
 #          product_name: { label: Tên phòng *}
@@ -61,7 +63,8 @@ generator:
       edit:
         title: Chỉnh sửa thông tin sản phẩm
         display:
-          "Thông tin sản phẩm": [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, attr, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
+          "Thông tin sản phẩm": [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, attr, is_home, is_active]
+#          "Thông tin sản phẩm": [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, attr, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
 #          "Thông tin sản phẩm": [product_name, cat_ids, image_path, price, price_promotion, link, description, content, meta, keywords, priority, is_hot, is_home, is_active, brand, unit, origin, reference_price, payment, delivery, port, supply_ability, packing, special_req]
           "Thuộc tính sản phẩm": [product_attr]
       new:

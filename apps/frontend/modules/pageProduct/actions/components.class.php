@@ -21,6 +21,14 @@ class pageProductComponents extends sfComponents
         $this->catSlug = $catSlug;
     }
 
+    public function executeNavCat(sfWebRequest $request)
+    {
+        $mainMenu = VtpMenuTable::getMenu(0);
+        $this->mainMenu = $mainMenu;
+        $this->catSlug = $request->getParameter('slug');
+        $this->products = VtpProductsTable::getProductByCatSlugAndAttr(false, 2);
+    }
+
     public function executeProductRelated(sfWebRequest $request)
     {
         // lay danh sach san pham lien quan

@@ -30,6 +30,9 @@ abstract class BaseBookingFormFilter extends BaseFormFilterDoctrine
       'shipping_term' => new sfWidgetFormFilterInput(),
       'subject'       => new sfWidgetFormFilterInput(),
       'requirement'   => new sfWidgetFormFilterInput(),
+      'total'         => new sfWidgetFormFilterInput(),
+      'total_price'   => new sfWidgetFormFilterInput(),
+      'book_type'     => new sfWidgetFormFilterInput(),
       'created_at'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -52,6 +55,9 @@ abstract class BaseBookingFormFilter extends BaseFormFilterDoctrine
       'shipping_term' => new sfValidatorPass(array('required' => false)),
       'subject'       => new sfValidatorPass(array('required' => false)),
       'requirement'   => new sfValidatorPass(array('required' => false)),
+      'total'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'total_price'   => new sfValidatorPass(array('required' => false)),
+      'book_type'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -91,6 +97,9 @@ abstract class BaseBookingFormFilter extends BaseFormFilterDoctrine
       'shipping_term' => 'Text',
       'subject'       => 'Text',
       'requirement'   => 'Text',
+      'total'         => 'Number',
+      'total_price'   => 'Text',
+      'book_type'     => 'Number',
       'created_at'    => 'Date',
       'updated_at'    => 'Date',
     );

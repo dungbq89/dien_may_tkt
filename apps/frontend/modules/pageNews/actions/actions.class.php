@@ -14,44 +14,18 @@ class pageNewsActions extends sfActions
     {
         // lay danh sach san pham theo cat
         $page = $request->getParameter('page', 1);
-        $limit = 10;
+        $limit = 3;
         $pager = new sfDoctrinePager('AdArticle', $limit);
-        $pager->setQuery(AdArticleTable::getActiveArticleQuery());
+        $pager->setQuery(AdArticleTable::getArticleQuery('', []));
         $pager->setPage($page);
         $pager->init();
         $this->pager = $pager;
         $this->page = $page;
     }
 
-    public function executeListNews(sfWebRequest $request)
-    {
-        $i18n = sfContext::getInstance()->getI18N();
-        // lay danh sach san pham theo cat
-        $slug = $request->getParameter('slug');
-        $page = $request->getParameter('page', 1);
-        $category = false;
-        $pager = false;
-        $limit = 10;
-        if ($slug && $page) {
-            $category = VtpProductsCategoryTable::getCategoryProductBySlugV3($slug);
-            if ($category) {
-                $pager = new sfDoctrinePager('VtpProducts', $limit);
-                $pager->setQuery(VtpProductsTable::getAllProductByCategory($category->id));
-                $pager->setPage($page);
-                $pager->init();
-            }
-        }
-        if ($category) {
-            $this->pager = $pager;
-            $this->category = $category;
-            $this->page = $page;
-        } else {
-            $this->forward404($i18n->__('Page not found!'));
-        }
-    }
-
     public function executeDetail(sfWebRequest $request)
     {
+        
         $i18n = sfContext::getInstance()->getI18N();
         $slug = $request->getParameter('slug');
         $new = false;
@@ -60,7 +34,7 @@ class pageNewsActions extends sfActions
             $new = AdArticleTable::getArticleBySlugV2($slug);
             if ($new) {
                 $seoNew = VtSEO::getSeoArticle($new);
-                if($seoNew){
+                if ($seoNew) {
                     $this->returnHtmlSeoPage($seoNew);
                 }
                 $this->new = $new;
@@ -69,25 +43,6 @@ class pageNewsActions extends sfActions
         if (!$new) {
             $this->forward404($i18n->__('Page not found!'));
         }
-    }
-
-    public function executeSearchNew(sfWebRequest $request)
-    {
-        $i18n = sfContext::getInstance()->getI18N();
-        $this->queryName = $queryName = $request->getParameter('q');
-        if ($queryName) {
-            $this->keyword = $queryName;
-            $this->url_paging = 'hq_news_search';
-            $this->page = $this->getRequestParameter('page', 1);
-            $pager = new sfDoctrinePager('AdArticle', 20);
-            $pager->setQuery(AdArticleTable::getSearchArticle($queryName));
-            $pager->setPage($this->page);
-            $pager->init();
-            $this->pager = $pager;
-        } else {
-            $this->forward404($i18n->__('Page not found!'));
-        }
-
     }
 
     //render meta tag

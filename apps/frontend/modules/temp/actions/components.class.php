@@ -23,7 +23,8 @@ class tempComponents extends sfComponents
         $this->mainMenu = $mainMenu;
     }
     public function executeFooter($request) {
-
+        // danh sach chinh sach
+        $this->links = AdLinkTable::getLinkV2(1);
     }
 
 

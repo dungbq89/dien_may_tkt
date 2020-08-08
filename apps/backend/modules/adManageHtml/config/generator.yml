@@ -21,6 +21,7 @@ generator:
         is_active: { label: Trạng thái}
         created_at: { label: Ngày tạo}
         created_by: { label: Người tạo}
+        slug: { label: "Đường dẫn (có thể nhập hoặc không)"}
       list:
         title: Danh sách Nội dung
         display: [name, slug, is_active, created_at, created_by]
@@ -31,7 +32,7 @@ generator:
         display: [name]
       form:
         class: adManageHtmlFormAdmin
-        display: [prefix_path, name, content, is_active]
+        display: [prefix_path, name, content, is_active,slug]
         fields:
           prefix_path: { label: Trang hiển thị *}
           name: { label: Tiêu đề *}

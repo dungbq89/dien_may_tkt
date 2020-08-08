@@ -114,7 +114,7 @@ class adManageHtmlActions extends autoAdManageHtmlActions
     protected function getPager()
     {
         $query = $this->buildQuery();
-        $query->andWhere('lang=?',sfContext::getInstance()->getUser()->getCulture());
+//        $query->andWhere('lang=?',sfContext::getInstance()->getUser()->getCulture());
         $query->orderby('created_at desc');
         $pages = ceil($query->count() / $this->getMaxPerPage());
         $pager = $this->configuration->getPager('AdHtml');

@@ -99,6 +99,19 @@ class vtManageMenuFormAdmin extends BaseVtpMenuForm
             'required' => false,
             'choices' => array_keys($aPage),
         ));
+        $aType = [
+            '0' => 'Menu header',
+            '1' => 'Menu footer'
+        ];
+        $this->widgetSchema['type'] = new sfWidgetFormChoice(array(
+            'choices' => $aType,
+            'multiple' => false,
+            'expanded' => false
+        ), array());
+        $this->validatorSchema['type'] = new sfValidatorChoice(array(
+            'required' => false,
+            'choices' => array_keys($aType),
+        ));
 
         $this->widgetSchema['description'] = new sfWidgetFormTextarea();
         $this->validatorSchema['description'] = new sfValidatorString(array('max_length' => 1000, 'required' => false, 'trim' => true));

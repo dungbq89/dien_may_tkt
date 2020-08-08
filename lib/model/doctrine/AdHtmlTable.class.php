@@ -39,8 +39,8 @@ class AdHtmlTable extends Doctrine_Table
     {
         $query = AdHtmlTable::getInstance()->createQuery()
             ->where('is_active=?', VtCommonEnum::NUMBER_ONE)
-            ->andWhere('slug=?', $slug)
-            ->andWhere('lang=?', sfContext::getInstance()->getUser()->getCulture());
+            ->andWhere('slug=?', $slug);
+//            ->andWhere('lang=?', sfContext::getInstance()->getUser()->getCulture());
         return $query->fetchOne();
     }
 

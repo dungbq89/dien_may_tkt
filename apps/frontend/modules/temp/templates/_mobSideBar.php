@@ -6,12 +6,12 @@
                 <div class="header-search-form-wrapper">
                     <div class="searchform-wrapper ux-search-box relative form- is-normal">
                         <form role="search" method="get" class="searchform"
-                              action="<?php echo url_for1('@homepage') ?>">
+                              action="<?php echo url_for1('@search_product') ?>">
                             <div class="flex-row relative">
                                 <div class="flex-col flex-grow">
                                     <input type="search" class="search-field mb-0" name="s" value=""
                                            placeholder="Vui lòng nhập tên sản phẩm..."/>
-                                    <input type="hidden" name="post_type" value="product"/>
+<!--                                    <input type="hidden" name="post_type" value="product"/>-->
                                 </div><!-- .flex-col -->
                                 <div class="flex-col">
                                     <button type="submit"

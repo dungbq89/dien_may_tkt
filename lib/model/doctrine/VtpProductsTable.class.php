@@ -299,6 +299,7 @@ class VtpProductsTable extends Doctrine_Table
             ->andWhere('a.is_active=1')
             ->andWhere('b.meta_type=2')
             ->andWhere('b.cat_id=?', $catId)
+            ->orderBy('a.priority asc')
             ->limit($limit)
             ->execute();
         if ($q) return $q;
@@ -361,16 +362,26 @@ class VtpProductsTable extends Doctrine_Table
             ->andWhere('b.meta_type=2');
         if ($catSlug)
             $q = $q->andWhere('b.cat_slug=?', $catSlug);
+        else {
+            $q = $q->groupBy('a.id');
+        }
         if (!empty($filter)) {
             foreach ($filter as $k => $ft) {
                 if ($k == 'price_desc') {
                     $q = $q->orderBy('a.price desc');
                 }
+                if ($k == 'product_name') {
+                    $keyword = addcslashes($ft, sfConfig::get('app_addcslashes_charlist', "'%_-\\"));
+                    $q = $q->andWhere('LOWER(a.product_name) like LOWER(?) COLLATE utf8_bin', '%' . trim($keyword) . '%');
+                }
                 if ($k == 'price_asc') {
                     $q = $q->orderBy('a.price asc');
                 }
-                if ($k == 'rate_price') {
-                    $q = $q->andWhere(sprintf('b.product_price BETWEEN ? AND ?'), [$ft[0], $ft[1]]);
+                if ($k == 'minPrice') {
+                    $q = $q->andWhere(sprintf('b.product_price >=?'), $ft);
+                }
+                if ($k == 'maxPrice') {
+                    $q = $q->andWhere(sprintf('b.product_price <=?'), $ft);
                 }
             }
         } else {

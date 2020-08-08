@@ -188,11 +188,23 @@
     </div>
 
 </div>
-<script type='text/javascript'>
-    /* <![CDATA[ */
-    var woocommerce_price_slider_params = {"min_price":"","max_price":"","currency_format_num_decimals":"0","currency_format_symbol":"\u20ab","currency_format_decimal_sep":".","currency_format_thousand_sep":".","currency_format":"%v%s"};
-    /* ]]> */
-</script>
+<?php if (has_slot('js_price')): ?>
+    <?php include_slot('js_price') ?>
+<?php else: ?>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var woocommerce_price_slider_params = {
+            "min_price": "",
+            "max_price": "",
+            "currency_format_num_decimals": "0",
+            "currency_format_symbol": "\u20ab",
+            "currency_format_decimal_sep": ".",
+            "currency_format_thousand_sep": ".",
+            "currency_format": "%v%s"
+        };
+        /* ]]> */
+    </script>
+<?php endif; ?>
 
 <script type='text/javascript'
         src='/ltducminh/js/scripts.js'></script>

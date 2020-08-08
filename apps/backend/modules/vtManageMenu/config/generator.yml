@@ -21,6 +21,7 @@ generator:
         link: { label: Đường dẫn}
         priority: { label: Thứ tự hiển thị}
         is_active: { label: Trạng thái}
+        type: { label: "Vị trí"}
       list:
         title: Danh sách Menu
         display: [image_path, name, description, is_active, priority]
@@ -33,7 +34,7 @@ generator:
         display: [name]
       form:
         class: vtManageMenuFormAdmin
-        display: [name, parent_id, description, image_path, link, type_link, link_content,page, link_text, priority, is_active]
+        display: [name, parent_id,type, description, image_path, link, type_link, link_content,page, link_text, priority, is_active]
         fields:
           name: {label: Tên Menu*}
           priority: {label: Vị trí*}

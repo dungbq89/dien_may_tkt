@@ -15,18 +15,27 @@ class pageProductActions extends sfActions
         $i18n = sfContext::getInstance()->getI18N();
         // lay danh sach san pham theo cat
         $slug = $request->getParameter('slug');
-        $price_asc = $request->getParameter('price_asc');
-        $price_desc = $request->getParameter('price_desc');
-        $pricefrom = $request->getParameter('pricefrom');
-        $priceto = $request->getParameter('priceto');
-        $rate_price = false;
-        if($pricefrom && $priceto){
-            $rate_price = [$pricefrom, $priceto];
+        $orderby = $request->getParameter('orderby');
+        $price_desc = '';
+        $price_asc = '';
+        if ($orderby == 'price-desc') {
+            $price_desc = 1;
         }
+        if ($orderby == 'price') {
+            $price_asc = 1;
+        }
+        $minPrice = $request->getParameter('min_price');
+        $maxPrice = $request->getParameter('max_price');
+        $rate_price = false;
+//        if ($minPrice && $maxPrice) {
+//            $rate_price = [$minPrice, $maxPrice];
+//        }
         $page = $request->getParameter('page', 1);
         $category = false;
         $pager = false;
-        $limit = 9;
+        $limit = 4;
+        $start = (($page - 1) * $limit) + 1;
+        $end = $page * $limit;
         if ($slug && $page) {
             $category = VtpProductsCategoryTable::getCategoryProductBySlugV3($slug);
             if ($category) {
@@ -42,8 +51,11 @@ class pageProductActions extends sfActions
                 if ($price_desc) {
                     $filter['price_desc'] = $price_desc;
                 }
-                if ($rate_price) {
-                    $filter['rate_price'] = $rate_price;
+                if ($minPrice) {
+                    $filter['minPrice'] = $minPrice;
+                }
+                if ($maxPrice) {
+                    $filter['maxPrice'] = $maxPrice;
                 }
                 $pager->setQuery(VtpProductsTable::getProductQuery($slug, $filter));
                 $pager->setPage($page);
@@ -52,42 +64,14 @@ class pageProductActions extends sfActions
         }
         if ($category) {
             $this->pager = $pager;
+            $this->slug = $slug;
             $this->category = $category;
             $this->page = $page;
-        } else {
-            $this->forward404($i18n->__('Page not found!'));
-        }
-    }
-
-    public function executeBrand(sfWebRequest $request)
-    {
-        $i18n = sfContext::getInstance()->getI18N();
-        // lay danh sach san pham theo cat
-        $slug = $request->getParameter('slug');
-        $page = $request->getParameter('page', 1);
-        $category = false;
-        $pager = false;
-        $limit = 9;
-        if ($slug && $page) {
-            $category = HqBrandTable::getBrandBySlug($slug);
-
-            if ($category) {
-                $pager = new sfDoctrinePager('VtpProducts', $limit);
-                $filter = trim($request->getParameter('filter'));
-                if ($filter) {
-                    $listAttr = AdManageAttrTable::getAttrBySlug(explode(',', $filter));
-                    $pager->setQuery(VtpProductsTable::getAllProductByBrandAttr(array_keys($listAttr)));
-                } else {
-                    $pager->setQuery(VtpProductsTable::getAllProductByBrand($category->id));
-                }
-                $pager->setPage($page);
-                $pager->init();
-            }
-        }
-        if ($category) {
-            $this->pager = $pager;
-            $this->category = $category;
-            $this->page = $page;
+            $this->minPrice = $minPrice;
+            $this->maxPrice = $maxPrice;
+            $this->orderby = $orderby;
+            $this->start = $start;
+            $this->end = $end;
         } else {
             $this->forward404($i18n->__('Page not found!'));
         }
@@ -120,24 +104,65 @@ class pageProductActions extends sfActions
         }
         $this->product = $product;
         $this->cat = $cat;
+        $this->catSlug = $catSlug;
         $this->productRelated = $productRelated;
     }
 
     public function executeSearch(sfWebRequest $request)
     {
-        $this->queryName = $queryName = $request->getParameter('keyword');
-        if ($queryName) {
-            $this->keyword = $queryName;
-            $this->url_paging = 'page_search';
-            $this->page = $this->getRequestParameter('page', 1);
-            $pager = new sfDoctrinePager('VtpProducts', 21);
-            $pager->setQuery(VtpProductsTable::getSearchProduct($queryName));
-            $pager->setPage($this->page);
-            $pager->init();
-            $this->pager = $pager;
-            $this->listProduct = $pager->getResults();
+        $i18n = sfContext::getInstance()->getI18N();
+        // lay danh sach san pham theo cat
+        $slug = '';
+        $filter = [];
+        $keyword = $request->getParameter('s');
+        $orderby = $request->getParameter('orderby');
+        $price_desc = '';
+        $price_asc = '';
+        if ($orderby == 'price-desc') {
+            $price_desc = 1;
         }
+        if ($orderby == 'price') {
+            $price_asc = 1;
+        }
+        if ($keyword) $filter['product_name'] = $keyword;
 
+        $minPrice = $request->getParameter('min_price');
+        $maxPrice = $request->getParameter('max_price');
+        $rate_price = false;
+//        if ($minPrice && $maxPrice) {
+//            $rate_price = [$minPrice, $maxPrice];
+//        }
+        $page = $request->getParameter('page', 1);
+        $category = false;
+        $limit = 4;
+        $start = (($page - 1) * $limit) + 1;
+        $end = $page * $limit;
+        $pager = new sfDoctrinePager('VtpProducts', $limit);
+        if ($price_asc) {
+            $filter['price_asc'] = $price_asc;
+        }
+        if ($price_desc) {
+            $filter['price_desc'] = $price_desc;
+        }
+        if ($minPrice) {
+            $filter['minPrice'] = $minPrice;
+        }
+        if ($maxPrice) {
+            $filter['maxPrice'] = $maxPrice;
+        }
+        $pager->setQuery(VtpProductsTable::getProductQuery($slug, $filter));
+        $pager->setPage($page);
+        $pager->init();
+        $this->pager = $pager;
+        $this->slug = $slug;
+        $this->category = $category;
+        $this->page = $page;
+        $this->minPrice = $minPrice;
+        $this->maxPrice = $maxPrice;
+        $this->orderby = $orderby;
+        $this->start = $start;
+        $this->end = $end;
+        $this->keyword = $keyword;
     }
 
     //render meta tag
@@ -156,130 +181,75 @@ class pageProductActions extends sfActions
         $this->getResponse()->addMeta('news_keywords', $seo_homepage['news_keywords']);
     }
 
-    public function executeInquiryNow(sfWebRequest $request)
+    public function executeBooking($request)
     {
         $this->getResponse()->setHttpHeader('Content-type', 'application/json');
-        $form = new InquiryNowFront();
-        $values = $request->getParameter($form->getName());
-        $form->bind(($values));
-        $valid = 1;
-        if ($form->isValid()) {
+        $form = new BaseForm();
+        $csrf = $request->getParameter('_csrf_token');
+        $values['_csrf_token'] = $csrf;
+        $form->bind($values);
+        $name = $request->getParameter('name');
+        $sdt = $request->getParameter('sdt');
+        $email = $request->getParameter('email');
+        $address = $request->getParameter('address');
+        $total = $request->getParameter('qty');
+        $totalPrice = $request->getParameter('total');
+        $product_id = $request->getParameter('product_id');
+        $objProduct = VtpProductsTable::getInstance()->findOneByIdAndIsActive($product_id, 1);
+        $errCode = 1;
+        if ($objProduct && $name && $sdt && $email && $form->isValid()) {
             $obj = new Booking();
-            $obj->setFullName($values['full_name']);
-            $obj->setPhone($values['phone']);
-            $obj->setEmail($values['email']);
-            $obj->setCountry($values['country']);
-            $obj->setBody($values['body']);
-//            $obj->setAddress($values['address']);
-            $obj->setShippingTerm($values['shipping_term']);
-//            $obj->setSubject($values['subject']);
-            $obj->setRequirement($values['requirement']);
+            $obj->setFullName($name);
+            $obj->setPhone($sdt);
+            $obj->setEmail($email);
+            $obj->setProductId($product_id);
+            $obj->setBody(json_encode([
+                'total' => $total,
+                'price' => $totalPrice,
+                'product_name' => $objProduct->product_name,
+            ]));
+            $obj->setAddress($address);
+            $obj->setBookType(1);
+            $obj->setTotal($total);
+            $obj->setTotalPrice($totalPrice);
             $obj->setLang(sfContext::getInstance()->getUser()->getCulture());
             $obj->save();
-            $valid = 0;
+            $errCode = 0;
+        } else {
+            $errCode = 2;
         }
-        foreach ($form->getValidatorSchema() as $e) {
-//            var_dump($e->getMessage());
-        }
-//        else {
-        $html = $this->getPartial('pageProduct/inquiryNowForm', array('form' => $form, 'valid' => $valid));
-//        }
-        $arrReturn = [
-            'errCode' => $valid,
-            'html' => $html,
-        ];
-        return $this->renderText(json_encode($arrReturn));
+        return $this->renderText(json_encode([
+            'errorCode' => $errCode
+        ]));
     }
 
-    public function executePageInquiryNow(sfWebRequest $request)
-    {
-        $i18n = sfContext::getInstance()->getI18N();
-        $slug = $request->getParameter('slug');
-        $form = new InquiryNowFront();
-        $product = false;
-        if ($slug) {
-            // lay chi tiet san pham
-            $product = VtpProductsTable::getProductbySlug($slug, 0);
-            if ($product) {
-                $this->product = $product;
-            }
-        }
-        if (!$product) {
-            $this->forward404($i18n->__('Page not found!'));
-        }
-        $message = "";
-        if ($request->isMethod('post')) {
-            $values = $request->getParameter($form->getName());
-            $form->bind(($values));
-            if ($form->isValid()) {
-                $obj = new Booking();
-                $obj->setFullName($values['full_name']);
-                $obj->setPhone($values['phone']);
-                $obj->setEmail($values['email']);
-                $obj->setCountry($values['country']);
-                $obj->setBody($values['body']);
-//                $obj->setAddress($values['address']);
-                $obj->setShippingTerm($values['shipping_term']);
-//                $obj->setSubject($values['subject']);
-                $obj->setRequirement($values['requirement']);
-                $obj->setLang(sfContext::getInstance()->getUser()->getCulture());
-                $obj->save();
-                $valid = 0;
-
-                $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-                try {
-                    //Server settings
-                    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-                    $mail->isSMTP();                                      // Set mailer to use SMTP
-                    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                    $mail->Username = 'glovimex68@gmail.com';                 // SMTP username
-                    $mail->Password = 'thanhcong6868';                           // SMTP password
-                    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-                    $mail->Port = 465;                                    // TCP port to connect to
-                    //Recipients
-                    $mail->setFrom('glovimex68@gmail.com', 'Glovimex');
-                    $mail->addAddress('glovimex68@gmail.com');               // Name is optional
-                    $mail->addReplyTo('glovimex68@gmail.com', 'Information');
-                    //Content
-                    $mail->isHTML(true);                                  // Set email format to HTML
-                    $mail->Subject = 'Order: ' . $product->product_name;
-                    $content = '<b>Customer Name: </b>' . $values['full_name'] . '<br>';
-                    $content .= '<b>Email: </b>' . $values['email'] . '<br>';
-                    $content .= '<b>Phone: </b>' . $values['phone'] . '<br>';
-                    $content .= '<b>Country: </b>' . $values['country'] . '<br>';
-                    $content .= '<b>Requirement: </b>' . $values['requirement'] . '<br>';
-                    $mail->Body = $content;
-//                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-                    $mail->send();
-                } catch (Exception $e) {
-                }
-            } else {
-                $valid = 1;
-            }
-        }
-        $this->form = $form;
-        $this->valid = $valid;
-    }
-
-    public function executePopupInquiryNow(sfWebRequest $request)
+    public function executeBookingContact($request)
     {
         $this->getResponse()->setHttpHeader('Content-type', 'application/json');
-        $form = new InquiryNowFront();
-        $slug = $request->getParameter('slug');
-        $product = false;
-        $listImage = false;
-        if ($slug) {
-            $product = VtpProductsTable::getProductbySlug($slug, 0);
-            if ($product) {
-                $listImage = $product->getListImage();
-            }
+        $form = new BaseForm();
+        $csrf = $request->getParameter('_csrf_token');
+        $values['_csrf_token'] = $csrf;
+        $form->bind($values);
+        $name = $request->getParameter('name');
+        $sdt = $request->getParameter('sdt');
+        $email = $request->getParameter('email');
+        $title = $request->getParameter('title');
+        $errCode = 1;
+        if ($name && $sdt && $title && $email && $form->isValid()) {
+            $obj = new Booking();
+            $obj->setFullName($name);
+            $obj->setPhone($sdt);
+            $obj->setEmail($email);
+            $obj->setBookType(2);
+            $obj->setRequirement($title);
+            $obj->setLang(sfContext::getInstance()->getUser()->getCulture());
+            $obj->save();
+            $errCode = 0;
+        } else {
+            $errCode = 2;
         }
-        $html = $this->getPartial('pageProduct/inquiryNow', array('form' => $form,
-            'product' => $product, 'listImage' => $listImage));
-        $arrReturn = [
-            'html' => $html,
-        ];
-        return $this->renderText(json_encode($arrReturn));
+        return $this->renderText(json_encode([
+            'errorCode' => $errCode
+        ]));
     }
 }

@@ -17,6 +17,7 @@ abstract class BaseAdLinkForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'name'       => new sfWidgetFormInputText(),
+      'lang'       => new sfWidgetFormInputText(),
       'link'       => new sfWidgetFormInputText(),
       'priority'   => new sfWidgetFormInputText(),
       'type'       => new sfWidgetFormInputText(),
@@ -30,6 +31,7 @@ abstract class BaseAdLinkForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'       => new sfValidatorString(array('max_length' => 255)),
+      'lang'       => new sfValidatorString(array('max_length' => 255)),
       'link'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'priority'   => new sfValidatorInteger(array('required' => false)),
       'type'       => new sfValidatorInteger(array('required' => false)),

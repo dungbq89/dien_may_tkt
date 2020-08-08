@@ -108,7 +108,7 @@ class vtManageProductsFormAdmin extends BaseVtpProductsForm
             'keywords' => new sfValidatorString(array('max_length' => 255, 'required' => false, 'trim' => true)),
 
             'brand' => new sfValidatorChoice(array(
-                'required' => true,
+                'required' => false,
                 'choices' => array_keys($arrBrand))),
             'reference_price' => new sfValidatorInteger(array('required' => false)),
             'unit' => new sfValidatorString(array('max_length' => 255, 'required' => false)),

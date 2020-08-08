@@ -14,6 +14,7 @@ abstract class BaseAdLinkFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'lang'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'link'       => new sfWidgetFormFilterInput(),
       'priority'   => new sfWidgetFormFilterInput(),
       'type'       => new sfWidgetFormFilterInput(),
@@ -26,6 +27,7 @@ abstract class BaseAdLinkFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'name'       => new sfValidatorPass(array('required' => false)),
+      'lang'       => new sfValidatorPass(array('required' => false)),
       'link'       => new sfValidatorPass(array('required' => false)),
       'priority'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'type'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -55,6 +57,7 @@ abstract class BaseAdLinkFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'         => 'Number',
       'name'       => 'Text',
+      'lang'       => 'Text',
       'link'       => 'Text',
       'priority'   => 'Number',
       'type'       => 'Number',

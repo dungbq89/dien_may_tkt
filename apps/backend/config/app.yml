@@ -22,14 +22,14 @@ all:
               credentials: [[admin,news_editor,news_approved,news_public, ctv]]
               route: ad_article_AdArticle
               icon: text.png
-            Quản lý tin đợi đăng:
-              credentials: [[admin,news_editor,news_approved,news_public, ctv]]
-              route: ad_article_adArticlesAproved
-              icon: text.png
-            Quản lý tin đã đăng:
-              credentials: [[admin,news_editor,news_approved,news_public, ctv]]
-              route: ad_article_adArticlesPublish
-              icon: text.png
+#            Quản lý tin đợi đăng:
+#              credentials: [[admin,news_editor,news_approved,news_public, ctv]]
+#              route: ad_article_adArticlesAproved
+#              icon: text.png
+#            Quản lý tin đã đăng:
+#              credentials: [[admin,news_editor,news_approved,news_public, ctv]]
+#              route: ad_article_adArticlesPublish
+#              icon: text.png
             Quản lý danh mục tin tức:
               credentials: [[admin,news_editor,news_approved,news_public, ctv]]
               route: vtp_category

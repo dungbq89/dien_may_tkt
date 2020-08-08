@@ -1,111 +1,116 @@
 ﻿<?php
-$news = $pager->getResults();
+$articles = $pager->getResults();
 ?>
+<main id="main" class="">
 
-<!--breadcrumbs area start-->
-<div class="breadcrumbs_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb_content">
-                    <ul>
-                        <li><a href="<?php echo url_for1('homepage') ?>"><?php echo __('home') ?></a></li>
-                        <li><?php echo __('News') ?></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--breadcrumbs area end-->
+    <div id="content" class="blog-wrapper blog-archive page-wrapper">
 
-<!--blog area start-->
-<div class="blog_page_section mt-23">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="blog_wrapper">
-                    <?php
-                    if ($pager->count() > 0) {
-                        foreach ($news as $new) {
-                            $pathImg = '/uploads/' . sfConfig::get('app_article_images') . $new->image_path;
-                            ?>
-                            <div class="single_blog">
-                                <div class="blog_thumb">
-                                    <a href="<?php echo url_for1('@hq_new_detail?slug=' . $new->slug) ?>">
-                                        <img src="<?php echo VtHelper::getThumbUrl($pathImg, 356, 245) ?>" alt=""></a>
-                                </div>
-                                <div class="blog_content">
-                                    <h3><a href="<?php echo url_for1('@hq_new_detail?slug=' . $new->slug) ?>">
-                                            <?php echo $new->title ?>
-                                        </a></h3>
 
-                                    <div class="blog_meta">
-                                        <span class="post_date"><i class="fa-calendar fa"></i>
-                                            <?php echo date('Y-m-d', strtotime($new->published_time)) ?>
-                                        </span>
-                                        <!--                                        <span class="author"><i class="fa fa-user-circle"></i> Posts by : admin</span>-->
-                                        <!--                                    <span class="category">-->
-                                        <!--                                        <i class="fa fa-folder-open"></i>-->
-                                        <!--                                        <a href="#">Fashion</a>-->
-                                        <!--                                    </span>-->
-                                    </div>
-                                    <div class="blog_desc">
-                                        <p>
-                                            <?php echo $new->header ?>
-                                        </p>
-                                    </div>
-                                    <div class="readmore_button">
-                                        <a href="<?php echo url_for1('@hq_new_detail?slug=' . $new->slug) ?>">
-                                            <?php echo __('read more') ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="row row-large ">
+
+            <div class="large-9 col">
+
+
+                <div id="row-1507254904" class="row large-columns-3 medium-columns- small-columns-1 row-masonry"
+                     data-packery-options="{&quot;itemSelector&quot;: &quot;.col&quot;, &quot;gutter&quot;: 0, &quot;presentageWidth&quot; : true}"
+                     style="position: relative; height: 438.112px;">
+                    <?php if (count($articles)): ?>
+                        <?php foreach ($articles as $article): ?>
                             <?php
-                        }
-                    }
-                    ?>
+                            /** @var $article AdArticle */
+                            $link = url_for1(sprintf('@newDetail?slug=%s', $article->slug));
+                            $path = '/uploads/' . sfConfig::get('app_article_images') . $article->image_path;
+                            $img = VtHelper::getThumbUrl($path, 300, 169);
+                            ?>
+                            <div class="col post-item">
+                                <div class="col-inner">
+                                    <a href="<?php echo $link ?>"
+                                       class="plain">
+                                        <div class="box box-text-bottom box-blog-post has-hover">
+                                            <div class="box-image">
+                                                <div class="image-cover" style="padding-top:56%;">
+                                                    <img width="300" height="169"
+                                                         src="<?php echo $img ?>"
+                                                         data-src="<?php echo $img ?>"
+                                                         class="attachment-medium size-medium wp-post-image lazy-load-active"
+                                                         alt=""
+                                                         srcset="<?php echo $img ?> 300w, <?php echo $img ?> 768w, <?php echo $img ?> 800w"
+                                                         data-srcset="<?php echo $img ?> 300w, <?php echo $img ?> 768w, <?php echo $img ?> 800w"
+                                                         sizes="(max-width: 300px) 100vw, 300px"></div>
+                                            </div><!-- .box-image -->
+                                            <div class="box-text text-left">
+                                                <div class="box-text-inner blog-post-inner">
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--blog area end-->
 
-<!--blog pagination area start-->
-<?php if ($pager && $pager->haveToPaginate()){ ?>
-<div class="blog_pagination">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="pagination">
-                    <ul>
-                        <?php if ($pager->getPage() >= 2): ?>
-                            <li><a href="<?php echo url_for1('@hq_news') ?>">
-                                    <i class="fa fa-angle-left"></i></a></li>
-                        <?php endif; ?>
-                        <?php foreach ($pager->getLinks() as $page): ?>
-                            <li class="<?php echo $page == $pager->getPage() ? 'current' : '' ?>">
-                                <a href="<?php echo url_for1('@hq_news?page=' . $page) ?>">
-                                    <?php echo $page ?></a></li>
+                                                    <h5 class="post-title is-large ">
+                                                        <?php echo $article->title ?>
+                                                    </h5>
+                                                    <div class="is-divider"></div>
+                                                    <p class="from_the_blog_excerpt ">
+                                                        <?php echo $article->header ?>
+                                                    </p>
+
+
+                                                </div><!-- .box-text-inner -->
+                                            </div><!-- .box-text -->
+                                            <div class="badge absolute top post-date badge-square">
+                                                <div class="badge-inner">
+                                                    <span class="post-date-day"><?php echo date('d', strtotime($article->published_time)) ?></span><br>
+                                                    <span class="post-date-month is-xsmall">Th<?php echo date('m', strtotime($article->published_time)) ?></span>
+                                                </div>
+                                            </div>
+                                        </div><!-- .box -->
+                                    </a><!-- .link -->
+                                </div><!-- .col-inner -->
+                            </div><!-- .col -->
                         <?php endforeach; ?>
-                        <?php if ($pager->getPage() < $pager->getLastPage()): ?>
-                            <li>
-                                <a href="<?php echo url_for1('@hq_news?page=' . $pager->getLastPage()) ?>"><i
-                                        class="fa fa-angle-right"></i></a></li>
-                        <?php endif; ?>
-                    </ul>
+                    <?php endif; ?>
 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<?php } ?>
-<!--blog pagination area end-->
 
-<!--slider area end-->
 
-<!-- modal area end-->
+                <?php if ($pager && $pager->haveToPaginate()): ?>
+                    <div class="container">
+                        <nav class="woocommerce-pagination">
+                            <ul class="page-numbers nav-pagination links text-center">
+                                <?php if ($pager->getPage() >= 2): ?>
+                                    <li><a class="prev page-number"
+                                           href="<?php echo url_for1(sprintf('@news?%s', VtHelper::getUrlCat(''))) ?>"><i
+                                                    class="icon-angle-left"></i></a></li>
+                                <?php endif; ?>
+                                <?php foreach ($pager->getLinks() as $pg): ?>
+                                    <?php if ($pg == $pager->getPage()): ?>
+                                        <li><span aria-current="page"
+                                                  class="page-number current"><?php echo $pager->getPage() ?></span>
+                                        </li>
+                                    <?php else: ?>
+                                        <li><a class="page-number"
+                                               href="<?php echo url_for1(sprintf('@news?%s', VtHelper::getUrlCat($pg))) ?>"><?php echo $pg ?></a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+
+                                <?php if ($pager->getPage() < $pager->getLastPage()): ?>
+                                    <li><a class="next page-number"
+                                           href="<?php echo url_for1(sprintf('@news?%s', VtHelper::getUrlCat($pager->getLastPage()))) ?>"><i
+                                                    class="icon-angle-right"></i></a></li>
+                                <?php endif; ?>
+                            </ul>
+                        </nav>
+                    </div>
+                <?php endif; ?>
+
+            </div> <!-- .large-9 -->
+
+            <div class="post-sidebar large-3 col">
+                <div id="secondary" class="widget-area " role="complementary">
+                    <?php include_component('pageNews', 'navNew'); ?>
+                </div><!-- #secondary -->
+            </div><!-- .post-sidebar -->
+
+        </div><!-- .row -->
+
+    </div><!-- .page-wrapper .blog-wrapper -->
+
+
+</main>

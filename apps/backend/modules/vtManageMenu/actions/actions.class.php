@@ -66,7 +66,6 @@ class vtManageMenuActions extends autoVtManageMenuActions
     public static function MoveMenu($menu_id,$type)
     {
         //$type: UP,DOWN,LEFT,RIGHT
-
         $catFirst=0;
         $catLast=0;
         $catLeft=0;
@@ -388,7 +387,7 @@ class vtManageMenuActions extends autoVtManageMenuActions
         $query = $this->buildQuery();
         $query->where('type=?',VtCommonEnum::MainMenu);
 //        $query->andWhere('portal_id=?',sfContext::getInstance()->getUser()->getAttribute('portal',0));
-        $query->andWhere('lang=?',sfContext::getInstance()->getUser()->getCulture());
+//        $query->andWhere('lang=?',sfContext::getInstance()->getUser()->getCulture());
         $query->orderby('priority asc');
         $arrCat= $query->execute();
 

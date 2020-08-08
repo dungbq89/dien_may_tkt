@@ -1,15 +1,24 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 # laptop duc minh
+booking:
+  url: /dat-hang
+  param: {module: pageProduct, action: booking, slug: ""}
+bookingContact:
+  url: /lien-he-dat-hang
+  param: {module: pageProduct, action: bookingContact, slug: ""}
 news:
-  url: /tin-tuc/:slug/:page
-  param: {module: pageNews, action: index, page: 1, slug: ""}
+  url: /tin-tuc/:slug
+  param: {module: pageNews, action: index, slug: ""}
 newDetail:
-  url: /chi-tiet-tin/:cat_slug/:slug
-  param: {module: pageNews, action: newDetail}
+  url: /chi-tiet-tin/:slug
+  param: {module: pageNews, action: detail}
 cat_product:
   url: /san-pham/:slug/:page
   param: {module: pageProduct, action: index, page: 1, slug: ""}
+search_product:
+  url: /tim-kiem/:page
+  param: {module: pageProduct, action: search, page: 1, slug: ""}
 productDetail:
   url: /chi-tiet/:cat_slug/:slug
   param: {module: pageProduct, action: detail}

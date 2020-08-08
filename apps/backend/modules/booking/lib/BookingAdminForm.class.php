@@ -70,6 +70,23 @@ class BookingAdminForm extends BaseBookingForm
             'required' => false,
             'choices' => array_keys($this->getChoice()),));
 
+        $aBookType = VtHelper::getBookType();
+
+        $this->widgetSchema['book_type'] = new sfWidgetFormChoice(array(
+            'choices' => $aBookType,
+            'multiple' => false,
+            'expanded' => false));
+        $this->validatorSchema['book_type'] = new sfValidatorChoice(array(
+            'required' => false,
+            'choices' => array_keys($aBookType)));
+
+        $this->widgetSchema['total'] = new sfWidgetFormInputText(array());
+        $this->validatorSchema['total'] = new sfValidatorPass();
+        $this->widgetSchema['total_price'] = new sfWidgetFormInputText(array());
+        $this->validatorSchema['total_price'] = new sfValidatorPass();
+        $this->widgetSchema['body'] = new sfWidgetFormInputText(array());
+        $this->validatorSchema['body'] = new sfValidatorPass();
+
         $this->widgetSchema->setNameFormat('booking[%s]');
 
         $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
@@ -121,6 +138,7 @@ class BookingAdminForm extends BaseBookingForm
 
         return $arr;
     }
+
     private function doBindType(&$values)
     {
         $values['lang'] = sfContext::getInstance()->getUser()->getCulture();

@@ -24,6 +24,9 @@ Doctrine_Manager::getInstance()->bindComponent('Booking', 'doctrine');
  * @property string $shipping_term
  * @property string $subject
  * @property string $requirement
+ * @property integer $total
+ * @property string $total_price
+ * @property integer $book_type
  * 
  * @method string    getFullName()      Returns the current record's "full_name" value
  * @method string    getPhone()         Returns the current record's "phone" value
@@ -42,6 +45,9 @@ Doctrine_Manager::getInstance()->bindComponent('Booking', 'doctrine');
  * @method string    getShippingTerm()  Returns the current record's "shipping_term" value
  * @method string    getSubject()       Returns the current record's "subject" value
  * @method string    getRequirement()   Returns the current record's "requirement" value
+ * @method integer   getTotal()         Returns the current record's "total" value
+ * @method string    getTotalPrice()    Returns the current record's "total_price" value
+ * @method integer   getBookType()      Returns the current record's "book_type" value
  * @method Booking   setFullName()      Sets the current record's "full_name" value
  * @method Booking   setPhone()         Sets the current record's "phone" value
  * @method Booking   setEmail()         Sets the current record's "email" value
@@ -59,6 +65,9 @@ Doctrine_Manager::getInstance()->bindComponent('Booking', 'doctrine');
  * @method Booking   setShippingTerm()  Sets the current record's "shipping_term" value
  * @method Booking   setSubject()       Sets the current record's "subject" value
  * @method Booking   setRequirement()   Sets the current record's "requirement" value
+ * @method Booking   setTotal()         Sets the current record's "total" value
+ * @method Booking   setTotalPrice()    Sets the current record's "total_price" value
+ * @method Booking   setBookType()      Sets the current record's "book_type" value
  * 
  * @package    symfony
  * @subpackage model
@@ -157,6 +166,21 @@ abstract class BaseBooking extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => false,
              'length' => 1000,
+             ));
+        $this->hasColumn('total', 'integer', 25, array(
+             'type' => 'integer',
+             'notnull' => false,
+             'length' => 25,
+             ));
+        $this->hasColumn('total_price', 'string', 25, array(
+             'type' => 'string',
+             'notnull' => false,
+             'length' => 25,
+             ));
+        $this->hasColumn('book_type', 'integer', 22, array(
+             'type' => 'integer',
+             'notnull' => false,
+             'length' => 22,
              ));
     }
 

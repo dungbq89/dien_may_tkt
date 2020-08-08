@@ -1,3 +1,4 @@
+<?php $conf = json_decode(sfConfig::get('app_config_web'), true); ?>
 <header id="header" class="header has-sticky sticky-jump" style="">
     <div class="header-wrapper">
         <div id="masthead" class="header-main hide-for-sticky nav-dark">
@@ -6,11 +7,11 @@
                 <!-- Logo -->
                 <div id="logo" class="flex-col logo">
                     <!-- Header logo -->
-                    <a href="<?php echo url_for1('@homepage') ?>" title="Laptop91 - Uy Tín Là Sức Mạnh" rel="home">
+                    <a href="<?php echo url_for1('@homepage') ?>" title="<?php echo $conf['title'] ?>" rel="home">
                         <img width="245" height="154"
-                             src="https://laptop91.com/wp-content/uploads/2020/07/ảnh-web-01-2.png"
+                             src="<?php echo $conf['logo'] ?>"
                              class="header_logo header-logo" alt="Laptop91"><img width="245" height="154"
-                                                                                 src="https://laptop91.com/wp-content/uploads/2020/07/ảnh-web-01-2.png"
+                                                                                 src="<?php echo $conf['logo'] ?>"
                                                                                  class="header-logo-dark"
                                                                                  alt="Laptop91"></a>
                 </div>
@@ -44,13 +45,13 @@
 
                                             <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
                                                 <form role="search" method="get" class="searchform"
-                                                      action="https://laptop91.com/">
+                                                      action="<?php echo url_for1('@search_product') ?>">
                                                     <div class="flex-row relative">
                                                         <div class="flex-col flex-grow" data-children-count="1">
                                                             <input type="search" class="search-field mb-0" name="s"
                                                                    value="" placeholder="Vui lòng nhập tên sản phẩm..."
                                                                    autocomplete="off">
-                                                            <input type="hidden" name="post_type" value="product">
+                                                            <!--                                                            <input type="hidden" name="post_type" value="product">-->
                                                         </div><!-- .flex-col -->
                                                         <div class="flex-col">
                                                             <button type="submit"
@@ -79,7 +80,7 @@
                                                                 <div class="icon">
                                                                     <div class="icon-inner">
                                                                         <img width="120" height="160"
-                                                                             src="https://laptop91.com/wp-content/uploads/2020/07/iconweb-02.png"
+                                                                             src="/ltducminh/images/iconweb-02.png"
                                                                              class="attachment-medium size-medium"
                                                                              alt=""></div>
                                                                 </div>
@@ -107,7 +108,7 @@
                                                                 <div class="icon">
                                                                     <div class="icon-inner">
                                                                         <img width="295" height="156"
-                                                                             src="https://laptop91.com/wp-content/uploads/2020/07/iconweb-01.png"
+                                                                             src="/ltducminh/images/iconweb-01.png"
                                                                              class="attachment-medium size-medium"
                                                                              alt=""></div>
                                                                 </div>
@@ -135,7 +136,7 @@
                                                                 <div class="icon">
                                                                     <div class="icon-inner">
                                                                         <img width="151" height="151"
-                                                                             src="https://laptop91.com/wp-content/uploads/2020/07/iconweb.png"
+                                                                             src="/ltducminh/images/iconweb.png"
                                                                              class="attachment-medium size-medium"
                                                                              alt=""></div>
                                                                 </div>
@@ -163,7 +164,7 @@
                                                                 <div class="icon">
                                                                     <div class="icon-inner">
                                                                         <img width="125" height="125"
-                                                                             src="https://laptop91.com/wp-content/uploads/2020/07/iconweb-00.png"
+                                                                             src="/ltducminh/images/iconweb-00.png"
                                                                              class="attachment-medium size-medium"
                                                                              alt=""></div>
                                                                 </div>
@@ -211,11 +212,12 @@
                                                         <div class="img has-hover x md-x lg-x y md-y lg-y"
                                                              id="image_1964957431">
                                                             <div class="img-inner dark">
-                                                                <img width="191" height="22"
-                                                                     src="https://laptop91.com/wp-content/uploads/2020/07/0911916001.png"
-                                                                     class="attachment-original size-original" alt=""
-                                                                     srcset="https://laptop91.com/wp-content/uploads/2020/07/0911916001.png 191w, https://laptop91.com/wp-content/uploads/2020/07/0911916001-180x22.png 180w"
-                                                                     sizes="(max-width: 191px) 100vw, 191px">
+                                                                <p style="font-size: 20px"><?php echo $conf['mobile'] ?></p>
+                                                                <!--                                                                <img width="191" height="22"-->
+                                                                <!--                                                                     src="/ltducminh/images/0911916001.png"-->
+                                                                <!--                                                                     class="attachment-original size-original" alt=""-->
+                                                                <!--                                                                     srcset="/ltducminh/images/0911916001.png 191w, /ltducminh/images/0911916001-180x22.png 180w"-->
+                                                                <!--                                                                     sizes="(max-width: 191px) 100vw, 191px">-->
                                                             </div>
 
                                                             <style scope="scope">
@@ -232,11 +234,13 @@
                                                         <div class="img has-hover x md-x lg-x y md-y lg-y"
                                                              id="image_643257186">
                                                             <div class="img-inner dark">
-                                                                <img width="191" height="24"
-                                                                     src="https://laptop91.com/wp-content/uploads/2020/07/0929191001-2.png"
-                                                                     class="attachment-original size-original" alt=""
-                                                                     srcset="https://laptop91.com/wp-content/uploads/2020/07/0929191001-2.png 191w, https://laptop91.com/wp-content/uploads/2020/07/0929191001-2-180x24.png 180w"
-                                                                     sizes="(max-width: 191px) 100vw, 191px">
+                                                                <p style="font-size: 20px"><?php echo $conf['mobile'] ?></p>
+
+                                                                <!--                                                                <img width="191" height="24"-->
+                                                                <!--                                                                     src="/ltducminh/images/0929191001-2.png"-->
+                                                                <!--                                                                     class="attachment-original size-original" alt=""-->
+                                                                <!--                                                                     srcset="/ltducminh/images/0929191001-2.png 191w, /ltducminh/images/0929191001-2-180x24.png 180w"-->
+                                                                <!--                                                                     sizes="(max-width: 191px) 100vw, 191px">-->
                                                             </div>
 
                                                             <style scope="scope">
@@ -256,9 +260,12 @@
                                                         <div class="gap-element"
                                                              style="display:block; height:auto; padding-top:5px"></div>
 
-                                                        <div class="header-goc-phai"><a href="<?php echo url_for1('@pageHtml?slug=gioi-thieu') ?>">Giới
-                                                                thiệu</a> | <a href="<?php echo url_for1('@news') ?>/tin-tuc">Tin tức</a> |&nbsp;<a
-                                                                    href="<?php echo url_for1('@pageHtml?slug=khuyen-mai') ?>">Khuyến mãi</a></div>
+                                                        <div class="header-goc-phai"><a
+                                                                    href="<?php echo url_for1('@pageHtml?slug=gioi-thieu') ?>">Giới
+                                                                thiệu</a> | <a href="<?php echo url_for1('@news') ?>">Tin
+                                                                tức</a> |&nbsp;<a
+                                                                    href="<?php echo url_for1('@pageHtml?slug=khuyen-mai') ?>">Khuyến
+                                                                mãi</a></div>
                                                         <div class="gap-element"
                                                              style="display:block; height:auto; padding-top:10px"></div>
 
@@ -272,8 +279,9 @@
                                                             <div role="form" class="wpcf7" id="wpcf7-f797-o1" lang="vi"
                                                                  dir="ltr">
                                                                 <div class="screen-reader-response"></div>
-                                                                <form action="/#wpcf7-f797-o1" method="post"
-                                                                      class="wpcf7-form" novalidate="novalidate">
+                                                                <form action="<?php echo url_for1('@homepage') ?>"
+                                                                      method="post"
+                                                                      class="wpcf7-form-sm" novalidate="novalidate">
                                                                     <div style="display: none;">
                                                                         <input type="hidden" name="_wpcf7" value="797">
                                                                         <input type="hidden" name="_wpcf7_version"
@@ -340,19 +348,30 @@
                                                                                                              placeholder="Sản phẩm cần tư vấn..."></span>
                                                                     </p>
                                                                     <p><input type="submit" value="Gửi yêu cầu"
+                                                                              name="submitct"
                                                                               class="wpcf7-form-control wpcf7-submit"><span
                                                                                 class="ajax-loader"></span></p>
                                                                     <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                                                    <?php
+                                                                    $form = new BaseForm();
+                                                                    echo $form->renderHiddenFields();
+                                                                    ?>
                                                                 </form>
+                                                                <script type="text/javascript">
+                                                                    var blog_url_lh = "<?php echo url_for1('@homepage') ?>";
+                                                                </script>
                                                             </div>
                                                         </div>
 
 
                                                         <div class="header-giohang">
-                                                            <p><a href="<?php echo url_for1('@pageHtml?slug=chinh-sach') ?>">CHÍNH SÁCH</a> | <a
-                                                                        href="<?php echo url_for1('@cat_product') ?>">MUA HÀNG</a>&nbsp;
-<!--                                                                |&nbsp;<a-->
-<!--                                                                        href="/gio-hang/">THANH TOÁN</a></p>-->
+                                                            <p>
+                                                                <a href="<?php echo url_for1('@pageHtml?slug=chinh-sach') ?>">CHÍNH
+                                                                    SÁCH</a> | <a
+                                                                        href="<?php echo url_for1('@cat_product') ?>">MUA
+                                                                    HÀNG</a>&nbsp;
+                                                                <!--                                                                |&nbsp;<a-->
+                                                                <!--                                                                        href="/gio-hang/">THANH TOÁN</a></p>-->
                                                         </div>
                                                         <div class="gap-element"
                                                              style="display:block; height:auto; padding-top:10px"></div>
@@ -405,27 +424,27 @@
                 </div>
 
                 <!-- Right Elements -->
-<!--                <div class="flex-col hide-for-medium flex-right">-->
-<!--                    <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <!--                <div class="flex-col hide-for-medium flex-right">-->
+                <!--                    <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">-->
+                <!--                    </ul>-->
+                <!--                </div>-->
 
                 <!-- Mobile Right Elements -->
-<!--                <div class="flex-col show-for-medium flex-right">-->
-<!--                    <ul class="mobile-nav nav nav-right ">-->
-<!--                        <li class="cart-item has-icon">-->
-<!---->
-<!--                            <a href="https://laptop91.com/gio-hang/"-->
-<!--                               class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"-->
-<!--                               data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">-->
-<!---->
-<!--    		<span class="cart-icon image-icon">-->
-<!--			<strong>0</strong>-->
-<!--		</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <!--                <div class="flex-col show-for-medium flex-right">-->
+                <!--                    <ul class="mobile-nav nav nav-right ">-->
+                <!--                        <li class="cart-item has-icon">-->
+                <!---->
+                <!--                            <a href="https://laptop91.com/gio-hang/"-->
+                <!--                               class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup"-->
+                <!--                               data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">-->
+                <!---->
+                <!--    		<span class="cart-icon image-icon">-->
+                <!--			<strong>0</strong>-->
+                <!--		</span>-->
+                <!--                            </a>-->
+                <!--                        </li>-->
+                <!--                    </ul>-->
+                <!--                </div>-->
                 <!-- Cart Sidebar Popup -->
 
             </div>

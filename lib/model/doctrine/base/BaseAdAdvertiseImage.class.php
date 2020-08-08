@@ -14,21 +14,24 @@ Doctrine_Manager::getInstance()->bindComponent('AdAdvertiseImage', 'doctrine');
  * @property boolean $is_active
  * @property string $link
  * @property AdAdvertise $AdAdvertiseImage
+ * @property AdAdvertiseLocation $AdAdvertiseLocation
  * 
- * @method string           getFilePath()         Returns the current record's "file_path" value
- * @method integer          getAdvertiseId()      Returns the current record's "advertise_id" value
- * @method string           getExtension()        Returns the current record's "extension" value
- * @method integer          getPriority()         Returns the current record's "priority" value
- * @method boolean          getIsActive()         Returns the current record's "is_active" value
- * @method string           getLink()             Returns the current record's "link" value
- * @method AdAdvertise      getAdAdvertiseImage() Returns the current record's "AdAdvertiseImage" value
- * @method AdAdvertiseImage setFilePath()         Sets the current record's "file_path" value
- * @method AdAdvertiseImage setAdvertiseId()      Sets the current record's "advertise_id" value
- * @method AdAdvertiseImage setExtension()        Sets the current record's "extension" value
- * @method AdAdvertiseImage setPriority()         Sets the current record's "priority" value
- * @method AdAdvertiseImage setIsActive()         Sets the current record's "is_active" value
- * @method AdAdvertiseImage setLink()             Sets the current record's "link" value
- * @method AdAdvertiseImage setAdAdvertiseImage() Sets the current record's "AdAdvertiseImage" value
+ * @method string              getFilePath()            Returns the current record's "file_path" value
+ * @method integer             getAdvertiseId()         Returns the current record's "advertise_id" value
+ * @method string              getExtension()           Returns the current record's "extension" value
+ * @method integer             getPriority()            Returns the current record's "priority" value
+ * @method boolean             getIsActive()            Returns the current record's "is_active" value
+ * @method string              getLink()                Returns the current record's "link" value
+ * @method AdAdvertise         getAdAdvertiseImage()    Returns the current record's "AdAdvertiseImage" value
+ * @method AdAdvertiseLocation getAdAdvertiseLocation() Returns the current record's "AdAdvertiseLocation" value
+ * @method AdAdvertiseImage    setFilePath()            Sets the current record's "file_path" value
+ * @method AdAdvertiseImage    setAdvertiseId()         Sets the current record's "advertise_id" value
+ * @method AdAdvertiseImage    setExtension()           Sets the current record's "extension" value
+ * @method AdAdvertiseImage    setPriority()            Sets the current record's "priority" value
+ * @method AdAdvertiseImage    setIsActive()            Sets the current record's "is_active" value
+ * @method AdAdvertiseImage    setLink()                Sets the current record's "link" value
+ * @method AdAdvertiseImage    setAdAdvertiseImage()    Sets the current record's "AdAdvertiseImage" value
+ * @method AdAdvertiseImage    setAdAdvertiseLocation() Sets the current record's "AdAdvertiseLocation" value
  * 
  * @package    symfony
  * @subpackage model
@@ -80,6 +83,10 @@ abstract class BaseAdAdvertiseImage extends sfDoctrineRecord
         $this->hasOne('AdAdvertise as AdAdvertiseImage', array(
              'local' => 'advertise_id',
              'foreign' => 'id'));
+
+        $this->hasOne('AdAdvertiseLocation', array(
+             'local' => 'advertise_id',
+             'foreign' => 'advertise_id'));
 
         $vtblameable0 = new Doctrine_Template_VtBlameable();
         $timestampable0 = new Doctrine_Template_Timestampable();

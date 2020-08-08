@@ -1187,6 +1187,28 @@ class VtHelper
         $clean_html = $purifier->purify($str);
         return $clean_html;
     }
+
+    public static function getUrlCat($page, $minPrice = false, $maxPrice = false, $orderby = false, $keyword = '', $slug = false)
+    {
+        $aParam = [];
+        if ($page) $aParam['page'] = $page;
+        if ($minPrice) $aParam['min_price'] = $minPrice;
+        if ($maxPrice) $aParam['max_price'] = $maxPrice;
+        if ($orderby) $aParam['orderby'] = $orderby;
+        if ($keyword) $aParam['s'] = $keyword;
+        if ($slug) $aParam['slug'] = $slug;
+        return http_build_query($aParam);
+    }
+
+    public static function getBookType($type = false)
+    {
+        $aBookType = [
+            '1' => 'Đặt hàng',
+            '2' => 'Yêu cầu tư vấn'
+        ];
+        if ($type) return !empty($aBookType[$type]) ? $aBookType[$type] : 'Đặt hàng';
+        return $aBookType;
+    }
 }
 
 /**

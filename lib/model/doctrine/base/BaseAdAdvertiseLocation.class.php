@@ -13,19 +13,22 @@ Doctrine_Manager::getInstance()->bindComponent('AdAdvertiseLocation', 'doctrine'
  * @property integer $advertise_id
  * @property integer $priority
  * @property Doctrine_Collection $AdAdvertiseLocation
+ * @property Doctrine_Collection $AdAdvertiseLocationImage
  * 
- * @method string              getName()                Returns the current record's "name" value
- * @method string              getPage()                Returns the current record's "page" value
- * @method string              getTemplate()            Returns the current record's "template" value
- * @method integer             getAdvertiseId()         Returns the current record's "advertise_id" value
- * @method integer             getPriority()            Returns the current record's "priority" value
- * @method Doctrine_Collection getAdAdvertiseLocation() Returns the current record's "AdAdvertiseLocation" collection
- * @method AdAdvertiseLocation setName()                Sets the current record's "name" value
- * @method AdAdvertiseLocation setPage()                Sets the current record's "page" value
- * @method AdAdvertiseLocation setTemplate()            Sets the current record's "template" value
- * @method AdAdvertiseLocation setAdvertiseId()         Sets the current record's "advertise_id" value
- * @method AdAdvertiseLocation setPriority()            Sets the current record's "priority" value
- * @method AdAdvertiseLocation setAdAdvertiseLocation() Sets the current record's "AdAdvertiseLocation" collection
+ * @method string              getName()                     Returns the current record's "name" value
+ * @method string              getPage()                     Returns the current record's "page" value
+ * @method string              getTemplate()                 Returns the current record's "template" value
+ * @method integer             getAdvertiseId()              Returns the current record's "advertise_id" value
+ * @method integer             getPriority()                 Returns the current record's "priority" value
+ * @method Doctrine_Collection getAdAdvertiseLocation()      Returns the current record's "AdAdvertiseLocation" collection
+ * @method Doctrine_Collection getAdAdvertiseLocationImage() Returns the current record's "AdAdvertiseLocationImage" collection
+ * @method AdAdvertiseLocation setName()                     Sets the current record's "name" value
+ * @method AdAdvertiseLocation setPage()                     Sets the current record's "page" value
+ * @method AdAdvertiseLocation setTemplate()                 Sets the current record's "template" value
+ * @method AdAdvertiseLocation setAdvertiseId()              Sets the current record's "advertise_id" value
+ * @method AdAdvertiseLocation setPriority()                 Sets the current record's "priority" value
+ * @method AdAdvertiseLocation setAdAdvertiseLocation()      Sets the current record's "AdAdvertiseLocation" collection
+ * @method AdAdvertiseLocation setAdAdvertiseLocationImage() Sets the current record's "AdAdvertiseLocationImage" collection
  * 
  * @package    symfony
  * @subpackage model
@@ -72,5 +75,9 @@ abstract class BaseAdAdvertiseLocation extends sfDoctrineRecord
         $this->hasMany('AdAdvertise as AdAdvertiseLocation', array(
              'local' => 'advertise_id',
              'foreign' => 'id'));
+
+        $this->hasMany('AdAdvertiseImage as AdAdvertiseLocationImage', array(
+             'local' => 'advertise_id',
+             'foreign' => 'advertise_id'));
     }
 }

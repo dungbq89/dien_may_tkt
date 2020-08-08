@@ -250,7 +250,7 @@ class VtpProductsCategoryTable extends Doctrine_Table
         $q = VtpProductsCategoryTable::getInstance()->createQuery()
             ->andWhere('is_active=1')
             ->andWhere('is_home=1');
-        if ($parent) {
+        if ($parent!==false) {
             $q = $q->andWhere('parent_id=?', $parent);
         }
         $q = $q->limit($limit)->orderBy('priority asc')->execute();

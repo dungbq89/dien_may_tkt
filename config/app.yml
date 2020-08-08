@@ -30,6 +30,7 @@ all:
 
   upload_media_file: "E:\apps\project\dungbq3\dien_may_tkt\web\uploads"
   url_media_file: http://localhost:7004/uploads
+  host_url: http://localhost:7004
   url_media_default_file: http://localhost:7004/images/default-image.jpg
   image_default: http://localhost:7004/images/default-image.jpg
   #upload_media_file: /uploads
@@ -53,3 +54,4 @@ all:
     prefix: 'chain'
     type: 'image/jpeg|image/jpg|image/png|image/gif'
   domain: 'http://glovimex.com'
+  config_web: '{"host":"http://laptopducminh.com","sitename":"laptopducminh.com","address":"Bắc ninh","email":"aa@gmail.com","mobile":"098x","des_footer":"lapducminh.com là Web chuyên phân phối các dòng laptop cũ chính hãng, Uy tin tạo lên sức mạnh của lapducminh.","title":"lapducminh - Uy Tín Là Sức Mạnh","logo":"https://laptop91.com/wp-content/uploads/2020/07/ảnh-web-01-2.png","lienhetuvan":"Hoặc gọi trực tiếp 0972.939.830 (MR.Thiện) để được tư vấn chính xác nhất!"}'

@@ -33,6 +33,9 @@ abstract class BaseBookingForm extends BaseFormDoctrine
       'shipping_term' => new sfWidgetFormTextarea(),
       'subject'       => new sfWidgetFormInputText(),
       'requirement'   => new sfWidgetFormTextarea(),
+      'total'         => new sfWidgetFormInputText(),
+      'total_price'   => new sfWidgetFormInputText(),
+      'book_type'     => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
     ));
@@ -56,6 +59,9 @@ abstract class BaseBookingForm extends BaseFormDoctrine
       'shipping_term' => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
       'subject'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'requirement'   => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
+      'total'         => new sfValidatorInteger(array('required' => false)),
+      'total_price'   => new sfValidatorString(array('max_length' => 25, 'required' => false)),
+      'book_type'     => new sfValidatorInteger(array('required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
     ));

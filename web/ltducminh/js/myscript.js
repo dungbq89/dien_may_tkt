@@ -1,78 +1,143 @@
-jQuery(document).ready(function(){
-    jQuery('[data-popup-open]').on("click", function(e){
-        jQuery('.cotphai').find('input[name="total"]').val(addCommas(price)+' đ');
-    });
-    //jQuery('.cotphai').find('input[name="total"]').val(addCommas(price)+' đ');
-    jQuery('.cotphai').find('input[name="qty"]').change(function(){
-        number = jQuery(this).val()*price;
-        jQuery('.cotphai').find('input[name="total"]').val(addCommas(number) + ' đ');
-    });
-    frm =  jQuery('.cotphai');
-    jQuery('.cotphai').find('button[name="submit"]').on( "click", function(e) {
-        if(checkdata(getdata(frm,'name')) && checkdata(getdata(frm,'sdt')) && checkdata(getdata(frm,'email')) && checkdata(getdata(frm,'address'))){
-            jQuery('.cotphai').append('<div class="notice">Bạn chưa điền đầy đủ thông tin</div>');
-            setTimeout(function(){
+jQuery(document).ready(function () {
+    let frmCt = jQuery('#mua-hang-ngay .wpcf7-form-sm');
+    jQuery('#mua-hang-ngay .wpcf7-form-sm').find('input[name="submitct"]').on("click", function (e) {
+        if (checkdata(getdata(frmCt, 'your-name')) && checkdata(getdata(frmCt, 'your-email')) && checkdata(getdata(frmCt, 'tel-384')) && checkdata(getdata(frmCt, 'your-subject'))) {
+            jQuery('.wpcf7-form-sm').append('<div class="notice">Bạn chưa điền đầy đủ thông tin</div>');
+            setTimeout(function () {
                 jQuery('.notice').remove();
-            },2000)
+            }, 2000)
             return false;
         }
-        datastr = "name="+ getdata(frm,'name')+"&sdt="+getdata(frm,'sdt')+"&email="+getdata(frm,'email')+"&qty="+getdata(frm,'qty')+"&address="+getdata(frm,'address')+"&total="+getdata(frm,'qty')*price+"&product="+jQuery(".cottrai .title-wrapper").text()+"&from="+from+"&to="+to;
+        let datastr = "_csrf_token=" + getdata(frmCt, '_csrf_token') + "&name=" + getdata(frmCt, 'your-name') + "&email=" + getdata(frmCt, 'your-email') + "&sdt=" + getdata(frmCt, 'tel-384') + "&title=" + getdata(frmCt, 'your-subject');
         e.preventDefault();
-        jQuery('.web79loading').html("<img src='"+ blog_url +"/wp-content/plugins/muahangnhanh/image/giphy.gif' style='width:40px'>");
+        jQuery('.web79loading').html("<img src='/ltducminh/images/giphy.gif' style='width:40px'>");
         jQuery.ajax({
             type: 'POST',
-            url:  blog_url+ '/wp-content/plugins/muahangnhanh/sendmail.php',
+            url: blog_url_lh + '/lien-he-dat-hang',
             data: datastr,
             success: function (data) {
-                jQuery('.web79loading').remove();
-                jQuery('.cotphai').append('<div class="notice">Đặt hàng thành công</div>');
-                setTimeout(function(){
-					jQuery('.notice').remove();
-                    jQuery('.popup-close').click();
-                }, 3000);
-                console.log('Submission was successful.');
-                console.log(data);
+                if (data.errorCode == '0') {
+                    jQuery('.web79loading').remove();
+                    jQuery('.wpcf7-form-sm').append('<div class="notice">Gửi thông tin thành công</div>');
+                    setTimeout(function () {
+                        jQuery('.notice').remove();
+                        jQuery('.popup-close').click();
+                    }, 3000);
+                } else {
+                    jQuery('.web79loading').remove();
+                    jQuery('.wpcf7-form-sm').append('<div class="notice">Gửi thông tin không thành công</div>');
+                    setTimeout(function () {
+                        jQuery('.notice').remove();
+                        jQuery('.popup-close').click();
+                    }, 3000);
+                }
             },
             error: function (data) {
-                console.log('An error occurred.');
-                console.log(data);
+                jQuery('.web79loading').remove();
+                jQuery('.wpcf7-form-sm').append('<div class="notice">Gửi thông tin không thành công</div>');
+                setTimeout(function () {
+                    jQuery('.notice').remove();
+                    jQuery('.popup-close').click();
+                }, 3000);
             },
+        });
+        return false;
+    });
+
+
+    jQuery('[data-popup-open]').on("click", function (e) {
+        jQuery('.cotphai').find('input[name="total"]').val(addCommas(price) + ' đ');
+    });
+//jQuery('.cotphai').find('input[name="total"]').val(addCommas(price)+' đ');
+    jQuery('.cotphai').find('input[name="qty"]').change(function () {
+        number = jQuery(this).val() * price;
+        jQuery('.cotphai').find('input[name="total"]').val(addCommas(number) + ' đ');
+    });
+    frm = jQuery('.cotphai');
+    jQuery('.cotphai').find('button[name="submit"]').on("click", function (e) {
+        if (checkdata(getdata(frm, 'name')) && checkdata(getdata(frm, 'sdt')) && checkdata(getdata(frm, 'email')) && checkdata(getdata(frm, 'address'))) {
+            jQuery('.cotphai').append('<div class="notice">Bạn chưa điền đầy đủ thông tin</div>');
+            setTimeout(function () {
+                jQuery('.notice').remove();
+            }, 2000)
+            return false;
+        }
+        datastr = "_csrf_token=" + getdata(frm, '_csrf_token') + "&product_id=" + getdata(frm, 'product_id') + "&name=" + getdata(frm, 'name') + "&sdt=" + getdata(frm, 'sdt') + "&email=" + getdata(frm, 'email') + "&qty=" + getdata(frm, 'qty') + "&address=" + getdata(frm, 'address') + "&total=" + getdata(frm, 'qty') * price + "&product=" + jQuery(".cottrai .title-wrapper").text() + "&from=" + from + "&to=" + to;
+        e.preventDefault();
+        jQuery('.web79loading').html("<img src='/ltducminh/images/giphy.gif' style='width:40px'>");
+        jQuery.ajax({
+            type: 'POST',
+            url: blog_url + '/dat-hang',
+            data: datastr,
+            success: function (data) {
+                if (data.errorCode == '0') {
+                    jQuery('.web79loading').remove();
+                    jQuery('.cotphai').append('<div class="notice">Đặt hàng thành công</div>');
+                    setTimeout(function () {
+                        jQuery('.notice').remove();
+                        jQuery('.popup-close').click();
+                    }, 3000);
+                } else {
+                    jQuery('.web79loading').remove();
+                    jQuery('.cotphai').append('<div class="notice">Đặt hàng không thành công</div>');
+                    setTimeout(function () {
+                        jQuery('.notice').remove();
+                        jQuery('.popup-close').click();
+                    }, 3000);
+                }
+                // console.log('Submission was successful.');
+                // console.log(data);
+            },
+            error: function (data) {
+                jQuery('.web79loading').remove();
+                jQuery('.cotphai').append('<div class="notice">Đặt hàng không thành công</div>');
+                setTimeout(function () {
+                    jQuery('.notice').remove();
+                    jQuery('.popup-close').click();
+                }, 3000);
+
+                // console.log('An error occurred.');
+                // console.log(data);
+            }
         });
     });
 });
-function checkdata(req){
-    if(req === '' || ! req){ return true;}
-    else return false;
+
+function checkdata(req) {
+    if (req === '' || !req) {
+        return true;
+    } else return false;
 }
-jQuery(function() {
+
+jQuery(function () {
     //----- OPEN
-    jQuery('[data-popup-open]').on('click', function(e)  {
+    jQuery('[data-popup-open]').on('click', function (e) {
         var targeted_popup_class = jQuery(this).attr('data-popup-open');
         jQuery('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
- 
+
         e.preventDefault();
     });
- 
+
     //----- CLOSE
-    jQuery('[data-popup-close]').on('click', function(e)  {
+    jQuery('[data-popup-close]').on('click', function (e) {
         var targeted_popup_class = jQuery(this).attr('data-popup-close');
         jQuery('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
         e.preventDefault();
     });
-    jQuery('.popup-inner').clickOff(function() {
-             jQuery('[data-popup="muahangnhanh"]').fadeOut(350);
+    jQuery('.popup-inner').clickOff(function () {
+        jQuery('[data-popup="muahangnhanh"]').fadeOut(350);
     });
 });
-jQuery.fn.clickOff = function(callback, selfDestroy) {
+jQuery.fn.clickOff = function (callback, selfDestroy) {
     var clicked = false;
     var parent = this;
     var destroy = selfDestroy || true;
-    
-    parent.click(function() {
+
+    parent.click(function () {
         clicked = true;
     });
-    
-    jQuery('.popup').click(function(event) { 
+
+    jQuery('.popup').click(function (event) {
         if (!clicked) {
             callback(parent, event);
         }
@@ -81,16 +146,17 @@ jQuery.fn.clickOff = function(callback, selfDestroy) {
             //parent.off("click");
             //jQuery(document).off("click");
             //parent.off("clickOff");
-        };
+        }
+        ;
         clicked = false;
     });
 };
 
-function getdata(frm,req){
-    return frm.find('input[name="'+req+'"]').val();
+function getdata(frm, req) {
+    return frm.find('input[name="' + req + '"]').val();
 }
-function addCommas(nStr)
-{
+
+function addCommas(nStr) {
     nStr += '';
     x = nStr.split('.');
     x1 = x[0];
@@ -101,16 +167,17 @@ function addCommas(nStr)
     }
     return x1 + x2;
 }
-document.addEventListener("DOMContentLoaded", function() {
+
+document.addEventListener("DOMContentLoaded", function () {
     var elements = document.getElementsByTagName("INPUT");
     for (var i = 0; i < elements.length; i++) {
-        elements[i].oninvalid = function(e) {
+        elements[i].oninvalid = function (e) {
             e.target.setCustomValidity("");
             if (!e.target.validity.valid) {
                 e.target.setCustomValidity("Bạn cần điền thông tin vào ô này");
             }
         };
-        elements[i].oninput = function(e) {
+        elements[i].oninput = function (e) {
             e.target.setCustomValidity("");
         };
     }

@@ -14,7 +14,7 @@ class pageHomeComponents extends sfComponents
      */
     public function executeNavSlideTop(sfWebRequest $request)
     {
-
+        $this->slides = AdAdvertiseImageTable::getImageByLocation('homepage');
     }
 
     public function executeMainProduct(sfWebRequest $request)
@@ -25,10 +25,10 @@ class pageHomeComponents extends sfComponents
             // lay danh sach bai viet theo cat
             foreach ($catHome as $cat) {
                 // lay sub cat
-                $subCat = VtpProductsCategoryTable::getCatHome($cat->id, 4);
+                $subCats = VtpProductsCategoryTable::getCatHome($cat->id, 4);
                 $arrDataSub = [];
-                if ($subCat) {
-                    foreach ($catHome as $subCat) {
+                if ($subCats) {
+                    foreach ($subCats as $subCat) {
                         $arrDataSub[] = [
                             'id' => md5($subCat->id),
                             'title' => $subCat->name,
@@ -61,7 +61,7 @@ class pageHomeComponents extends sfComponents
                     'id' => md5($cat->id),
                     'title' => $cat->name,
                     'slug' => $cat->slug,
-                    'data' => AdArticleTable::getArticleByCat($cat->id),
+                    'data' => AdArticleTable::getArticleByCat($cat->id, 5),
                 ];
             }
         }

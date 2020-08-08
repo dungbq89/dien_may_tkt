@@ -13,4 +13,17 @@ require_once dirname(__FILE__).'/../lib/bookingGeneratorHelper.class.php';
  */
 class bookingActions extends autoBookingActions
 {
+
+    protected function getPager()
+    {
+        $query = $this->buildQuery();
+        $pages = ceil($query->count() / $this->getMaxPerPage());
+        $pager = $this->configuration->getPager('Booking');
+        $query=$query->orderBy('id desc');
+        $pager->setQuery($query);
+        $pager->setPage(($this->getPage() > $pages) ? $pages : $this->getPage());
+        $pager->init();
+
+        return $pager;
+    }
 }

@@ -42,4 +42,9 @@ class adLinkAdminForm extends BaseAdLinkForm {
         );
     }
 
+    protected function doBind(array $values)
+    {
+        $values['lang'] = sfContext::getInstance()->getUser()->getCulture();
+        parent::doBind($values);
+    }
 }
